@@ -15,6 +15,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import <QCAR/Marker.h>
 #import <QCAR/CameraDevice.h>
 #import "GameScene.h"
+#import "GameSceneViewController.h"
 
 @interface FrameMarkersViewController ()
 
@@ -138,6 +139,12 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     // initialize the AR session
     [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];
     
+    UIButton *generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    generateLevelButton.frame = CGRectMake(100, 100, 50, 50);
+    generateLevelButton.backgroundColor = [UIColor blueColor];
+    [generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
+    [eaglView addSubview:generateLevelButton];
+    
     
 //    self.skView = [[SKView alloc] init];
 //    self.skView.showsFPS = YES;
@@ -186,6 +193,175 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     // Present the scene.
     [eaglView addSubview:_skView];
     [self.skView presentScene:scene];*/
+}
+
+- (UIImage *)drawGlToImage
+{
+    // Draw OpenGL data to an image context
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    
+    unsigned char buffer[320 * 480 * 4];
+    
+    CGContextRef aContext = UIGraphicsGetCurrentContext();
+    
+    glReadPixels(0, 0, 320, 480, GL_RGBA, GL_UNSIGNED_BYTE, &buffer);
+    
+    CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, &buffer, 320 * 480 * 4, NULL);
+    
+    CGImageRef iref = CGImageCreate(320,480,8,32,320*4, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaLast, ref, NULL, true, kCGRenderingIntentDefault);
+    
+    CGContextScaleCTM(aContext, 1.0, -1.0);
+    CGContextTranslateCTM(aContext, 0, -self.view.frame.size.height);
+    
+    UIImage *im = [[UIImage alloc] initWithCGImage:iref];
+    
+    UIGraphicsEndImageContext();
+    
+    return im;
+}
+
+-(void)transition{
+
+    
+    self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.skView = (SKView *)self.view;
+    self.skView.showsFPS = YES;
+    self.skView.showsNodeCount = YES;
+    
+    self.skView.allowsTransparency = YES;
+    self.skView.backgroundColor = [UIColor clearColor];
+    
+    // Create and configure the scene.
+    GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.height, self.skView.bounds.size.width)];
+    scene.scaleMode = SKSceneScaleModeResizeFill;
+    scene.backgroundImage = eaglView.backgroundImage;
+    // Present the scene.
+    [self.skView presentScene:scene];
+    
+    didTransition = YES;
+
+}
+
+-(BOOL)shouldAutorotate
+{
+
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+
+}
+
+
+-(UIImage*) glToUIImage
+
+{
+    
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    
+    CGRect s;
+    
+    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPad"])
+        
+        s = CGRectMake(0, 0, 1024.0f * scale, (768.0f) * scale);
+    
+    else
+        
+        s = CGRectMake(0, 0, (320.0f) * scale, 480.0f * scale);
+    
+    uint8_t *buffer = (uint8_t *) malloc(s.size.width * s.size.height * 4);
+    
+    glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+    
+    CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
+    
+    CGImageRef iref = CGImageCreate(s.size.width, s.size.height, 8, 32, s.size.width * 4, CGColorSpaceCreateDeviceRGB(),
+                                    
+                                    kCGBitmapByteOrderDefault, ref, NULL, true, kCGRenderingIntentDefault);
+    
+    size_t width = CGImageGetWidth(iref);
+    
+    size_t height = CGImageGetHeight(iref);
+    
+    size_t length = width * height * 4;
+    
+    uint32_t *pixels = (uint32_t *)malloc(length);
+    
+    CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * 4,
+                                                 
+                                                 CGImageGetColorSpace(iref), kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
+    
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), iref);
+    
+    CGImageRef outputRef = CGBitmapContextCreateImage(context);
+    
+    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationLeftMirrored];
+    
+    CGDataProviderRelease(ref);
+    
+    CGImageRelease(iref);
+    
+    CGContextRelease(context);
+    
+    CGImageRelease(outputRef);
+    
+    free(pixels);
+    
+    free(buffer);
+    
+    NSLog(@"Screenshot size: %d, %d", (int)[outputImage size].width, (int)[outputImage size].height);
+    
+    return outputImage;
+    
+}
+
+
+-(void)captureToPhotoAlbum {
+    UIImage *image = [self glToUIImage];
+    UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
+}
+
+-(void)snapUIImage
+{
+    int s = 1;
+    UIScreen* screen = [ UIScreen mainScreen ];
+    if ( [ screen respondsToSelector:@selector(scale) ] )
+        s = (int) [ screen scale ];
+    
+    const int w = self.view.frame.size.width;
+    const int h = self.view.frame.size.height;
+    const NSInteger myDataLength = w * h * 4 * s * s;
+    // allocate array and read pixels into it.
+    GLubyte *buffer = (GLubyte *) malloc(myDataLength);
+    glReadPixels(0, 0, w*s, h*s, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+    // gl renders "upside down" so swap top to bottom into new array.
+    // there's gotta be a better way, but this works.
+    GLubyte *buffer2 = (GLubyte *) malloc(myDataLength);
+    for(int y = 0; y < h*s; y++)
+    {
+        memcpy( buffer2 + (h*s - 1 - y) * w * 4 * s, buffer + (y * 4 * w * s), w * 4 * s );
+    }
+    free(buffer); // work with the flipped buffer, so get rid of the original one.
+    
+    // make data provider with data.
+    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer2, myDataLength, NULL);
+    // prep the ingredients
+    int bitsPerComponent = 8;
+    int bitsPerPixel = 32;
+    int bytesPerRow = 4 * w * s;
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
+    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+    // make the cgimage
+    CGImageRef imageRef = CGImageCreate(w*s, h*s, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+    // then make the uiimage from that
+    UIImage *myImage = [ UIImage imageWithCGImage:imageRef scale:s orientation:UIImageOrientationUp ];
+    UIImageWriteToSavedPhotosAlbum( myImage, nil, nil, nil );
+    CGImageRelease( imageRef );
+    CGDataProviderRelease(provider);
+    CGColorSpaceRelease(colorSpaceRef);
+    free(buffer2);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

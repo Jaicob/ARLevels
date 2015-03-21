@@ -31,6 +31,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import "SampleApplicationUtils.h"
 #import "SampleApplicationShaderUtils.h"
 
+#import "ImageTargetsAppDelegate.h"
+
 
 //******************************************************************************
 // *** OpenGL ES thread safety ***
@@ -135,10 +137,20 @@ namespace {
 
         [self initShaders];
         
-        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.backgroundColor = [UIColor redColor];
+        button.frame = CGRectMake(200, 50, 100, 100);
+        [button addTarget:self action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
     }
     
     return self;
+}
+
+
+-(void)captureToPhotoAlbum {
+    UIImage *image = [self glToUIImage];
+    UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
 }
 
 - (void)dealloc
@@ -193,6 +205,7 @@ namespace {
     obj3D.numIndices = numIndices;
     obj3D.indices = indices;
     
+    
     obj3D.texture = augmentationTexture[textureIndex];
     
     [objects3D addObject:obj3D];
@@ -234,6 +247,125 @@ namespace {
 
 - (void) setOffTargetTrackingMode:(BOOL) enabled {
     offTargetTrackingEnabled = enabled;
+}
+
+-(void)saveBackgroundImage
+{
+    UIImage *image = [self glToUIImage];
+    UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
+    self.backgroundImage = [self glToUIImage];
+}
+
+- (UIImage*) glToUIImage
+
+{
+    
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    
+    CGRect s;
+    
+    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPad"])
+        
+        s = CGRectMake(0, 0, 1024.0f * scale, (768.0f) * scale);
+    
+    else
+        
+        s = CGRectMake(0, 0, (320.0f) * scale, 480.0f * scale);
+    
+    uint8_t *buffer = (uint8_t *) malloc(s.size.width * s.size.height * 4);
+    
+    glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+    
+    CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
+    
+    CGImageRef iref = CGImageCreate(s.size.width, s.size.height, 8, 32, s.size.width * 4, CGColorSpaceCreateDeviceRGB(),
+                                    
+                                    kCGBitmapByteOrderDefault, ref, NULL, true, kCGRenderingIntentDefault);
+    
+    size_t width = CGImageGetWidth(iref);
+    
+    size_t height = CGImageGetHeight(iref);
+    
+    size_t length = width * height * 4;
+    
+    uint32_t *pixels = (uint32_t *)malloc(length);
+    
+    CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * 4,
+                                                 
+                                                 CGImageGetColorSpace(iref), kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
+    
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), iref);
+    
+    CGImageRef outputRef = CGBitmapContextCreateImage(context);
+    
+    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationLeftMirrored];
+    
+    CGDataProviderRelease(ref);
+    
+    CGImageRelease(iref);
+    
+    CGContextRelease(context);
+    
+    CGImageRelease(outputRef);
+    
+    free(pixels);
+    
+    free(buffer);  
+    
+    NSLog(@"Screenshot size: %d, %d", (int)[outputImage size].width, (int)[outputImage size].height);
+    
+    return outputImage;
+    
+}
+
+
+- (CGPoint) projectCoord:(CGPoint)coord inView:(const QCAR::CameraCalibration&)cameraCalibration andPose:(QCAR::Matrix34F)pose withOffset:(CGPoint)offset andScale:(CGFloat)scale
+{
+    CGPoint converted;
+    
+    QCAR::Vec3F vec(coord.x,coord.y,0);
+    QCAR::Vec2F sc = QCAR::Tool::projectPoint(cameraCalibration, pose, vec);
+    converted.x = sc.data[0]*scale - offset.x;
+    converted.y = sc.data[1]*scale - offset.y;
+    
+    return converted;
+}
+
+- (void) calcScreenCoordsOf:(CGSize)target inView:(CGFloat *)matrix inPose:(QCAR::Matrix34F)pose
+{
+    // 0,0 is at centre of target so extremities are at w/2,h/2
+    CGFloat w = target.width/2;
+    CGFloat h = target.height/2;
+    
+    // need to account for the orientation on view size
+    CGFloat viewWidth = self.frame.size.height; // Portrait
+    CGFloat viewHeight = self.frame.size.width; // Portrait
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsLandscape(orientation))
+    {
+        viewWidth = self.frame.size.width;
+        viewHeight = self.frame.size.height;
+    }
+    
+    // calculate any mismatch of screen to video size
+    QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
+    const QCAR::CameraCalibration& cameraCalibration = cameraDevice.getCameraCalibration();
+    QCAR::VideoMode videoMode = cameraDevice.getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+    
+    CGFloat scale = viewWidth/videoMode.mWidth;
+    if (videoMode.mHeight * scale < viewHeight)
+        scale = viewHeight/videoMode.mHeight;
+    CGFloat scaledWidth = videoMode.mWidth * scale;
+    CGFloat scaledHeight = videoMode.mHeight * scale;
+    
+    CGPoint margin = {(scaledWidth - viewWidth)/2, (scaledHeight - viewHeight)/2};
+    
+    // now project the 4 corners of the target
+    ImageTargetsAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    delegate.s0 = [self projectCoord:CGPointMake(-w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    delegate.s1 = [self projectCoord:CGPointMake(-w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    delegate.s2 = [self projectCoord:CGPointMake(w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    delegate.s3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
 }
 
 
@@ -438,6 +570,18 @@ namespace {
     glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
     
     return [context presentRenderbuffer:GL_RENDERBUFFER];
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+
+    return UIInterfaceOrientationMaskPortrait;
+
 }
 
 

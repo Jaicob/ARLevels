@@ -11,12 +11,17 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import "SampleApplicationSession.h"
 #import <QCAR/DataSet.h>
 #import <SpriteKit/SpriteKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+#import <sys/time.h>
 
 @interface FrameMarkersViewController : UIViewController <SampleApplicationControl, SampleAppMenuCommandProtocol>{
     CGRect viewFrame;
     FrameMarkersEAGLView* eaglView;
     UITapGestureRecognizer * tapGestureRecognizer;
     SampleApplicationSession * vapp;
+    BOOL didTransition;
 }
 
 @property (strong, nonatomic) SKView *skView;

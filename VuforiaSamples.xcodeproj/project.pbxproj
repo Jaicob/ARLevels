@@ -125,6 +125,8 @@
 		D05FAAD61ABD512E00DDBFD7 /* scoot.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD51ABD512E00DDBFD7 /* scoot.png */; };
 		D05FAAD81ABD68F200DDBFD7 /* layer-5.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD71ABD68F100DDBFD7 /* layer-5.png */; };
 		D05FAADA1ABD6F2E00DDBFD7 /* greenCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */; };
+		D05FAADD1ABD772200DDBFD7 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */; };
+		D05FAAE31ABD822400DDBFD7 /* ImageTargetsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -295,6 +297,10 @@
 		D05FAAD51ABD512E00DDBFD7 /* scoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scoot.png; sourceTree = "<group>"; };
 		D05FAAD71ABD68F100DDBFD7 /* layer-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layer-5.png"; sourceTree = "<group>"; };
 		D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenCubeTexture.png; sourceTree = "<group>"; };
+		D05FAADB1ABD772200DDBFD7 /* GameSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneViewController.h; sourceTree = "<group>"; };
+		D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSceneViewController.m; sourceTree = "<group>"; };
+		D05FAAE11ABD822400DDBFD7 /* ImageTargetsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTargetsAppDelegate.h; path = ../../../ImageTargetsAppDelegate.h; sourceTree = "<group>"; };
+		D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTargetsAppDelegate.m; path = ../../../ImageTargetsAppDelegate.m; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -412,11 +418,15 @@
 				1863227E17EBCDFB007C8EC8 /* FrameMarkersEAGLView.mm */,
 				1863227F17EBCDFB007C8EC8 /* FrameMarkersViewController.h */,
 				1863228017EBCDFB007C8EC8 /* FrameMarkersViewController.mm */,
+				D05FAADB1ABD772200DDBFD7 /* GameSceneViewController.h */,
+				D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */,
 				D05FAAD21ABD4DED00DDBFD7 /* GameScene.h */,
 				D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */,
 				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
 				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
+				D05FAAE11ABD822400DDBFD7 /* ImageTargetsAppDelegate.h */,
+				D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */,
 			);
 			path = FrameMarkers;
 			sourceTree = "<group>";
@@ -897,12 +907,14 @@
 				1863228217EBCDFB007C8EC8 /* FrameMarkersViewController.mm in Sources */,
 				1863229217EBD0CA007C8EC8 /* VuforiaObject3D.m in Sources */,
 				18E04A2C17ECB5BE00A11459 /* VirtualButtonsEAGLView.mm in Sources */,
+				D05FAAE31ABD822400DDBFD7 /* ImageTargetsAppDelegate.m in Sources */,
 				18E04A2D17ECB5BE00A11459 /* VirtualButtonsViewController.mm in Sources */,
 				18D1686118157717004D017D /* CustomToolbar.m in Sources */,
 				1860C90F17F1EC2B00078D7A /* ImageTargetsEAGLView.mm in Sources */,
 				1860C91017F1EC2B00078D7A /* ImageTargetsViewController.mm in Sources */,
 				189D74D317F4DD8500601748 /* UserDefinedTargetsEAGLView.mm in Sources */,
 				189D74D417F4DD8500601748 /* UserDefinedTargetsViewController.mm in Sources */,
+				D05FAADD1ABD772200DDBFD7 /* GameSceneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

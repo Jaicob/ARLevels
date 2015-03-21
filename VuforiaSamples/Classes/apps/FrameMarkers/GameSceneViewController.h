@@ -1,5 +1,5 @@
 //
-//  GameScene.h
+//  GameSceneViewController.h
 //  VuforiaSamples
 //
 //  Created by Justin Lennox on 3/21/15.
@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameScene : SKScene
+@interface GameSceneViewController : UIViewController
 
-@property (strong, nonatomic) SKSpriteNode *background;
-@property (strong, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) SKView *skView;
 
 @end
