@@ -139,11 +139,16 @@ namespace {
 
         [self initShaders];
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.backgroundColor = [UIColor redColor];
-        button.frame = CGRectMake(200, 50, 100, 100);
-        [button addTarget:self action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
+        self.button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.button setImage:[UIImage imageNamed:@"camera-96.png"] forState:UIControlStateNormal];
+        //self.button.backgroundColor = [UIColor colorWithRed:(2.00f/255.00f) green:(186.00f/255.00f) blue:(242.00f/255.00f) alpha:1.0f];
+        self.button.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 32, 64, 64);
+        self.button.transform = CGAffineTransformMakeRotation(-3.14/2);
+//        self.button.layer.cornerRadius = self.button.frame.size.height/2;
+//        self.button.layer.masksToBounds = YES;
+//        self.button.layer.borderWidth = 0;
+        [self.button addTarget:self action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.button];
     }
     
     return self;
@@ -250,6 +255,8 @@ namespace {
     UIImage *image = [self glToUIImage];
     UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
     self.backgroundImage = [self glToUIImage];
+//    self.button.enabled = NO;
+//    self.button.alpha = 0.0f;
 }
 
 - (UIImage*) glToUIImage

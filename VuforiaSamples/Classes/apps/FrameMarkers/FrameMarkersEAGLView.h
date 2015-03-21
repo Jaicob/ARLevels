@@ -47,7 +47,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 }
 
 @property (strong, nonatomic) SKView *skView;
-
+@property (strong, nonatomic) UIButton *button; //This is the red button we use to take the gl view's picture
 @property (strong, nonatomic) UIImage *backgroundImage;
 
 
@@ -56,7 +56,6 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 - (void)finishOpenGLESCommands;
 - (void)freeOpenGLESResources;
 -(UIImage *) glToUIImage;
-- (UIImage *)drawGlToImage;
 
 @end
 

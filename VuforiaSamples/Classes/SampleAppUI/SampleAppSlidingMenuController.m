@@ -99,22 +99,22 @@ static const CGFloat kSlidingMenuSlideDuration = 0.3;
     [view addGestureRecognizer:panGestureRecognizer];
     
     // double tap used to also trigger the menu
-    UITapGestureRecognizer *doubleTap = NULL;
+   /* UITapGestureRecognizer *doubleTap = NULL;
     if (! ignoreDoubleTap) {
         doubleTap = [[[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doubleTapGestureAction:)] autorelease];
         doubleTap.numberOfTapsRequired = 2;
         [self.view addGestureRecognizer:doubleTap];
-    }
+    }*/
     
     // tap to dismiss the menu
     tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)] autorelease];
     tapGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     [self.view addGestureRecognizer:tapGestureRecognizer];
     [tapGestureRecognizer setEnabled:NO];
-    if (doubleTap != NULL) {
+   /* if (doubleTap != NULL) {
         [tapGestureRecognizer requireGestureRecognizerToFail:doubleTap];
     }
-    
+    */
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 

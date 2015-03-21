@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import "Player.h"
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 
@@ -17,5 +18,8 @@
 @property (strong, nonatomic) SKSpriteNode *playerSpriteNode;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isTouchingGround;
+
+@property (nonatomic, assign) BOOL gameOver;
+@property (nonatomic, assign) NSTimeInterval previousUpdateTime;
 
 @end

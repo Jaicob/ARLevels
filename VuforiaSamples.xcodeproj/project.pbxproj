@@ -129,6 +129,21 @@
 		D05FAAE91ABD9AFD00DDBFD7 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */; };
 		D05FAAEB1ABD9B1400DDBFD7 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */; };
 		D05FAAED1ABDBF2F00DDBFD7 /* yellowCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */; };
+		D05FAAEF1ABDD7A500DDBFD7 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */; };
+		D05FAAF11ABDDF1700DDBFD7 /* camera-96.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */; };
+		D05FAAF41ABDF11600DDBFD7 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAF31ABDF11600DDBFD7 /* Player.m */; };
+		D05FAB061ABDF1F100DDBFD7 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAF61ABDF1F100DDBFD7 /* SKAction+SKTExtras.m */; };
+		D05FAB071ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAF81ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.m */; };
+		D05FAB081ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAFA1ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.m */; };
+		D05FAB091ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAFC1ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.m */; };
+		D05FAB0A1ABDF1F100DDBFD7 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAFE1ABDF1F100DDBFD7 /* SKNode+SKTExtras.m */; };
+		D05FAB0B1ABDF1F100DDBFD7 /* SKTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAB001ABDF1F100DDBFD7 /* SKTAudio.m */; };
+		D05FAB0C1ABDF1F100DDBFD7 /* SKTEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAB021ABDF1F100DDBFD7 /* SKTEffects.m */; };
+		D05FAB0D1ABDF1F100DDBFD7 /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAB041ABDF1F100DDBFD7 /* SKTTimingFunctions.m */; };
+		D05FAB101ABE0F7C00DDBFD7 /* replay.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */; };
+		D05FAB121ABE14DC00DDBFD7 /* greenDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */; };
+		D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */; };
+		D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -304,6 +319,31 @@
 		D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
 		D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
 		D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowCubeTexture.png; sourceTree = "<group>"; };
+		D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-96.png"; sourceTree = "<group>"; };
+		D05FAAF21ABDF11600DDBFD7 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		D05FAAF31ABDF11600DDBFD7 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		D05FAAF51ABDF1F100DDBFD7 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTExtras.h"; sourceTree = "<group>"; };
+		D05FAAF61ABDF1F100DDBFD7 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTExtras.m"; sourceTree = "<group>"; };
+		D05FAAF71ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTSpecialEffects.h"; sourceTree = "<group>"; };
+		D05FAAF81ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTSpecialEffects.m"; sourceTree = "<group>"; };
+		D05FAAF91ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
+		D05FAAFA1ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEmitterNode+SKTExtras.m"; sourceTree = "<group>"; };
+		D05FAAFB1ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+SKTDebugDraw.h"; sourceTree = "<group>"; };
+		D05FAAFC1ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+SKTDebugDraw.m"; sourceTree = "<group>"; };
+		D05FAAFD1ABDF1F100DDBFD7 /* SKNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+SKTExtras.h"; sourceTree = "<group>"; };
+		D05FAAFE1ABDF1F100DDBFD7 /* SKNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+SKTExtras.m"; sourceTree = "<group>"; };
+		D05FAAFF1ABDF1F100DDBFD7 /* SKTAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTAudio.h; sourceTree = "<group>"; };
+		D05FAB001ABDF1F100DDBFD7 /* SKTAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTAudio.m; sourceTree = "<group>"; };
+		D05FAB011ABDF1F100DDBFD7 /* SKTEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTEffects.h; sourceTree = "<group>"; };
+		D05FAB021ABDF1F100DDBFD7 /* SKTEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTEffects.m; sourceTree = "<group>"; };
+		D05FAB031ABDF1F100DDBFD7 /* SKTTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTTimingFunctions.h; sourceTree = "<group>"; };
+		D05FAB041ABDF1F100DDBFD7 /* SKTTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTTimingFunctions.m; sourceTree = "<group>"; };
+		D05FAB051ABDF1F100DDBFD7 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
+		D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = replay.png; sourceTree = "<group>"; };
+		D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenDotCubeTexture.png; sourceTree = "<group>"; };
+		D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTexture.png; sourceTree = "<group>"; };
+		D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTextureCopy.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -411,6 +451,7 @@
 		1863227C17EBCDE7007C8EC8 /* FrameMarkers */ = {
 			isa = PBXGroup;
 			children = (
+				D05FAB0E1ABDF1F400DDBFD7 /* SKTUtils */,
 				1863228C17EBD0C9007C8EC8 /* A_object.h */,
 				1863228D17EBD0C9007C8EC8 /* C_object.h */,
 				1863228E17EBD0C9007C8EC8 /* Q_object.h */,
@@ -419,17 +460,24 @@
 				1863229117EBD0CA007C8EC8 /* VuforiaObject3D.m */,
 				1863227D17EBCDFB007C8EC8 /* FrameMarkersEAGLView.h */,
 				1863227E17EBCDFB007C8EC8 /* FrameMarkersEAGLView.mm */,
+				D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */,
 				1863227F17EBCDFB007C8EC8 /* FrameMarkersViewController.h */,
 				1863228017EBCDFB007C8EC8 /* FrameMarkersViewController.mm */,
 				D05FAADB1ABD772200DDBFD7 /* GameSceneViewController.h */,
 				D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */,
 				D05FAAD21ABD4DED00DDBFD7 /* GameScene.h */,
 				D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */,
+				D05FAAF21ABDF11600DDBFD7 /* Player.h */,
+				D05FAAF31ABDF11600DDBFD7 /* Player.m */,
 				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
+				D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */,
 				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
 				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
+				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
+				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
 				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
+				D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */,
 				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
 			);
 			path = FrameMarkers;
@@ -571,6 +619,7 @@
 				1863228317EBCFA8007C8EC8 /* FrameMarkers */,
 				1860C8EE17F1DDEE00078D7A /* VirtualButton */,
 				188BB42717BD98D60080509A /* TextureTeapotBlue.png */,
+				D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */,
 				188BB42817BD98D60080509A /* TextureTeapotBrass.png */,
 				188BB42917BD98D60080509A /* TextureTeapotGreen.png */,
 				188BB42A17BD98D60080509A /* TextureTeapotRed.png */,
@@ -750,6 +799,30 @@
 			path = CylinderTargets;
 			sourceTree = "<group>";
 		};
+		D05FAB0E1ABDF1F400DDBFD7 /* SKTUtils */ = {
+			isa = PBXGroup;
+			children = (
+				D05FAAF51ABDF1F100DDBFD7 /* SKAction+SKTExtras.h */,
+				D05FAAF61ABDF1F100DDBFD7 /* SKAction+SKTExtras.m */,
+				D05FAAF71ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.h */,
+				D05FAAF81ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.m */,
+				D05FAAF91ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.h */,
+				D05FAAFA1ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.m */,
+				D05FAAFB1ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.h */,
+				D05FAAFC1ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.m */,
+				D05FAAFD1ABDF1F100DDBFD7 /* SKNode+SKTExtras.h */,
+				D05FAAFE1ABDF1F100DDBFD7 /* SKNode+SKTExtras.m */,
+				D05FAAFF1ABDF1F100DDBFD7 /* SKTAudio.h */,
+				D05FAB001ABDF1F100DDBFD7 /* SKTAudio.m */,
+				D05FAB011ABDF1F100DDBFD7 /* SKTEffects.h */,
+				D05FAB021ABDF1F100DDBFD7 /* SKTEffects.m */,
+				D05FAB031ABDF1F100DDBFD7 /* SKTTimingFunctions.h */,
+				D05FAB041ABDF1F100DDBFD7 /* SKTTimingFunctions.m */,
+				D05FAB051ABDF1F100DDBFD7 /* SKTUtils.h */,
+			);
+			name = SKTUtils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -803,6 +876,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1868D1BF17BD472000E47566 /* InfoPlist.strings in Resources */,
+				D05FAAF11ABDDF1700DDBFD7 /* camera-96.png in Resources */,
 				1868D1C717BD472000E47566 /* Default.png in Resources */,
 				D05FAAEB1ABD9B1400DDBFD7 /* rightArrow.png in Resources */,
 				1868D1C917BD472000E47566 /* Default@2x.png in Resources */,
@@ -817,16 +891,19 @@
 				D05FAAED1ABDBF2F00DDBFD7 /* yellowCubeTexture.png in Resources */,
 				18D1686D18157802004D017D /* button_cancel_pressed@2x.png in Resources */,
 				18E092D81A1AB5D4009EBD94 /* OR_about.html in Resources */,
+				D05FAB101ABE0F7C00DDBFD7 /* replay.png in Resources */,
 				18D1686F18157802004D017D /* button_cancel@2x.png in Resources */,
 				1837321E17C55EE700756F62 /* SampleAppAboutViewController.xib in Resources */,
 				1837322617C55EF100756F62 /* SampleAppSelectorViewController.xib in Resources */,
 				188AD58F17DE3C82008BE2C8 /* Vuforia-English-word.vwl in Resources */,
 				1894FD251806FA0D009515BD /* VB_about.html in Resources */,
+				D05FAAEF1ABDD7A500DDBFD7 /* upArrow.png in Resources */,
 				188AD59117DE3D54008BE2C8 /* TR_about.html in Resources */,
 				18D1686C18157802004D017D /* button_cancel_pressed.png in Resources */,
 				188AD5CE17DE407D008BE2C8 /* CR_about.html in Resources */,
 				18CD62FF17E24F17006154DF /* Line.vertsh in Resources */,
 				18D1687518157802004D017D /* icon_camera@2x.png in Resources */,
+				D05FAB121ABE14DC00DDBFD7 /* greenDotCubeTexture.png in Resources */,
 				18CD630117E2501D006154DF /* Line.fragsh in Resources */,
 				18CD630317E25274006154DF /* Simple.fragsh in Resources */,
 				18CD630517E25297006154DF /* Simple.vertsh in Resources */,
@@ -842,6 +919,7 @@
 				1863227717EB609E007C8EC8 /* FlakesBox.xml in Resources */,
 				1863227817EB609E007C8EC8 /* TextureBowlAndSpoon.png in Resources */,
 				18D1687318157802004D017D /* custom_toolbar_texture@2x.png in Resources */,
+				D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */,
 				1863227917EB609E007C8EC8 /* TextureWireframe.png in Resources */,
 				1863228817EBCFA8007C8EC8 /* letter_A.png in Resources */,
 				1863228917EBCFA8007C8EC8 /* letter_C.png in Resources */,
@@ -854,6 +932,7 @@
 				1863228B17EBCFA8007C8EC8 /* letter_R.png in Resources */,
 				18E04A1B17ECA83F00A11459 /* app_icon_iPad.png in Resources */,
 				18E04A1C17ECA83F00A11459 /* app_icon_iPad@2x.png in Resources */,
+				D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */,
 				18D1687018157802004D017D /* button_main.png in Resources */,
 				18E04A1D17ECA83F00A11459 /* app_icon_iPhone.png in Resources */,
 				18E04A1E17ECA83F00A11459 /* app_icon_iPhone@2x.png in Resources */,
@@ -883,13 +962,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05FAB091ABDF1F100DDBFD7 /* SKNode+SKTDebugDraw.m in Sources */,
+				D05FAB071ABDF1F100DDBFD7 /* SKAction+SKTSpecialEffects.m in Sources */,
 				18D1686018157717004D017D /* CustomButton.m in Sources */,
+				D05FAB081ABDF1F100DDBFD7 /* SKEmitterNode+SKTExtras.m in Sources */,
+				D05FAB0B1ABDF1F100DDBFD7 /* SKTAudio.m in Sources */,
 				1868D1C117BD472000E47566 /* main.m in Sources */,
 				18F23EC1180872D40038252A /* SampleApplication3DModel.m in Sources */,
 				1868D1C517BD472000E47566 /* SampleAppAppDelegate.m in Sources */,
 				1868D20D17BD8EBE00E47566 /* Texture.mm in Sources */,
 				D05FAAD41ABD4DED00DDBFD7 /* GameScene.m in Sources */,
 				18E092D21A1AB567009EBD94 /* ObjectRecoEAGLView.mm in Sources */,
+				D05FAB061ABDF1F100DDBFD7 /* SKAction+SKTExtras.m in Sources */,
 				1868D20E17BD8EBE00E47566 /* SampleApplicationSession.mm in Sources */,
 				188BB42617BD97CC0080509A /* SampleApplicationUtils.cpp in Sources */,
 				1837321717C55EB400756F62 /* SampleAppMenu.m in Sources */,
@@ -897,8 +981,11 @@
 				1837321F17C55EE700756F62 /* SampleAppLeftMenuViewController.m in Sources */,
 				1837322517C55EF100756F62 /* SampleAppSelectorViewController.m in Sources */,
 				1837322717C55EF100756F62 /* SampleAppSlidingMenuController.m in Sources */,
+				D05FAB0D1ABDF1F100DDBFD7 /* SKTTimingFunctions.m in Sources */,
 				188AD58917DE3B87008BE2C8 /* TextRecoEAGLView.mm in Sources */,
 				18E092D31A1AB567009EBD94 /* ObjectRecoViewController.mm in Sources */,
+				D05FAB0C1ABDF1F100DDBFD7 /* SKTEffects.m in Sources */,
+				D05FAAF41ABDF11600DDBFD7 /* Player.m in Sources */,
 				18D16878181579BD004D017D /* RefFreeFrame.mm in Sources */,
 				188AD58A17DE3B87008BE2C8 /* TextRecoViewController.mm in Sources */,
 				188AD58B17DE3B87008BE2C8 /* WordlistView.m in Sources */,
@@ -907,6 +994,7 @@
 				18F1372017E0D83700F5846D /* SampleApplicationShaderUtils.m in Sources */,
 				18FBCF0817EA5D9300FDF286 /* CylinderTargetsEAGLView.mm in Sources */,
 				18FBCF0917EA5D9300FDF286 /* CylinderTargetsViewController.mm in Sources */,
+				D05FAB0A1ABDF1F100DDBFD7 /* SKNode+SKTExtras.m in Sources */,
 				18FBCF0C17EA5E3600FDF286 /* CylinderModel.cpp in Sources */,
 				1863226F17EB5F35007C8EC8 /* MultiTargetsEAGLView.mm in Sources */,
 				1863227017EB5F35007C8EC8 /* MultiTargetsViewController.mm in Sources */,
