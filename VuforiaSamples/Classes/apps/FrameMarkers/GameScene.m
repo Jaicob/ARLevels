@@ -10,7 +10,13 @@
 
 @implementation GameScene
 
+static const int playerHitCategory = 1;
+static const int groundHitCategory = 2;
+
 -(void)didMoveToView:(SKView *)view{
+    
+    self.physicsWorld.contactDelegate = self;
+    
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
@@ -65,6 +71,11 @@
     scoot.position = CGPointMake(CGRectGetMidX(self.view.frame), scoot.size.height/2 + 10);
     scoot.zRotation = M_PI/2;
     scoot.name = @"scoot";
+    scoot.physicsBody.affectedByGravity = YES;
+    scoot.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:scoot.size.width];
+    scoot.physicsBody.categoryBitMask = playerHitCategory;
+    scoot.physicsBody.contactTestBitMask = groundHitCategory;
+    scoot.physicsBody.collisionBitMask =  groundHitCategory;
     [self addChild:scoot];
     scoot.zPosition = 1.0f;
     NSLog(@"%@", NSStringFromCGRect(self.frame));
@@ -72,6 +83,21 @@
     
 }
 
+-(void)didBeginContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    firstBody = contact.bodyA;
+    secondBody = contact.bodyB;
+    
+    if(firstBody.categoryBitMask == groundHitCategory || secondBody.categoryBitMask == groundHitCategory)
+    {
+        
+        NSLog(@"Player hit the ground");
+        //setup your methods and other things here
+        
+    }
+}
 
 -(UIImage*)snapshot
 {
@@ -84,11 +110,11 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime{
-    if([self isGroundPixel:self.backgroundImageView.image:[self childNodeWithName:@"scoot"].position.x :[self childNodeWithName:@"scoot"].position.y]){
-        NSLog(@"%@", [self getRGBAsFromImage:self.backgroundImageView.image atX:[self childNodeWithName:@"scoot"].position.x andY:[self childNodeWithName:@"scoot"].position.y count:1]);
-        NSLog(@"GROUND COLLISION");
-    }
-    
+//    if([self isGroundPixel:self.backgroundImageView.image:[self childNodeWithName:@"scoot"].position.x :[self childNodeWithName:@"scoot"].position.y]){
+//        NSLog(@"%@", [self getRGBAsFromImage:self.backgroundImageView.image atX:[self childNodeWithName:@"scoot"].position.x andY:[self childNodeWithName:@"scoot"].position.y count:1]);
+//        NSLog(@"GROUND COLLISION");
+//    }
+//    
     
 }
 

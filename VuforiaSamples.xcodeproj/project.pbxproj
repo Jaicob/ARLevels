@@ -126,9 +126,9 @@
 		D05FAAD81ABD68F200DDBFD7 /* layer-5.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD71ABD68F100DDBFD7 /* layer-5.png */; };
 		D05FAADA1ABD6F2E00DDBFD7 /* greenCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */; };
 		D05FAADD1ABD772200DDBFD7 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */; };
-		D05FAAE31ABD822400DDBFD7 /* ImageTargetsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */; };
 		D05FAAE91ABD9AFD00DDBFD7 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */; };
 		D05FAAEB1ABD9B1400DDBFD7 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */; };
+		D05FAAED1ABDBF2F00DDBFD7 /* yellowCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -301,10 +301,9 @@
 		D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenCubeTexture.png; sourceTree = "<group>"; };
 		D05FAADB1ABD772200DDBFD7 /* GameSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneViewController.h; sourceTree = "<group>"; };
 		D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSceneViewController.m; sourceTree = "<group>"; };
-		D05FAAE11ABD822400DDBFD7 /* ImageTargetsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTargetsAppDelegate.h; path = ../../../ImageTargetsAppDelegate.h; sourceTree = "<group>"; };
-		D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTargetsAppDelegate.m; path = ../../../ImageTargetsAppDelegate.m; sourceTree = "<group>"; };
 		D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
 		D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
+		D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowCubeTexture.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -430,9 +429,8 @@
 				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
 				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
+				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
 				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
-				D05FAAE11ABD822400DDBFD7 /* ImageTargetsAppDelegate.h */,
-				D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */,
 			);
 			path = FrameMarkers;
 			sourceTree = "<group>";
@@ -816,6 +814,7 @@
 				188BB42F17BD98D60080509A /* TextureTeapotRed.png in Resources */,
 				18D1687418157802004D017D /* icon_camera.png in Resources */,
 				188BB43017BD98D60080509A /* TextureTeapotYellow.png in Resources */,
+				D05FAAED1ABDBF2F00DDBFD7 /* yellowCubeTexture.png in Resources */,
 				18D1686D18157802004D017D /* button_cancel_pressed@2x.png in Resources */,
 				18E092D81A1AB5D4009EBD94 /* OR_about.html in Resources */,
 				18D1686F18157802004D017D /* button_cancel@2x.png in Resources */,
@@ -915,7 +914,6 @@
 				1863228217EBCDFB007C8EC8 /* FrameMarkersViewController.mm in Sources */,
 				1863229217EBD0CA007C8EC8 /* VuforiaObject3D.m in Sources */,
 				18E04A2C17ECB5BE00A11459 /* VirtualButtonsEAGLView.mm in Sources */,
-				D05FAAE31ABD822400DDBFD7 /* ImageTargetsAppDelegate.m in Sources */,
 				18E04A2D17ECB5BE00A11459 /* VirtualButtonsViewController.mm in Sources */,
 				18D1686118157717004D017D /* CustomToolbar.m in Sources */,
 				1860C90F17F1EC2B00078D7A /* ImageTargetsEAGLView.mm in Sources */,
