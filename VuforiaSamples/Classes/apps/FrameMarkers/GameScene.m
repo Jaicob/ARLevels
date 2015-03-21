@@ -16,6 +16,7 @@ static const int groundHitCategory = 2;
 -(void)didMoveToView:(SKView *)view{
     
     self.physicsWorld.contactDelegate = self;
+    self.physicsWorld.gravity=CGVectorMake(10, 0);
     
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
@@ -80,8 +81,22 @@ static const int groundHitCategory = 2;
     scoot.zPosition = 1.0f;
     NSLog(@"%@", NSStringFromCGRect(self.frame));
     
+    SKSpriteNode *tempGround = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(500, 100)];
+    tempGround.position = CGPointMake(340, 0);
+    tempGround.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:scoot.size.width];
+    tempGround.physicsBody.affectedByGravity = NO;
+    tempGround.physicsBody.dynamic = NO;
+    tempGround.physicsBody.categoryBitMask = groundHitCategory;
+    tempGround.zRotation = M_PI/2;
+
+    [self addChild:tempGround];
+    //tempGround.physicsBody.contactTestBitMask = groundHitCategory;
+    //tempGround.physicsBody.collisionBitMask =  groundHitCategory;
+
+    
     
 }
+
 
 -(void)didBeginContact:(SKPhysicsContact *)contact
 {
@@ -92,10 +107,24 @@ static const int groundHitCategory = 2;
     
     if(firstBody.categoryBitMask == groundHitCategory || secondBody.categoryBitMask == groundHitCategory)
     {
-        
+        _isTouchingGround = YES;
+        CGFloat impulseX = 0.0f;
+        CGFloat impulseY = 0.0f;
+        [[self childNodeWithName:@"scoot"].physicsBody applyImpulse:CGVectorMake(impulseX, impulseY) atPoint:[self childNodeWithName:@"scoot"].position];
+
         NSLog(@"Player hit the ground");
         //setup your methods and other things here
         
+    }
+}
+
+- (void) jump:(SKSpriteNode*)obj
+{
+    if (_isTouchingGround)
+    {
+        CGFloat impulseX = 0.0f;
+        CGFloat impulseY = 25.0f;
+        [obj.physicsBody applyImpulse:CGVectorMake(impulseX, impulseY) atPoint:obj.position];
     }
 }
 
