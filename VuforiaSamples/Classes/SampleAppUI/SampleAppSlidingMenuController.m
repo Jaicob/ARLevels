@@ -103,7 +103,7 @@ static const CGFloat kSlidingMenuSlideDuration = 0.3;
     if (! ignoreDoubleTap) {
         doubleTap = [[[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doubleTapGestureAction:)] autorelease];
         doubleTap.numberOfTapsRequired = 2;
-        [self.view addGestureRecognizer:doubleTap];
+        //[self.view addGestureRecognizer:doubleTap];
     }
     
     // tap to dismiss the menu
@@ -248,7 +248,7 @@ static const CGFloat kSlidingMenuSlideDuration = 0.3;
 
 - (void)doubleTapGestureAction:(UITapGestureRecognizer*)theGesture {
     if (!showingLeftMenu) {
-        [self showLeftMenu:YES];
+        //[self showLeftMenu:YES];
     }
 }
 

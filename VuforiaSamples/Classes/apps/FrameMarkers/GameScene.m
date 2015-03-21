@@ -84,10 +84,10 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime{
-    if([self isGroundPixel:self.backgroundImageView.image:[self childNodeWithName:@"scoot"].position.x :[self childNodeWithName:@"scoot"].position.y]){
-        NSLog(@"%@", [self getRGBAsFromImage:self.backgroundImageView.image atX:[self childNodeWithName:@"scoot"].position.x andY:[self childNodeWithName:@"scoot"].position.y count:1]);
-        NSLog(@"GROUND COLLISION");
-    }
+//    if([self isGroundPixel:self.backgroundImageView.image:[self childNodeWithName:@"scoot"].position.x :[self childNodeWithName:@"scoot"].position.y]){
+//        NSLog(@"%@", [self getRGBAsFromImage:self.backgroundImageView.image atX:[self childNodeWithName:@"scoot"].position.x andY:[self childNodeWithName:@"scoot"].position.y count:1]);
+//        NSLog(@"GROUND COLLISION");
+//    }
     
     
 }
@@ -166,7 +166,7 @@
     return result;
 }
 
-- (BOOL)isGroundPixel:(UIImage *) image: (int) x :(int) y {
+- (BOOL)isGroundPixel:(UIImage *)image :(int)x :(int)y {
     
     CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
     const UInt8* data = CFDataGetBytePtr(pixelData);
