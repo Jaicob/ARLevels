@@ -781,6 +781,11 @@
 				CLASSPREFIX = SampleApp;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Qualcomm;
+				TargetAttributes = {
+					1868D1B017BD472000E47566 = {
+						DevelopmentTeam = WA27DJ72J2;
+					};
+				};
 			};
 			buildConfigurationList = 1868D1AC17BD472000E47566 /* Build configuration list for PBXProject "VuforiaSamples" */;
 			compatibilityVersion = "Xcode 3.2";
