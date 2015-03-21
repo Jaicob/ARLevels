@@ -46,6 +46,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     SampleApplicationSession * vapp;
 }
 
+@property (strong, nonatomic) UIImageView *scoot;
+
 - (id)initWithFrame:(CGRect)frame appSession:(SampleApplicationSession *) app;
 
 - (void)finishOpenGLESCommands;

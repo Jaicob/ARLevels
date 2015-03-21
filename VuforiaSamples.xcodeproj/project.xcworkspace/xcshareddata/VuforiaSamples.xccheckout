@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>41029D48-75A7-4872-B8D2-5C367E6180E0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>VuforiaSamples</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C87B0EEDD71BFBE5CE87365E2BADB18DBFB75828</key>
+		<string>https://github.com/Jaicob/ARLevels.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>VuforiaSamples.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C87B0EEDD71BFBE5CE87365E2BADB18DBFB75828</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Jaicob/ARLevels.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C87B0EEDD71BFBE5CE87365E2BADB18DBFB75828</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C87B0EEDD71BFBE5CE87365E2BADB18DBFB75828</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VuforiaSamples-4-0-103-2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

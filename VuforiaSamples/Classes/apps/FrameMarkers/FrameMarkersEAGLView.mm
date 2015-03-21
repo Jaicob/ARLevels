@@ -24,6 +24,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import "C_object.h"
 #import "Q_object.h"
 #import "R_object.h"
+#import "Cube.h"
 
 #import "FrameMarkersEAGLView.h"
 #import "Texture.h"
@@ -54,14 +55,14 @@ namespace {
     // --- Data private to this unit ---
     // Letter object scale factor and translation
     const float kLetterScale = 25.0f;
-    const float kLetterTranslate = 25.0f;
+    const float kLetterTranslate = 0.0f;
     
     // Texture filenames
     const char* textureFilenames[] = {
-        "letter_Q.png",
-        "letter_C.png",
-        "letter_A.png",
-        "letter_R.png"
+        "greenCubeTexture.png",
+        "greenCubeTexture.png",
+        "greenCubeTexture.png",
+        "greenCubeTexture.png"
     };
 }
 
@@ -135,19 +136,10 @@ namespace {
         [self initShaders];
         
         
-        
-        UIImageView *scoot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scoot.png"]];
-        scoot.frame = CGRectMake(100, 100, 50, 50);
-        [self addSubview:scoot];
-        
-       // [NSTimer timerWithTimeInterval:<#(NSTimeInterval)#> target:<#(id)#> selector:<#(SEL)#> userInfo:<#(id)#> repeats:<#(BOOL)#>]
-        
-        
     }
     
     return self;
 }
-
 
 - (void)dealloc
 {
@@ -212,18 +204,31 @@ namespace {
     // build the array of objects we want drawn and their texture
     // in this example we have 4 textures and 4 objects - Q, C, A, R
     
-    [self add3DObjectWith:NUM_Q_OBJECT_VERTEX ofVertices:QobjectVertices normals:QobjectNormals texcoords:QobjectTexCoords
-                     with:NUM_Q_OBJECT_INDEX ofIndices:QobjectIndices usingTextureIndex:0];
+//    [self add3DObjectWith:NUM_Q_OBJECT_VERTEX ofVertices:QobjectVertices normals:QobjectNormals texcoords:QobjectTexCoords
+//                     with:NUM_Q_OBJECT_INDEX ofIndices:QobjectIndices usingTextureIndex:0];
+
     
-    [self add3DObjectWith:NUM_C_OBJECT_VERTEX ofVertices:CobjectVertices normals:CobjectNormals texcoords:CobjectTexCoords
-                     with:NUM_C_OBJECT_INDEX ofIndices:CobjectIndices usingTextureIndex:1];
+    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
+                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:0];
     
-    [self add3DObjectWith:NUM_A_OBJECT_VERTEX ofVertices:AobjectVertices normals:AobjectNormals texcoords:AobjectTexCoords
-                     with:NUM_A_OBJECT_INDEX ofIndices:AobjectIndices usingTextureIndex:2];
+    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
+                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:1];
     
-    [self add3DObjectWith:NUM_R_OBJECT_VERTEX ofVertices:RobjectVertices normals:RobjectNormals texcoords:RobjectTexCoords
-                     with:NUM_R_OBJECT_INDEX ofIndices:RobjectIndices usingTextureIndex:3];
+    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
+                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:2];
     
+    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
+                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:3];
+    
+//    [self add3DObjectWith:NUM_C_OBJECT_VERTEX ofVertices:CobjectVertices normals:CobjectNormals texcoords:CobjectTexCoords
+//                     with:NUM_C_OBJECT_INDEX ofIndices:CobjectIndices usingTextureIndex:1];
+//    
+//    [self add3DObjectWith:NUM_A_OBJECT_VERTEX ofVertices:AobjectVertices normals:AobjectNormals texcoords:AobjectTexCoords
+//                     with:NUM_A_OBJECT_INDEX ofIndices:AobjectIndices usingTextureIndex:2];
+//    
+//    [self add3DObjectWith:NUM_R_OBJECT_VERTEX ofVertices:RobjectVertices normals:RobjectNormals texcoords:RobjectTexCoords
+//                     with:NUM_R_OBJECT_INDEX ofIndices:RobjectIndices usingTextureIndex:3];
+//    
     
 }
 
