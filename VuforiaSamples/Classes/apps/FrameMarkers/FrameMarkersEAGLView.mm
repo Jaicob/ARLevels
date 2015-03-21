@@ -31,7 +31,6 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import "SampleApplicationUtils.h"
 #import "SampleApplicationShaderUtils.h"
 
-#import "ImageTargetsAppDelegate.h"
 
 
 //******************************************************************************
@@ -66,7 +65,8 @@ namespace {
         "greenCubeTexture.png",
         "greenCubeTexture.png",
         "greenCubeTexture.png",
-        "greenCubeTexture.png"
+        "greenCubeTexture.png",
+        "yellowCubeTexture.png"
     };
 }
 
@@ -106,7 +106,7 @@ namespace {
             [self setContentScaleFactor:2.0f];
         }
         
-        objects3D = [[NSMutableArray alloc] initWithCapacity:4];
+        objects3D = [[NSMutableArray alloc] initWithCapacity:5];
 
         // Load the augmentation textures
         for (int i = 0; i < NUM_AUGMENTATION_TEXTURES; ++i) {
@@ -211,6 +211,7 @@ namespace {
     
     [objects3D addObject:obj3D];
     [obj3D release];
+    
 }
 
 - (void) setup3dObjects
@@ -234,16 +235,10 @@ namespace {
     [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
                      with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:3];
     
-//    [self add3DObjectWith:NUM_C_OBJECT_VERTEX ofVertices:CobjectVertices normals:CobjectNormals texcoords:CobjectTexCoords
-//                     with:NUM_C_OBJECT_INDEX ofIndices:CobjectIndices usingTextureIndex:1];
-//    
-//    [self add3DObjectWith:NUM_A_OBJECT_VERTEX ofVertices:AobjectVertices normals:AobjectNormals texcoords:AobjectTexCoords
-//                     with:NUM_A_OBJECT_INDEX ofIndices:AobjectIndices usingTextureIndex:2];
-//    
-//    [self add3DObjectWith:NUM_R_OBJECT_VERTEX ofVertices:RobjectVertices normals:RobjectNormals texcoords:RobjectTexCoords
-//                     with:NUM_R_OBJECT_INDEX ofIndices:RobjectIndices usingTextureIndex:3];
-//    
+    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
+                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:4];
     
+
 }
 
 - (void) setOffTargetTrackingMode:(BOOL) enabled {
@@ -362,11 +357,10 @@ namespace {
     CGPoint margin = {(scaledWidth - viewWidth)/2, (scaledHeight - viewHeight)/2};
     
     // now project the 4 corners of the target
-    ImageTargetsAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    delegate.s0 = [self projectCoord:CGPointMake(-w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+   /* delegate.s0 = [self projectCoord:CGPointMake(-w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
     delegate.s1 = [self projectCoord:CGPointMake(-w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
     delegate.s2 = [self projectCoord:CGPointMake(w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
-    delegate.s3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    delegate.s3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];*/
 }
 
 
