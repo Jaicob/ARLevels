@@ -24,6 +24,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import "Teapot.h"
 
 
+
 //******************************************************************************
 // *** OpenGL ES thread safety ***
 //
@@ -45,7 +46,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 
 namespace {
     // --- Data private to this unit ---
-
+    QCAR::Vec3F targetCumulatedDisplacement(0.0f, 0.0f, 0.0f);
+    
     // Teapot texture filenames
     const char* textureFilenames[] = {
         "TextureTeapotBrass.png",
@@ -181,6 +183,7 @@ namespace {
 // the screen.
 //
 // *** QCAR will call this method periodically on a background thread ***
+
 - (void)renderFrameQCAR
 {
     [self setFramebuffer];

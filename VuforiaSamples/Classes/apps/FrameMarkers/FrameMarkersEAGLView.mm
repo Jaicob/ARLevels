@@ -59,6 +59,8 @@ namespace {
     const float kLetterScale = 25.0f;
     const float kLetterTranslate = 0.0f;
     
+    QCAR::Vec3F targetCumulatedDisplacement(0.0f, 0.0f, 0.0f);
+    
     // Texture filenames
     const char* textureFilenames[] = {
         "greenCubeTexture.png",
@@ -204,7 +206,6 @@ namespace {
     
     obj3D.numIndices = numIndices;
     obj3D.indices = indices;
-    
     
     obj3D.texture = augmentationTexture[textureIndex];
     
@@ -459,6 +460,40 @@ namespace {
     glDisableVertexAttribArray(vertexHandle);
     glDisableVertexAttribArray(normalHandle);
     glDisableVertexAttribArray(textureCoordHandle);
+    
+    /*for(VuforiaObject3D *object in objects3D){
+    
+    QCAR::Matrix44F modelViewProjection;
+    QCAR::Matrix44F modelViewMatrix = object::modelViewMatrix;
+    
+    SampleApplicationUtils::translatePoseMatrix(0.f, 0.f, kLetterScale,
+                                     &modelViewMatrix.data[0]);
+    SampleApplicationUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
+                                 &modelViewMatrix.data[0]);
+    
+    
+    float screenDeltaX = 2.0f;// moving to the right 2 pixels every frame
+    float screenDeltaY = 0.0f;//
+    
+    QCAR::Vec3F targetLocalDisplacement;
+    computeTargetTranslationFromScreenVector(screenDeltaX, screenDeltaY,
+                                             modelViewMatrix, targetLocalDisplacement);
+    
+    
+    targetCumulatedDisplacement.data[0] += targetLocalDisplacement.data[0];
+    targetCumulatedDisplacement.data[1] += targetLocalDisplacement.data[1];
+    targetCumulatedDisplacement.data[2] += targetLocalDisplacement.data[2];
+    
+    
+    SampleApplicationUtils::translatePoseMatrix(targetCumulatedDisplacement.data[0],
+                                     targetCumulatedDisplacement.data[1],
+                                     targetCumulatedDisplacement.data[2],
+                                     &modelViewMatrix.data[0]);
+    
+    SampleApplicationUtils::multiplyMatrix(&projectionMatrix.data[0],
+                                &modelViewMatrix.data[0],
+                                &modelViewProjection.data[0]);
+    }*/
     
     QCAR::Renderer::getInstance().end();
     [self presentFramebuffer];

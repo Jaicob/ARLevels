@@ -13,5 +13,8 @@
 
 @property (strong, nonatomic) SKSpriteNode *background;
 @property (strong, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) UIImage *collisionReferenceImage;
+@property (strong, nonatomic) SKSpriteNode *playerSpriteNode;
+@property (strong, nonatomic) UIImageView *backgroundImageView;
 
 @end

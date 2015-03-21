@@ -45,6 +45,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 
 namespace {
     // --- Data private to this unit ---
+    QCAR::Vec3F targetCumulatedDisplacement(0.0f, 0.0f, 0.0f);
 
     // Teapot texture filenames
     const char* textureFilenames[] = {
@@ -190,6 +191,8 @@ namespace {
 // the screen.
 //
 // *** QCAR will call this method periodically on a background thread ***
+
+
 - (void)renderFrameQCAR
 {
     [self setFramebuffer];

@@ -127,6 +127,8 @@
 		D05FAADA1ABD6F2E00DDBFD7 /* greenCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */; };
 		D05FAADD1ABD772200DDBFD7 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */; };
 		D05FAAE31ABD822400DDBFD7 /* ImageTargetsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */; };
+		D05FAAE91ABD9AFD00DDBFD7 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */; };
+		D05FAAEB1ABD9B1400DDBFD7 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -301,6 +303,8 @@
 		D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSceneViewController.m; sourceTree = "<group>"; };
 		D05FAAE11ABD822400DDBFD7 /* ImageTargetsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTargetsAppDelegate.h; path = ../../../ImageTargetsAppDelegate.h; sourceTree = "<group>"; };
 		D05FAAE21ABD822400DDBFD7 /* ImageTargetsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTargetsAppDelegate.m; path = ../../../ImageTargetsAppDelegate.m; sourceTree = "<group>"; };
+		D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
+		D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -423,6 +427,8 @@
 				D05FAAD21ABD4DED00DDBFD7 /* GameScene.h */,
 				D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */,
 				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
+				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
+				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
 				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
 				D05FAAE11ABD822400DDBFD7 /* ImageTargetsAppDelegate.h */,
@@ -800,9 +806,11 @@
 			files = (
 				1868D1BF17BD472000E47566 /* InfoPlist.strings in Resources */,
 				1868D1C717BD472000E47566 /* Default.png in Resources */,
+				D05FAAEB1ABD9B1400DDBFD7 /* rightArrow.png in Resources */,
 				1868D1C917BD472000E47566 /* Default@2x.png in Resources */,
 				1868D1CB17BD472000E47566 /* Default-568h@2x.png in Resources */,
 				188BB42C17BD98D60080509A /* TextureTeapotBlue.png in Resources */,
+				D05FAAE91ABD9AFD00DDBFD7 /* leftArrow.png in Resources */,
 				188BB42D17BD98D60080509A /* TextureTeapotBrass.png in Resources */,
 				188BB42E17BD98D60080509A /* TextureTeapotGreen.png in Resources */,
 				188BB42F17BD98D60080509A /* TextureTeapotRed.png in Resources */,
