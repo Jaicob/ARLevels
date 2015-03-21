@@ -16,5 +16,6 @@
 @property (strong, nonatomic) UIImage *collisionReferenceImage;
 @property (strong, nonatomic) SKSpriteNode *playerSpriteNode;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
+@property (nonatomic) BOOL isTouchingGround;
 
 @end
