@@ -66,6 +66,7 @@ namespace {
         "greenCubeTexture.png",
         "greenCubeTexture.png",
         "greenCubeTexture.png",
+        "yellowCubeTexture.png",
         "yellowCubeTexture.png"
     };
 }
@@ -106,7 +107,7 @@ namespace {
             [self setContentScaleFactor:2.0f];
         }
         
-        objects3D = [[NSMutableArray alloc] initWithCapacity:5];
+        objects3D = [[NSMutableArray alloc] initWithCapacity:NUM_AUGMENTATION_TEXTURES];
 
         // Load the augmentation textures
         for (int i = 0; i < NUM_AUGMENTATION_TEXTURES; ++i) {
@@ -223,27 +224,10 @@ namespace {
 {
     // build the array of objects we want drawn and their texture
     // in this example we have 4 textures and 4 objects - Q, C, A, R
-    
-//    [self add3DObjectWith:NUM_Q_OBJECT_VERTEX ofVertices:QobjectVertices normals:QobjectNormals texcoords:QobjectTexCoords
-//                     with:NUM_Q_OBJECT_INDEX ofIndices:QobjectIndices usingTextureIndex:0];
-
-    
-    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
-                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:0];
-    
-    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
-                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:1];
-    
-    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
-                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:2];
-    
-    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
-                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:3];
-    
-    [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
-                     with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:4];
-    
-
+    for (int i = 0; i < NUM_AUGMENTATION_TEXTURES; ++i) {
+        [self add3DObjectWith:NUM_CUBE_VERTEX ofVertices:cubeVertices normals:cubeNormals texcoords:cubeTexCoords
+                         with:NUM_CUBE_INDEX ofIndices:cubeIndices usingTextureIndex:i];
+    }
 }
 
 - (void) setOffTargetTrackingMode:(BOOL) enabled {
