@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL isTouchingGround;
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (strong, nonatomic) NSMutableArray *brownButtonArray;
+@property (nonatomic) UIViewController *frameVc;
 
 @property (nonatomic, assign) BOOL gameOver;
 @property (nonatomic, assign) NSTimeInterval previousUpdateTime;

@@ -229,7 +229,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     self.skView.showsFPS = YES;
     self.skView.showsNodeCount = YES;
     self.skView.showsPhysics = YES;
-
+    
     self.skView.allowsTransparency = YES;
     self.skView.backgroundColor = [UIColor clearColor];
     
@@ -239,13 +239,22 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
     scene.backgroundImage = eaglView.backgroundImage;
     scene.objectInfoDictionary = eaglView.objectInfoDictionary;
-    
+    scene.frameVc = self;
     // Present the scene.
+    
     [self.skView presentScene:scene];
     
     didTransition = YES;
 
 }
+
+- (void)newLevel:(id)sender
+{
+    [self.skView presentScene:nil];
+    [self.skView.scene removeFromParent];
+    self.view = eaglView;
+}
+
 
 -(BOOL)shouldAutorotate
 {
