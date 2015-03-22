@@ -25,7 +25,6 @@ static const int groundHitCategory = 2;
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
-    NSLog(@"%@", NSStringFromCGRect(self.frame));
     self.backgroundColor = [UIColor whiteColor];
     
     //rotate image
@@ -263,15 +262,13 @@ static const int groundHitCategory = 2;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
-    UIImage *screenGrab = [self snapshot];
+   // UIImage *screenGrab = [self snapshot];
     
   //  [self.uiView addSubview:screenGrab];
-    NSLog(@"%lu", (unsigned long)self.uiView.subviews.count);
     CGPoint loc = [touch locationInNode:self];
     self.pickedColor = [self colorOfPoint:loc];
-    [self getRGBAsFromImage:screenGrab atX:loc.x andY:loc.y count:1];
+   // [self getRGBAsFromImage:screenGrab atX:loc.x andY:loc.y count:1];
     
-    NSLog(@"Touch Loc x:%f, locy:%f", [touch locationInNode:self].x, [touch locationInNode:self].y);
     for (UITouch *touch in touches) {
         SKNode *n = [self nodeAtPoint:[touch locationInNode:self]];
         
@@ -294,7 +291,6 @@ static const int groundHitCategory = 2;
             //SKAction *keepMovingLeft = [SKAction repeatActionForever:moveLeft];
             [[self childNodeWithName:@"scoot"] runAction:moveLeft withKey:@"moveLeft"];
         } else if([n.name isEqualToString:@"upArrow"]){
-            NSLog(@"Touched up");
             [self jump:(SKSpriteNode *)[self childNodeWithName:@"scoot"]];
         }
         
@@ -319,7 +315,6 @@ static const int groundHitCategory = 2;
                                      green:pixel[1]/255.0 blue:pixel[2]/255.0
                                      alpha:pixel[3]/255.0];
     
-    NSLog(@"Color: %@",color);
     return color;
 }
 
@@ -341,7 +336,6 @@ static const int groundHitCategory = 2;
     UIGraphicsPushContext(context);
     [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:true];
     UIGraphicsPopContext();
-    NSLog(@"%@",[SKColor colorWithRed:((CGFloat)(pixel[0])/ 255.0) green:((CGFloat)(pixel[1])/255.0) blue:((CGFloat)(pixel[2]) / 255.0) alpha:((CGFloat)(pixel[3]) / 255.0)]);
     return [SKColor colorWithRed:((CGFloat)(pixel[0])/ 255.0) green:((CGFloat)(pixel[1])/255.0) blue:((CGFloat)(pixel[2]) / 255.0) alpha:((CGFloat)(pixel[3]) / 255.0)];
     
 }
@@ -412,7 +406,6 @@ static const int groundHitCategory = 2;
     CGContextRelease(context);
     
     CGFloat green = (CGFloat)pixelData[2];
-    NSLog(@"%f", green);
     return green;
 }
 
@@ -454,7 +447,6 @@ static const int groundHitCategory = 2;
     
     free(rawData);
     
-    NSLog(@"%@", result);
     return result;
 }
 //
