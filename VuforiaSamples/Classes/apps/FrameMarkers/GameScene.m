@@ -71,6 +71,8 @@ static const int winLevelCategory =  0x100;
         [self.gameSceneLoop play];
     }
     
+    self.objectsArray = [[NSMutableArray alloc]init];
+    
 //    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:self.backgroundImage.CGImage
 //                                                                                              scale:self.backgroundImage.scale
 //                                                                                        orientation:UIImageOrientationLeftMirrored]];
@@ -130,19 +132,20 @@ static const int winLevelCategory =  0x100;
         
         if([key isEqualToString:@"MarkerGround0"] && [brownButton.markerName isEqualToString:@"MarkerGround0"])
         {
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
-            [self checkOutOfBounds:square markerNumber:0];
             square.anchorPoint = CGPointMake(0.5, 0.5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self.objectsArray addObject:square];
+            [self checkOutOfBounds:square markerNumber:0];
             
         }else if([key isEqualToString:@"MarkerGround1"] && [brownButton.markerName isEqualToString:@"MarkerGround1"])
         {
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -150,10 +153,11 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:1];
-            
+
         }else if([key isEqualToString:@"MarkerGround2"] && [brownButton.markerName isEqualToString:@"MarkerGround2"]){
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -161,9 +165,11 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:2];
+
         }else if([key isEqualToString:@"MarkerGround3"] && [brownButton.markerName isEqualToString:@"MarkerGround3"]){
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -171,10 +177,13 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:3];
+
         }
         else if([key isEqualToString:@"MarkerGold"] && [brownButton.markerName isEqualToString:@"MarkerGold"]){
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:CGSizeMake(50, 50)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"gold.png"]] size:CGSizeMake(50, 50)];
+            square.zRotation = M_PI/2;
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -184,11 +193,16 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.contactTestBitMask = playerHitCategory;
             
             [self addChild:square];
+            [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:4];
+
         }else if([key isEqualToString:@"MarkerPlayerStart"] && [brownButton.markerName isEqualToString:@"MarkerPlayerStart"]){
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:5];
+            [self addChild:square];
+            
             SKSpriteNode *scoot = [[Player alloc] initWithImageNamed:@"scoot.png"];
             scoot.size = CGSizeMake(50, 50);
             scoot.position = square.position;
@@ -203,6 +217,26 @@ static const int winLevelCategory =  0x100;
             scoot.zPosition = 1.0f;
             NSLog(@"%@", NSStringFromCGRect(self.frame));
             //[self addChild:square];
+        }else if([key isEqualToString:@"MarkerPlatform"] && [brownButton.markerName isEqualToString:@"MarkerPlatform"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"platformTexture.png"]] size:CGSizeMake(50, 50)];
+            //square.zRotation = M_PI/2;
+            square.name = @"platform";
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
+            square.anchorPoint = CGPointMake(.5, .5);
+            square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
+            square.physicsBody.affectedByGravity = NO;
+            square.physicsBody.dynamic = NO;
+            square.physicsBody.categoryBitMask = winLevelCategory;
+            square.physicsBody.contactTestBitMask = playerHitCategory;
+            [self addChild:square];
+            [self.objectsArray addObject:square];
+            [self checkOutOfBounds:square markerNumber:4];
+            SKAction *moveLeft = [SKAction moveToX:originalPosition.x - 50 duration:3.0f];
+            SKAction *moveRight = [SKAction moveToX:originalPosition.x + 50 duration:3.0f];
+            SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
+            SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
+            [square runAction:platformMove];
         }
         
         
@@ -212,25 +246,54 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 }
 
 -(void)checkOutOfBounds:(SKSpriteNode *)square markerNumber:(int)markerNum{
+    CGFloat minX = CGRectGetMinX(self.scene.frame);
+    CGFloat maxX = CGRectGetMaxX(self.scene.frame);
+    CGFloat minY = CGRectGetMinY(self.scene.frame);
+    CGFloat maxY = CGRectGetMaxY(self.scene.frame);
     
-    if(square.position.x < CGRectGetMinX(self.scene.frame)){
-        NSLog(@"X: %f, Y: %f, I:%d", square.position.x, square.position.y, markerNum);
-        square.position = CGPointMake(CGRectGetMinX(self.scene.frame) + square.size.width/2, square.position.y);
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
-    }else if(square.position.y < CGRectGetMinY(self.scene.frame)){
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
-        square.position = CGPointMake(square.position.x, CGRectGetMinY(self.scene.frame) + square.size.width/2);
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
-    }else if(square.position.x > CGRectGetMaxX(self.scene.frame)){
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
-        square.position = CGPointMake( CGRectGetMaxX(self.scene.frame)- square.size.width/2, square.position.y);
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
-    }else if(square.position.y > CGRectGetMaxY(self.scene.frame)){
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
-        square.position = CGPointMake(square.position.y, CGRectGetMaxY(self.scene.frame)- square.size.width/2);
-        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+    NSLog(@"MinX:%f,MaxX:%f,MinY:%f,MaxY:%f",minX,maxX,minY,maxY);
+    while((square.position.x < minX) || (square.position.y < minY) || (square.position.x > maxX) || (square.position.y > maxY)){
+        for(SKSpriteNode *square in self.objectsArray){
+            if(square.position.x < minX){
+                NSLog(@"X: %f, Y: %f, I:%d", square.position.y, square.position.y, markerNum);
+                square.position = CGPointMake(CGRectGetMinX(self.scene.frame) + square.size.width/2, square.position.y);
+                NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+            }else if(square.position.y < minY){
+                NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+                square.position = CGPointMake(square.position.x, CGRectGetMinY(self.scene.frame) + square.size.width/2);
+                NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+            }else if(square.position.x > maxX){
+                NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+                square.position = CGPointMake(CGRectGetMaxX(self.scene.frame)- square.size.width/2, square.position.y);
+                NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+            }else if(square.position.y > maxY){
+                NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+                square.position = CGPointMake(square.position.x, CGRectGetMaxY(self.scene.frame)- square.size.width/2);
+                NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+            }
+        }
 
     }
+   // while(!(square.position.x < minX) && !(square.position.y < minY) && !(square.position.x > maxX) && !(square.position.y > maxY)){
+//        if(square.position.x < minX){
+//            
+////            NSLog(@"X: %f, Y: %f, I:%d", square.position.y, square.position.y, markerNum);
+////            square.position = CGPointMake(CGRectGetMinX(self.scene.frame) + square.size.width/2, square.position.y);
+////            NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+//        }else if(square.position.y < minY){
+////            NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+////            square.position = CGPointMake(square.position.x, CGRectGetMinY(self.scene.frame) + square.size.width/2);
+////            NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+//        }else if(square.position.x > maxX){
+////            NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+////            square.position = CGPointMake(CGRectGetMaxX(self.scene.frame)- square.size.width/2, square.position.y);
+////            NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+//        }else if(square.position.y > maxY){
+////            NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+////            square.position = CGPointMake(square.position.x, CGRectGetMaxY(self.scene.frame)- square.size.width/2);
+////            NSLog(@"X: %f, Y: %f, I: %d", square.position.x, square.position.y, markerNum);
+//        }
+//    //}
 
     
 }
@@ -256,6 +319,7 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     //1
     SKLabelNode *endGameLabel = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
     endGameLabel.text = gameText;
+    endGameLabel.fontColor = [SKColor blackColor];
     endGameLabel.fontSize = 40;
     endGameLabel.xScale = -1.0f;
     endGameLabel.position = CGPointMake(self.size.width / 2.0, self.size.height / 1.7);
@@ -340,6 +404,7 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint loc = [touch locationInNode:self];
+    NSLog(@"Touch X: %f, Touch Y: %f", loc.x, loc.y);
     for (UITouch *touch in touches) {
         SKNode *n = [self nodeAtPoint:[touch locationInNode:self]];
         

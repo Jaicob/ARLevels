@@ -151,6 +151,10 @@
 		D05FAB211ABE941500DDBFD7 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB201ABE941500DDBFD7 /* frame.png */; };
 		D05FAB231ABE966700DDBFD7 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB221ABE966700DDBFD7 /* Background.png */; };
 		D05FAB251ABE9ABA00DDBFD7 /* BackgroundTrack.aif in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */; };
+		D05FAB271ABEA75900DDBFD7 /* groundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB261ABEA75900DDBFD7 /* groundTexture.png */; };
+		D05FAB2D1ABEABD000DDBFD7 /* goldTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */; };
+		D05FAB2F1ABEACD300DDBFD7 /* button_small_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */; };
+		D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -359,6 +363,10 @@
 		D05FAB201ABE941500DDBFD7 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		D05FAB221ABE966700DDBFD7 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundTrack.aif; sourceTree = "<group>"; };
+		D05FAB261ABEA75900DDBFD7 /* groundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = groundTexture.png; sourceTree = "<group>"; };
+		D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldTexture.png; sourceTree = "<group>"; };
+		D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_small_checkmark.png; sourceTree = "<group>"; };
+		D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -497,10 +505,14 @@
 				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
 				D05FAB201ABE941500DDBFD7 /* frame.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
+				D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */,
 				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
 				D05FAB1C1ABE93EC00DDBFD7 /* gold.png */,
+				D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */,
+				D05FAB261ABEA75900DDBFD7 /* groundTexture.png */,
 				D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */,
 				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
+				D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */,
 				D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */,
 			);
 			path = FrameMarkers;
@@ -935,6 +947,7 @@
 				D05FAB121ABE14DC00DDBFD7 /* greenDotCubeTexture.png in Resources */,
 				18CD630117E2501D006154DF /* Line.fragsh in Resources */,
 				18CD630317E25274006154DF /* Simple.fragsh in Resources */,
+				D05FAB271ABEA75900DDBFD7 /* groundTexture.png in Resources */,
 				18CD630517E25297006154DF /* Simple.vertsh in Resources */,
 				1894FD28180749AC009515BD /* UD_about.html in Resources */,
 				18FBCF1217EA5EC800FDF286 /* sodacan.dat in Resources */,
@@ -966,8 +979,11 @@
 				18E04A1C17ECA83F00A11459 /* app_icon_iPad@2x.png in Resources */,
 				D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */,
 				18D1687018157802004D017D /* button_main.png in Resources */,
+				D05FAB2F1ABEACD300DDBFD7 /* button_small_checkmark.png in Resources */,
 				18E04A1D17ECA83F00A11459 /* app_icon_iPhone.png in Resources */,
 				18E04A1E17ECA83F00A11459 /* app_icon_iPhone@2x.png in Resources */,
+				D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */,
+				D05FAB2D1ABEABD000DDBFD7 /* goldTexture.png in Resources */,
 				18E04A2517ECA85100A11459 /* Default-Portrait@2x~ipad.png in Resources */,
 				D05FAAD61ABD512E00DDBFD7 /* scoot.png in Resources */,
 				D05FAB231ABE966700DDBFD7 /* Background.png in Resources */,
