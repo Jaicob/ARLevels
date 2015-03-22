@@ -898,7 +898,7 @@
 				ORGANIZATIONNAME = Qualcomm;
 				TargetAttributes = {
 					1868D1B017BD472000E47566 = {
-						DevelopmentTeam = WA27DJ72J2;
+						DevelopmentTeam = 9J68NTR2N3;
 					};
 				};
 			};
