@@ -24,35 +24,8 @@ static const int winLevelCategory =  0x100;
     
     self.view.multipleTouchEnabled = YES;
     self.physicsWorld.contactDelegate = self;
-    self.physicsWorld.gravity=CGVectorMake(10, 0);
+    self.physicsWorld.gravity=CGVectorMake(6, 0);
     self.backgroundColor = [UIColor whiteColor];
-    
-
-  //  NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
-   // [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    
-    //rotate image
-//    UIImageView *myImageView = [[UIImageView alloc] initWithImage:self.backgroundImage];
-//    myImageView.center = CGPointMake(100.0, 100.0);
-//    myImageView.transform = CGAffineTransformMakeRotation(M_PI); //rotation in radians
-//    myImageView.frame = CGRectMake(0, 0, self.size.width, self.size.height);
-    
-  //  [self getRGBAsFromImage:myImageView.image atX:0 andY:0 count:1];
-//    for(int x = 0; x < 300; x++){
-//        for (int y = 0; y < 300; y++){
-//            if([self getGreenFromImage:myImageView.image atX:x andY:y] > 50){
-//                SKSpriteNode *node = [[SKSpriteNode alloc] init];
-//                node.size = CGSizeMake(1, 1);
-//                node.color = [UIColor brownColor];
-//                
-//            }
-//        }
-//    }
- //   [self getGreenFromImage:myImageView.image atX:100 andY:100];
-    
-//    self.backgroundImage = myImageView.image;
-    
-    
     
     SKTexture *backgroundTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"Background.png"]];
     self.background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture size:CGSizeMake(720, 420)];
@@ -72,13 +45,6 @@ static const int winLevelCategory =  0x100;
     }
     
     self.objectsArray = [[NSMutableArray alloc]init];
-    
-//    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:self.backgroundImage.CGImage
-//                                                                                              scale:self.backgroundImage.scale
-//                                                                                        orientation:UIImageOrientationLeftMirrored]];
-//    self.backgroundImageView.frame = CGRectMake(0,  0, self.size.width, self.size.height);
-//    [self.view addSubview:self.backgroundImageView];
-//    [self.view sendSubviewToBack:self.backgroundImageView];
 
     SKSpriteNode *rightArrow = [SKSpriteNode spriteNodeWithImageNamed:@"rightArrow.png"];
     rightArrow.size = CGSizeMake(50, 50);
@@ -110,8 +76,6 @@ static const int winLevelCategory =  0x100;
     [self.view addSubview:self.uiView];
     
     self.brownButtonArray = [[NSMutableArray alloc] init];
-    //tempGround.physicsBody.contactTestBitMask = groundHitCategory;
-    //tempGround.physicsBody.collisionBitMask =  groundHitCategory;
     
     self.userInteractionEnabled = YES;
     NSLog(@"Dictionary: %@", self.objectInfoDictionary);
@@ -122,14 +86,13 @@ static const int winLevelCategory =  0x100;
         [brownButton setFrame:CGRectMake(point.x, point.y, 50, 50)];
         [brownButton addTarget:nil action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchDown];
         
-        
         brownButton.markerName = key;
         [self.brownButtonArray addObject:brownButton];
         //NSLog(@"x: %f, y: %f", (point.x/1334)*568, (point.y/750)*320);
         CGPoint pointFlipped = CGPointMake((point.x/1334)*568, (point.y/750)*320);
         CGPoint finalPoint = CGPointMake(pointFlipped.y, pointFlipped.x);
         
-        
+
         if([key isEqualToString:@"MarkerGround0"] && [brownButton.markerName isEqualToString:@"MarkerGround0"])
         {
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
@@ -188,6 +151,7 @@ static const int winLevelCategory =  0x100;
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
+            square.physicsBody.mass = 10;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = winLevelCategory;
             square.physicsBody.contactTestBitMask = playerHitCategory;
@@ -201,7 +165,6 @@ static const int winLevelCategory =  0x100;
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:5];
-            [self addChild:square];
             
             SKSpriteNode *scoot = [[Player alloc] initWithImageNamed:@"scoot.png"];
             scoot.size = CGSizeMake(50, 50);
@@ -209,7 +172,7 @@ static const int winLevelCategory =  0x100;
             scoot.zRotation = M_PI/2;
             scoot.name = @"scoot";
             scoot.physicsBody.affectedByGravity = YES;
-            scoot.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:scoot.size.width/2];
+            scoot.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(48, 48)];
             scoot.physicsBody.categoryBitMask = playerHitCategory;
             scoot.physicsBody.contactTestBitMask = groundHitCategory; //& winLevelCategory;
             scoot.physicsBody.collisionBitMask =  groundHitCategory;
