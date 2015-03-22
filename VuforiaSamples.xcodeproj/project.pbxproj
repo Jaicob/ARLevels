@@ -149,6 +149,7 @@
 		D05FAB1D1ABE93EC00DDBFD7 /* gold.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1C1ABE93EC00DDBFD7 /* gold.png */; };
 		D05FAB1F1ABE93F000DDBFD7 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1E1ABE93F000DDBFD7 /* ground.png */; };
 		D05FAB211ABE941500DDBFD7 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB201ABE941500DDBFD7 /* frame.png */; };
+		D05FAB231ABE966700DDBFD7 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB221ABE966700DDBFD7 /* Background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -355,6 +356,7 @@
 		D05FAB1C1ABE93EC00DDBFD7 /* gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold.png; sourceTree = "<group>"; };
 		D05FAB1E1ABE93F000DDBFD7 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
 		D05FAB201ABE941500DDBFD7 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
+		D05FAB221ABE966700DDBFD7 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -488,6 +490,7 @@
 				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
 				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
 				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
+				D05FAB221ABE966700DDBFD7 /* Background.png */,
 				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
 				D05FAB201ABE941500DDBFD7 /* frame.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
@@ -964,6 +967,7 @@
 				18E04A1E17ECA83F00A11459 /* app_icon_iPhone@2x.png in Resources */,
 				18E04A2517ECA85100A11459 /* Default-Portrait@2x~ipad.png in Resources */,
 				D05FAAD61ABD512E00DDBFD7 /* scoot.png in Resources */,
+				D05FAB231ABE966700DDBFD7 /* Background.png in Resources */,
 				18D1687118157802004D017D /* button_main@2x.png in Resources */,
 				18E04A2617ECA85100A11459 /* Default-Portrait~ipad.png in Resources */,
 				1860C8F117F1DDEE00078D7A /* Wood.dat in Resources */,

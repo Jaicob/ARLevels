@@ -52,10 +52,12 @@ static const int groundHitCategory = 2;
     
     
     
-    //SKTexture *backgroundTexture = [SKTexture textureWithImage:self.backgroundImage];
-    //self.background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture size:self.view.frame.size];
-    //self.background.position = (CGPoint) {CGRectGetMidX(self.view.frame), CGRectGetMidY(self.view.frame)};
-    //[self addChild:self.background];
+    SKTexture *backgroundTexture = [SKTexture textureWithImage:[UIImage imageNamed:@"Background.png"]];
+    self.background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture size:CGSizeMake(720, 420)];
+    self.background.position = (CGPoint) {CGRectGetMidX(self.view.frame), CGRectGetMidY(self.view.frame)};
+    self.background.zRotation = M_PI/2;
+
+    [self addChild:self.background];
     
 //    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:self.backgroundImage.CGImage
 //                                                                                              scale:self.backgroundImage.scale
