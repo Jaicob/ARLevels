@@ -156,6 +156,7 @@
 		D05FAB2F1ABEACD300DDBFD7 /* button_small_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */; };
 		D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */; };
 		D05FAB351ABEB42E00DDBFD7 /* platformTexture2.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */; };
+		D0EBAB461ABECB6D0082D46B /* enemy1Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -369,6 +370,7 @@
 		D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_small_checkmark.png; sourceTree = "<group>"; };
 		D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture.png; sourceTree = "<group>"; };
 		D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture2.png; sourceTree = "<group>"; };
+		D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1Texture.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -510,6 +512,7 @@
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
 				D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */,
 				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
+				D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */,
 				D05FAB1C1ABE93EC00DDBFD7 /* gold.png */,
 				D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */,
 				D05FAB261ABEA75900DDBFD7 /* groundTexture.png */,
@@ -892,7 +895,7 @@
 				ORGANIZATIONNAME = Qualcomm;
 				TargetAttributes = {
 					1868D1B017BD472000E47566 = {
-						DevelopmentTeam = WA27DJ72J2;
+						DevelopmentTeam = 9J68NTR2N3;
 					};
 				};
 			};
@@ -1003,6 +1006,7 @@
 				1860C90617F1EB6F00078D7A /* IT_about.html in Resources */,
 				1860C90717F1EB6F00078D7A /* StonesAndChips.dat in Resources */,
 				1860C90817F1EB6F00078D7A /* StonesAndChips.xml in Resources */,
+				D0EBAB461ABECB6D0082D46B /* enemy1Texture.png in Resources */,
 				1894FD231806F95B009515BD /* FM_about.html in Resources */,
 				1860C90917F1EB6F00078D7A /* Tarmac.dat in Resources */,
 				1860C90A17F1EB6F00078D7A /* Tarmac.xml in Resources */,

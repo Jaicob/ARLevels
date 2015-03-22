@@ -71,7 +71,8 @@ namespace {
         "goldTexture.png",
         "redCubeTexture.png",
         "platformTexture.png",
-        "platformTexture2.png"
+        "platformTexture2.png",
+        "enemy1Texture.png"
     };
 }
 

@@ -13,7 +13,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import "SampleApplicationSession.h"
 #import "SampleGLResourceHandler.h"
 #import <SpriteKit/SpriteKit.h>
-#define NUM_AUGMENTATION_TEXTURES 8
+#define NUM_AUGMENTATION_TEXTURES 9
 
 
 // FrameMarkers is a subclass of UIView and conforms to the informal protocol
