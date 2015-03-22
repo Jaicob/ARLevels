@@ -335,6 +335,14 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     replay.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0, 64, 64);
     [self.view addSubview:replay];
     
+    UIButton *newLevel = [UIButton buttonWithType:UIButtonTypeCustom];
+    newLevel.tag = 322;
+    UIImage *levelImage = [UIImage imageNamed:@"leftArrow.png"];
+    [newLevel setImage:levelImage forState:UIControlStateNormal];
+    [newLevel addTarget:self.frameVc action:@selector(newLevel:) forControlEvents:UIControlEventTouchUpInside];
+    newLevel.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0 - 80, 64, 64);
+    [self.view addSubview:newLevel];
+    
     NSLog(@"SKView final frame: %@", NSStringFromCGRect(self.frame));
     
 }
@@ -344,13 +352,11 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 {
     [self.gameSceneLoop stop];
     [[self.view viewWithTag:321] removeFromSuperview];
+    [[self.view viewWithTag:322] removeFromSuperview];
     GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.size.width, self.size.height)];
     scene.objectInfoDictionary = self.objectInfoDictionary;
     [self.view presentScene:scene];
 }
-
-
-
 
 -(void)didBeginContact:(SKPhysicsContact *)contact
 {
