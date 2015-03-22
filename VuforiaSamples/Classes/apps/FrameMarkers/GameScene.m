@@ -18,6 +18,7 @@
 static const int playerHitCategory = 0x01;
 static const int groundHitCategory = 0x10;
 static const int winLevelCategory =  0x100;
+static const int projectileCategory = 0x1000;
 
 
 -(void)didMoveToView:(SKView *)view{
@@ -95,7 +96,7 @@ static const int winLevelCategory =  0x100;
 
         if([key isEqualToString:@"MarkerGround0"] && [brownButton.markerName isEqualToString:@"MarkerGround0"])
         {
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"ground.png"]] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(0.5, 0.5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -108,7 +109,7 @@ static const int winLevelCategory =  0x100;
             
         }else if([key isEqualToString:@"MarkerGround1"] && [brownButton.markerName isEqualToString:@"MarkerGround1"])
         {
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"ground.png"]] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -120,7 +121,7 @@ static const int winLevelCategory =  0x100;
             [self checkOutOfBounds:square markerNumber:1];
 
         }else if([key isEqualToString:@"MarkerGround2"] && [brownButton.markerName isEqualToString:@"MarkerGround2"]){
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"ground.png"]] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -132,7 +133,7 @@ static const int winLevelCategory =  0x100;
             [self checkOutOfBounds:square markerNumber:2];
 
         }else if([key isEqualToString:@"MarkerGround3"] && [brownButton.markerName isEqualToString:@"MarkerGround3"]){
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(75, 75)];
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"ground.png"]] size:CGSizeMake(75, 75)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
@@ -174,10 +175,9 @@ static const int winLevelCategory =  0x100;
             scoot.physicsBody.affectedByGravity = YES;
             scoot.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(48, 48)];
             scoot.physicsBody.categoryBitMask = playerHitCategory;
-            scoot.physicsBody.contactTestBitMask = groundHitCategory; //& winLevelCategory;
-            scoot.physicsBody.collisionBitMask =  groundHitCategory;
+            scoot.physicsBody.contactTestBitMask = groundHitCategory & projectileCategory; //& winLevelCategory;
+            scoot.physicsBody.collisionBitMask =  groundHitCategory & projectileCategory;
             [self addChild:scoot];
-            scoot.zPosition = 1.0f;
             NSLog(@"%@", NSStringFromCGRect(self.frame));
             //[self addChild:square];
         }else if([key isEqualToString:@"MarkerPlatform"] && [brownButton.markerName isEqualToString:@"MarkerPlatform"]){
@@ -190,8 +190,8 @@ static const int winLevelCategory =  0x100;
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
-            square.physicsBody.categoryBitMask = winLevelCategory;
-            square.physicsBody.contactTestBitMask = playerHitCategory;
+            square.physicsBody.categoryBitMask = groundHitCategory;
+            square.physicsBody.collisionBitMask = groundHitCategory;
             [self addChild:square];
             [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:4];
@@ -200,6 +200,69 @@ static const int winLevelCategory =  0x100;
             SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
             SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
             [square runAction:platformMove];
+        }else if([key isEqualToString:@"MarkerPlatform"] && [brownButton.markerName isEqualToString:@"MarkerPlatform"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"platformTexture.png"]] size:CGSizeMake(50, 50)];
+            //square.zRotation = M_PI/2;
+            square.name = @"platform";
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
+            square.anchorPoint = CGPointMake(.5, .5);
+            square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
+            square.physicsBody.affectedByGravity = NO;
+            square.physicsBody.dynamic = NO;
+            square.physicsBody.categoryBitMask = groundHitCategory;
+            square.physicsBody.collisionBitMask = groundHitCategory;
+            //square.physicsBody.contactTestBitMask = groundHitCategory;
+            square.physicsBody.usesPreciseCollisionDetection = YES;
+            [self addChild:square];
+            [self.objectsArray addObject:square];
+            [self checkOutOfBounds:square markerNumber:4];
+            SKAction *moveLeft = [SKAction moveToX:originalPosition.x - 50 duration:3.0f];
+            SKAction *moveRight = [SKAction moveToX:originalPosition.x + 50 duration:3.0f];
+            SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
+            SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
+            [square runAction:platformMove];
+        }else if([key isEqualToString:@"MarkerPlatform2"] && [brownButton.markerName isEqualToString:@"MarkerPlatform2"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"platformTexture2.png"]] size:CGSizeMake(50, 50)];
+            //square.zRotation = M_PI/2;
+            square.name = @"platform2";
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
+            square.anchorPoint = CGPointMake(.5, .5);
+            square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
+            square.physicsBody.affectedByGravity = NO;
+            square.physicsBody.dynamic = NO;
+            square.physicsBody.categoryBitMask = groundHitCategory;
+            square.physicsBody.collisionBitMask = groundHitCategory;
+            //square.physicsBody.contactTestBitMask = groundHitCategory;
+            square.physicsBody.usesPreciseCollisionDetection = YES;
+            [self addChild:square];
+            [self.objectsArray addObject:square];
+            [self checkOutOfBounds:square markerNumber:4];
+            SKAction *moveLeft = [SKAction moveToY:originalPosition.y - 50 duration:3.0f];
+            SKAction *moveRight = [SKAction moveToY:originalPosition.y + 50 duration:3.0f];
+            SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
+            SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
+            [square runAction:platformMove];
+        }else if([key isEqualToString:@"MarkerEnemy1"] && [brownButton.markerName isEqualToString:@"MarkerEnemy1"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"enemy1Texture.png"]] size:CGSizeMake(50, 50)];
+            //square.zRotation = M_PI/2;
+            square.name = @"enemy1";
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            square.xScale = -1.0f;
+            CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
+            square.anchorPoint = CGPointMake(.5, .5);
+            square.zRotation = M_PI/2;
+            square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
+            square.physicsBody.affectedByGravity = NO;
+            square.physicsBody.dynamic = NO;
+            square.physicsBody.categoryBitMask = winLevelCategory;
+            square.physicsBody.contactTestBitMask = playerHitCategory;
+            [self addChild:square];
+            [self.objectsArray addObject:square];
+            [self checkOutOfBounds:square markerNumber:4];
+            NSTimer *attack = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(enemyAttack) userInfo:nil repeats:YES];
+            
         }
         
         
@@ -260,6 +323,30 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 
     
 }
+
+-(void)enemyAttack{
+    SKSpriteNode *enemy1 = (SKSpriteNode *)[self childNodeWithName:@"enemy1"];
+    SKSpriteNode *enemyShot = [SKSpriteNode spriteNodeWithImageNamed:@"GEM.png"];
+    enemyShot.size = CGSizeMake(25, 25);
+    enemyShot.position = CGPointMake(enemy1.position.x, CGRectGetMaxY(enemy1.frame));
+    enemyShot.anchorPoint = CGPointMake(.5, .5);
+    enemyShot.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemyShot.size];
+    enemyShot.physicsBody.affectedByGravity = NO;
+    enemyShot.physicsBody.dynamic = NO;
+    enemyShot.zPosition = 1.0f;
+    enemyShot.physicsBody.usesPreciseCollisionDetection = YES;
+    enemyShot.physicsBody.categoryBitMask = projectileCategory;
+    enemyShot.physicsBody.collisionBitMask = playerHitCategory & groundHitCategory;
+    enemyShot.physicsBody.contactTestBitMask = playerHitCategory & groundHitCategory;
+    SKAction *fireShot = [SKAction moveToY:2000 duration:5.0f];
+    [self addChild:enemyShot];
+    [enemyShot runAction:fireShot completion:^{
+        enemyShot.hidden = YES;
+        [enemyShot removeFromParent];
+    }];
+    NSLog(@"Enemy attacking");
+}
+
 
 -(void)checkForWin {
     if ([self childNodeWithName:@"scoot"].position.x > 1500 || [self childNodeWithName:@"scoot"].position.x < -1500 || [self childNodeWithName:@"scoot"].position.y > 1500 || [self childNodeWithName:@"scoot"].position.y < -1500) {

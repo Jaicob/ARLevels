@@ -227,9 +227,9 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     
     self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.skView = (SKView *)self.view;
-    self.skView.showsFPS = YES;
-    self.skView.showsNodeCount = YES;
-    self.skView.showsPhysics = YES;
+    self.skView.showsFPS = NO;
+    self.skView.showsNodeCount = NO;
+    self.skView.showsPhysics = NO;
     
     self.skView.allowsTransparency = YES;
     self.skView.backgroundColor = [UIColor clearColor];
@@ -470,7 +470,10 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
         !markerTracker->createFrameMarker(3, "MarkerGround3", QCAR::Vec2F(50,50)) ||
         !markerTracker->createFrameMarker(4, "MarkerGold", QCAR::Vec2F(50,50)) ||
         !markerTracker->createFrameMarker(5, "MarkerPlayerStart", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(6, "MarkerPlatform", QCAR::Vec2F(50,50)))
+        !markerTracker->createFrameMarker(6, "MarkerPlatform", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(7, "MarkerPlatform2", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(8, "MarkerEnemy1", QCAR::Vec2F(50,50))
+        )
         
     {
         NSLog(@"Failed to create frame markers.");
