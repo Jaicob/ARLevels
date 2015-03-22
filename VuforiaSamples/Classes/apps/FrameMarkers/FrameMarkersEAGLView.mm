@@ -69,7 +69,7 @@ namespace {
         "greenCubeTexture.png",
         "greenCubeTexture.png",
         "yellowCubeTexture.png",
-        "yellowCubeTexture.png"
+        "redCubeTexture.png"
     };
 }
 
@@ -248,13 +248,12 @@ namespace {
 -(void)saveBackgroundImage
 {
     self.pictureTaken = YES;
-    self.backgroundImage = [self glToUIImage];
+    //self.backgroundImage = [self glToUIImage];
     for(NSString *key in self.objectInfoDictionary){
         
         CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
            }
-//    self.button.enabled = NO;
-//    self.button.alpha = 0.0f;
+
 }
 
 - (UIImage*) glToUIImage
@@ -396,9 +395,7 @@ namespace {
         
         // Render with OpenGL 2
         QCAR::Matrix44F modelViewProjection;
-        if (isFrontCamera) {
-            SampleApplicationUtils::scalePoseMatrix(-1, 1, 1, &modelViewMatrix.data[0]);
-        }
+        SampleApplicationUtils::scalePoseMatrix(1, 1, 1, &modelViewMatrix.data[0]);
         SampleApplicationUtils::translatePoseMatrix(-kLetterTranslate, -kLetterTranslate, 0.f, &modelViewMatrix.data[0]);
         SampleApplicationUtils::scalePoseMatrix(kLetterScale, kLetterScale, kLetterScale, &modelViewMatrix.data[0]);
         SampleApplicationUtils::multiplyMatrix(&vapp.projectionMatrix.data[0], &modelViewMatrix.data[0], &modelViewProjection.data[0]);
@@ -689,17 +686,6 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
     return [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
--(BOOL)shouldAutorotate
-{
-    return NO;
-}
-
--(NSUInteger)supportedInterfaceOrientations
-{
-
-    return UIInterfaceOrientationMaskPortrait;
-
-}
 
 
 
