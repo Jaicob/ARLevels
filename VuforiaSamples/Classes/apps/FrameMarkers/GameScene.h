@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 
@@ -25,5 +26,6 @@
 @property (nonatomic, assign) NSTimeInterval previousUpdateTime;
 @property (strong, nonatomic) UIColor *pickedColor;
 @property (strong, nonatomic) UIView *uiView;
+@property (strong, nonatomic) AVAudioPlayer *gameSceneLoop;
 
 @end

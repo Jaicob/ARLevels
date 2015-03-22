@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "SKTUtils.h"
 #import "customButton.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 @implementation GameScene
@@ -26,13 +27,7 @@ static const int winLevelCategory =  0x100;
     self.physicsWorld.gravity=CGVectorMake(10, 0);
     self.backgroundColor = [UIColor whiteColor];
     
-<<<<<<< HEAD
-    SKTexture *backgroundTexture = [SKTexture textureWithImage:self.backgroundImage];
-    self.background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture size:self.view.frame.size];
-    self.background.position = (CGPoint) {CGRectGetMidX(self.view.frame), CGRectGetMidY(self.view.frame)};
-    self.background.xScale = -1.0f;
-    [self addChild:self.background];
-=======
+
   //  NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
    // [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
@@ -63,8 +58,18 @@ static const int winLevelCategory =  0x100;
     self.background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture size:CGSizeMake(720, 420)];
     self.background.position = (CGPoint) {CGRectGetMidX(self.view.frame), CGRectGetMidY(self.view.frame)};
     self.background.zRotation = M_PI/2;
-
     [self addChild:self.background];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BackgroundTrack" ofType:@"aif"];
+    NSError *error;
+    self.gameSceneLoop = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:filePath] error:&error];
+    if (error) {
+        NSLog(@"Error in audioPlayer: %@", [error localizedDescription]);
+    } else {
+        self.gameSceneLoop.numberOfLoops = -1;
+        [self.gameSceneLoop prepareToPlay];
+        [self.gameSceneLoop play];
+    }
     
 //    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:self.backgroundImage.CGImage
 //                                                                                              scale:self.backgroundImage.scale
@@ -72,15 +77,11 @@ static const int winLevelCategory =  0x100;
 //    self.backgroundImageView.frame = CGRectMake(0,  0, self.size.width, self.size.height);
 //    [self.view addSubview:self.backgroundImageView];
 //    [self.view sendSubviewToBack:self.backgroundImageView];
->>>>>>> 7cf26b45e619bf255b0879f2f9216bc88f293fe5
 
     SKSpriteNode *rightArrow = [SKSpriteNode spriteNodeWithImageNamed:@"rightArrow.png"];
     rightArrow.size = CGSizeMake(50, 50);
-<<<<<<< HEAD
-    rightArrow.position = CGPointMake(CGRectGetMaxX(self.view.frame) - rightArrow.size.width/2 - 10, CGRectGetMaxY(self.view.frame) - rightArrow.size.height/2 - 10);
-=======
-        rightArrow.position = CGPointMake(CGRectGetMaxX(self.view.frame) - rightArrow.size.width/2 - 10, rightArrow.size.height/2 + 80);
->>>>>>> 7cf26b45e619bf255b0879f2f9216bc88f293fe5
+
+    rightArrow.position = CGPointMake(CGRectGetMaxX(self.view.frame) - rightArrow.size.width/2 - 10, rightArrow.size.height/2 + 80);
     rightArrow.name = @"rightArrow";
     rightArrow.zRotation = M_PI/2;
     rightArrow.zPosition = 5.0f;
@@ -103,34 +104,6 @@ static const int winLevelCategory =  0x100;
     upArrow.zPosition = 5.0f;
     [self addChild:upArrow];
     
-<<<<<<< HEAD
-=======
-    SKSpriteNode *scoot = [[Player alloc] initWithImageNamed:@"scoot.png"];
-    scoot.size = CGSizeMake(50, 50);
-    scoot.position = CGPointMake(CGRectGetMidX(self.view.frame), scoot.size.height/2 + 10);
-    scoot.zRotation = M_PI/2;
-    scoot.name = @"scoot";
-    scoot.physicsBody.affectedByGravity = YES;
-    scoot.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:scoot.size.width/2];
-    scoot.physicsBody.categoryBitMask = playerHitCategory;
-    scoot.physicsBody.contactTestBitMask = groundHitCategory;
-    scoot.physicsBody.collisionBitMask =  groundHitCategory;
-    [self addChild:scoot];
-    scoot.zPosition = 1.0f;
-    scoot.xScale = -1.0f;
-    NSLog(@"%@", NSStringFromCGRect(self.frame));
-    
-    SKSpriteNode *tempGround = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(500, 100)];
-    tempGround.position = CGPointMake(340, 0);
-    tempGround.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:tempGround.size];
-    tempGround.physicsBody.affectedByGravity = NO;
-    tempGround.physicsBody.dynamic = NO;
-    tempGround.physicsBody.categoryBitMask = groundHitCategory;
-    tempGround.zRotation = M_PI/2;
-
-    [self addChild:tempGround];
-    
->>>>>>> 7cf26b45e619bf255b0879f2f9216bc88f293fe5
     self.uiView = [[UIView alloc] init];
     [self.view addSubview:self.uiView];
     
@@ -159,6 +132,7 @@ static const int winLevelCategory =  0x100;
         {
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            [self checkOutOfBounds:square markerNumber:0];
             square.anchorPoint = CGPointMake(0.5, 0.5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
@@ -176,6 +150,7 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self checkOutOfBounds:square markerNumber:1];
             
         }else if([key isEqualToString:@"MarkerGround2"] && [brownButton.markerName isEqualToString:@"MarkerGround2"]){
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
@@ -186,6 +161,7 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self checkOutOfBounds:square markerNumber:2];
         }else if([key isEqualToString:@"MarkerGround3"] && [brownButton.markerName isEqualToString:@"MarkerGround3"]){
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
@@ -195,6 +171,7 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = groundHitCategory;
             [self addChild:square];
+            [self checkOutOfBounds:square markerNumber:3];
         }
         else if([key isEqualToString:@"MarkerGold"] && [brownButton.markerName isEqualToString:@"MarkerGold"]){
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:CGSizeMake(50, 50)];
@@ -207,9 +184,11 @@ static const int winLevelCategory =  0x100;
             square.physicsBody.contactTestBitMask = playerHitCategory;
             
             [self addChild:square];
+            [self checkOutOfBounds:square markerNumber:4];
         }else if([key isEqualToString:@"MarkerPlayerStart"] && [brownButton.markerName isEqualToString:@"MarkerPlayerStart"]){
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            [self checkOutOfBounds:square markerNumber:5];
             SKSpriteNode *scoot = [[Player alloc] initWithImageNamed:@"scoot.png"];
             scoot.size = CGSizeMake(50, 50);
             scoot.position = square.position;
@@ -232,7 +211,29 @@ static const int winLevelCategory =  0x100;
 self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 }
 
+-(void)checkOutOfBounds:(SKSpriteNode *)square markerNumber:(int)markerNum{
+    
+    if(square.position.x < CGRectGetMinX(self.scene.frame)){
+        NSLog(@"X: %f, Y: %f, I:%d", square.position.x, square.position.y, markerNum);
+        square.position = CGPointMake(CGRectGetMinX(self.scene.frame) + square.size.width/2, square.position.y);
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+    }else if(square.position.y < CGRectGetMinY(self.scene.frame)){
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+        square.position = CGPointMake(square.position.x, CGRectGetMinY(self.scene.frame) + square.size.width/2);
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+    }else if(square.position.x > CGRectGetMaxX(self.scene.frame)){
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+        square.position = CGPointMake( CGRectGetMaxX(self.scene.frame)- square.size.width/2, square.position.y);
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+    }else if(square.position.y > CGRectGetMaxY(self.scene.frame)){
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
+        square.position = CGPointMake(square.position.y, CGRectGetMaxY(self.scene.frame)- square.size.width/2);
+        NSLog(@"X: %f, Y: %f", square.position.x, square.position.y);
 
+    }
+
+    
+}
 
 -(void)checkForWin {
     if ([self childNodeWithName:@"scoot"].position.x > 1500 || [self childNodeWithName:@"scoot"].position.x < -1500 || [self childNodeWithName:@"scoot"].position.y > 1500 || [self childNodeWithName:@"scoot"].position.y < -1500) {
@@ -256,6 +257,7 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     SKLabelNode *endGameLabel = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
     endGameLabel.text = gameText;
     endGameLabel.fontSize = 40;
+    endGameLabel.xScale = -1.0f;
     endGameLabel.position = CGPointMake(self.size.width / 2.0, self.size.height / 1.7);
     endGameLabel.zRotation = M_PI/2;
     [self addChild:endGameLabel];
@@ -276,10 +278,10 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 
 - (void)replay:(id)sender
 {
+    [self.gameSceneLoop stop];
     [[self.view viewWithTag:321] removeFromSuperview];
-    GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.size.height, self.size.width)];
-    scene.scaleMode = SKSceneScaleModeResizeFill;
-    scene.backgroundImage = self.backgroundImage;
+    GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.size.width, self.size.height)];
+    scene.objectInfoDictionary = self.objectInfoDictionary;
     [self.view presentScene:scene];
 }
 
