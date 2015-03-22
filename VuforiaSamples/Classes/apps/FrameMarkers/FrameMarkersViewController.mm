@@ -229,7 +229,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     self.skView = (SKView *)self.view;
     self.skView.showsFPS = NO;
     self.skView.showsNodeCount = NO;
-    self.skView.showsPhysics = NO;
+    self.skView.showsPhysics = YES;
     
     self.skView.allowsTransparency = YES;
     self.skView.backgroundColor = [UIColor clearColor];

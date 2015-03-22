@@ -157,6 +157,7 @@
 		D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */; };
 		D05FAB351ABEB42E00DDBFD7 /* platformTexture2.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */; };
 		D0EBAB461ABECB6D0082D46B /* enemy1Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */; };
+		D0EBAB481ABED4260082D46B /* GEM.png in Resources */ = {isa = PBXBuildFile; fileRef = D0EBAB471ABED4260082D46B /* GEM.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -371,6 +372,7 @@
 		D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture.png; sourceTree = "<group>"; };
 		D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture2.png; sourceTree = "<group>"; };
 		D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1Texture.png; sourceTree = "<group>"; };
+		D0EBAB471ABED4260082D46B /* GEM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GEM.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -512,6 +514,7 @@
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
 				D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */,
 				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
+				D0EBAB471ABED4260082D46B /* GEM.png */,
 				D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */,
 				D05FAB1C1ABE93EC00DDBFD7 /* gold.png */,
 				D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */,
@@ -948,6 +951,7 @@
 				D05FAAEF1ABDD7A500DDBFD7 /* upArrow.png in Resources */,
 				188AD59117DE3D54008BE2C8 /* TR_about.html in Resources */,
 				18D1686C18157802004D017D /* button_cancel_pressed.png in Resources */,
+				D0EBAB481ABED4260082D46B /* GEM.png in Resources */,
 				188AD5CE17DE407D008BE2C8 /* CR_about.html in Resources */,
 				18CD62FF17E24F17006154DF /* Line.vertsh in Resources */,
 				18D1687518157802004D017D /* icon_camera@2x.png in Resources */,
