@@ -18,8 +18,11 @@
 @property (strong, nonatomic) SKSpriteNode *playerSpriteNode;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isTouchingGround;
+@property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 
 @property (nonatomic, assign) BOOL gameOver;
 @property (nonatomic, assign) NSTimeInterval previousUpdateTime;
+@property (strong, nonatomic) UIColor *pickedColor;
+@property (strong, nonatomic) UIView *uiView;
 
 @end

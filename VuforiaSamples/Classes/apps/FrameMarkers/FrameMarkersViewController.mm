@@ -237,6 +237,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.height, self.skView.bounds.size.width)];
     scene.scaleMode = SKSceneScaleModeResizeFill;
     scene.backgroundImage = eaglView.backgroundImage;
+    scene.objectInfoDictionary = eaglView.objectInfoDictionary;
+    
     // Present the scene.
     [self.skView presentScene:scene];
     

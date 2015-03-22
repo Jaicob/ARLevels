@@ -150,6 +150,8 @@ namespace {
 //        self.button.layer.borderWidth = 0;
         [self.button addTarget:self action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.button];
+        
+        self.objectInfoDictionary = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -236,6 +238,7 @@ namespace {
 
 -(void)saveBackgroundImage
 {
+    self.pictureTaken = YES;
     UIImage *image = [self glToUIImage];
     UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
     self.backgroundImage = [self glToUIImage];
@@ -285,7 +288,7 @@ namespace {
     
     CGImageRef outputRef = CGBitmapContextCreateImage(context);
     
-    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationLeftMirrored];
+    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationRight];
     
     CGDataProviderRelease(ref);
     
@@ -412,6 +415,7 @@ namespace {
         
         VuforiaObject3D *obj3D = [objects3D objectAtIndex:textureIndex];
         
+        
         // Render with OpenGL 2
         QCAR::Matrix44F modelViewProjection;
         if (isFrontCamera) {
@@ -438,6 +442,28 @@ namespace {
         glDrawElements(GL_TRIANGLES, obj3D.numIndices, GL_UNSIGNED_SHORT, obj3D.indices);
         
         SampleApplicationUtils::checkGlError("FrameMarkerss renderFrameQCAR");
+        const QCAR::CameraCalibration& cameraCalibration = QCAR::CameraDevice::getInstance().getCameraCalibration();
+        QCAR::Vec2F cameraPoint = QCAR::Tool::projectPoint(cameraCalibration, trackableResult->getPose(), QCAR::Vec3F(0, 0, 0));
+        QCAR::VideoMode videoMode = QCAR::CameraDevice::getInstance().getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+        QCAR::VideoBackgroundConfig config = QCAR::Renderer::getInstance().getVideoBackgroundConfig();
+        
+        int xOffset = ((int) [UIScreen mainScreen].bounds.size.width - config.mSize.data[0]) / 2.0f + config.mPosition.data[0];
+        int yOffset = ((int) [UIScreen mainScreen].bounds.size.height - config.mSize.data[1]) / 2.0f - config.mPosition.data[1];
+        
+        float coordX = QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
+                         cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset).data[0];
+        float coordY = QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
+                                  cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset).data[1];
+        
+        float cameraCoordX = cameraPoint.data[0];
+        float cameraCoordY = cameraPoint.data[1];
+        
+        CGPoint objectCoord = CGPointMake(coordX, coordY);
+        NSLog(@"View X: %f, View Y: %f", cameraCoordX, cameraCoordY);
+        if(!self.pictureTaken){
+            [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
+        }
+        
     }
     
     glDisable(GL_DEPTH_TEST);

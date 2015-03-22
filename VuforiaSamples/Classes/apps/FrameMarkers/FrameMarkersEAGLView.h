@@ -49,6 +49,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 @property (strong, nonatomic) SKView *skView;
 @property (strong, nonatomic) UIButton *button; //This is the red button we use to take the gl view's picture
 @property (strong, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
+@property (nonatomic) BOOL pictureTaken;
 
 
 - (id)initWithFrame:(CGRect)frame appSession:(SampleApplicationSession *) app;
