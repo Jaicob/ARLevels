@@ -229,13 +229,15 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     self.skView.showsFPS = YES;
     self.skView.showsNodeCount = YES;
     self.skView.showsPhysics = YES;
-    
+
     self.skView.allowsTransparency = YES;
     self.skView.backgroundColor = [UIColor clearColor];
     
     // Create and configure the scene.
     GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.height, self.skView.bounds.size.width)];
     scene.scaleMode = SKSceneScaleModeResizeFill;
+    NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
+
     scene.backgroundImage = eaglView.backgroundImage;
     scene.objectInfoDictionary = eaglView.objectInfoDictionary;
     

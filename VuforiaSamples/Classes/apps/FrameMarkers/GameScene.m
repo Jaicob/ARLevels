@@ -28,10 +28,10 @@ static const int groundHitCategory = 2;
     self.backgroundColor = [UIColor whiteColor];
     
     //rotate image
-    UIImageView *myImageView = [[UIImageView alloc] initWithImage:self.backgroundImage];
-    myImageView.center = CGPointMake(100.0, 100.0);
-    myImageView.transform = CGAffineTransformMakeRotation(M_PI); //rotation in radians
-    myImageView.frame = CGRectMake(0, 0, self.size.width, self.size.height);
+//    UIImageView *myImageView = [[UIImageView alloc] initWithImage:self.backgroundImage];
+//    myImageView.center = CGPointMake(100.0, 100.0);
+//    myImageView.transform = CGAffineTransformMakeRotation(M_PI); //rotation in radians
+//    myImageView.frame = CGRectMake(0, 0, self.size.width, self.size.height);
     
   //  [self getRGBAsFromImage:myImageView.image atX:0 andY:0 count:1];
 //    for(int x = 0; x < 300; x++){
@@ -46,13 +46,14 @@ static const int groundHitCategory = 2;
 //    }
  //   [self getGreenFromImage:myImageView.image atX:100 andY:100];
     
-    self.backgroundImage = myImageView.image;
+//    self.backgroundImage = myImageView.image;
     
     
     
     SKTexture *backgroundTexture = [SKTexture textureWithImage:self.backgroundImage];
     self.background = [SKSpriteNode spriteNodeWithTexture:backgroundTexture size:self.view.frame.size];
     self.background.position = (CGPoint) {CGRectGetMidX(self.view.frame), CGRectGetMidY(self.view.frame)};
+    self.background.xScale = -1.0f;
     [self addChild:self.background];
     
 //    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:self.backgroundImage.CGImage
@@ -127,12 +128,23 @@ static const int groundHitCategory = 2;
     NSLog(@"Dictionary: %@", self.objectInfoDictionary);
     for(NSString *key in self.objectInfoDictionary){
         CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
-        NSLog(@"x: %f, y: %f", point.x, point.y);
-        CGPoint pointFlipped = CGPointMake(point.y, point.x);
+        UIButton *brownButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [brownButton setBackgroundImage:[UIImage imageNamed:@"leftArrow.png"] forState:UIControlStateNormal];
+        [brownButton setFrame:CGRectMake(point.x, point.y, 50, 50)];
+        [brownButton addTarget:nil action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:brownButton];
+        //NSLog(@"x: %f, y: %f", (point.x/1334)*568, (point.y/750)*320);
+        CGPoint pointFlipped = CGPointMake((point.x/1334)*568, (point.y/750)*320);
+        CGPoint finalPoint = CGPointMake(pointFlipped.y, pointFlipped.x);
+
         SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(100, 100)];
-        square.position = point;
+        square.position = pointFlipped;
+        NSLog(@"position x: %f, position y: %f",square.position.x, square.position.y);
+        square.anchorPoint = CGPointMake(self.size.width/2, self.size.height/2);
         [self addChild:square];
     }
+
+    
 
     
 }
@@ -173,6 +185,9 @@ static const int groundHitCategory = 2;
     [replay addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
     replay.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0, 64, 64);
     [self.view addSubview:replay];
+    
+    NSLog(@"SKView final frame: %@", NSStringFromCGRect(self.frame));
+
 }
 
 
@@ -266,6 +281,7 @@ static const int groundHitCategory = 2;
     
   //  [self.uiView addSubview:screenGrab];
     CGPoint loc = [touch locationInNode:self];
+    NSLog(@"loc x: %f, loc y: %f", loc.x, loc.y);
     self.pickedColor = [self colorOfPoint:loc];
    // [self getRGBAsFromImage:screenGrab atX:loc.x andY:loc.y count:1];
     

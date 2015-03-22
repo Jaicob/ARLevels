@@ -17,6 +17,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import <QCAR/TrackableResult.h>
 #import <QCAR/VideoBackgroundConfig.h>
 #import <QCAR/MarkerResult.h>
+#import <QCAR/Trackable.h>
+#import <QCAR/Tracker.h>
 
 #import "VuforiaObject3D.h"
 
@@ -151,6 +153,7 @@ namespace {
         [self.button addTarget:self action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.button];
         
+
         self.objectInfoDictionary = [[NSMutableDictionary alloc] init];
     }
     
@@ -222,6 +225,12 @@ namespace {
     
 }
 
+-(void)moveLeft{
+    for(VuforiaObject3D *obj3D in objects3D){
+        
+    }
+}
+
 - (void) setup3dObjects
 {
     // build the array of objects we want drawn and their texture
@@ -239,9 +248,12 @@ namespace {
 -(void)saveBackgroundImage
 {
     self.pictureTaken = YES;
-    UIImage *image = [self glToUIImage];
-    UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
     self.backgroundImage = [self glToUIImage];
+    for(NSString *key in self.objectInfoDictionary){
+        
+        NSLog(@"NSValue: %@", [self.objectInfoDictionary objectForKey:key]);
+        CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
+           }
 //    self.button.enabled = NO;
 //    self.button.alpha = 0.0f;
 }
@@ -288,7 +300,7 @@ namespace {
     
     CGImageRef outputRef = CGBitmapContextCreateImage(context);
     
-    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationRight];
+    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationLeftMirrored];
     
     CGDataProviderRelease(ref);
     
@@ -306,55 +318,6 @@ namespace {
     
     return outputImage;
     
-}
-
-
-- (CGPoint) projectCoord:(CGPoint)coord inView:(const QCAR::CameraCalibration&)cameraCalibration andPose:(QCAR::Matrix34F)pose withOffset:(CGPoint)offset andScale:(CGFloat)scale
-{
-    CGPoint converted;
-    
-    QCAR::Vec3F vec(coord.x,coord.y,0);
-    QCAR::Vec2F sc = QCAR::Tool::projectPoint(cameraCalibration, pose, vec);
-    converted.x = sc.data[0]*scale - offset.x;
-    converted.y = sc.data[1]*scale - offset.y;
-    
-    return converted;
-}
-
-- (void) calcScreenCoordsOf:(CGSize)target inView:(CGFloat *)matrix inPose:(QCAR::Matrix34F)pose
-{
-    // 0,0 is at centre of target so extremities are at w/2,h/2
-    CGFloat w = target.width/2;
-    CGFloat h = target.height/2;
-    
-    // need to account for the orientation on view size
-    CGFloat viewWidth = self.frame.size.height; // Portrait
-    CGFloat viewHeight = self.frame.size.width; // Portrait
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (UIInterfaceOrientationIsLandscape(orientation))
-    {
-        viewWidth = self.frame.size.width;
-        viewHeight = self.frame.size.height;
-    }
-    
-    // calculate any mismatch of screen to video size
-    QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
-    const QCAR::CameraCalibration& cameraCalibration = cameraDevice.getCameraCalibration();
-    QCAR::VideoMode videoMode = cameraDevice.getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
-    
-    CGFloat scale = viewWidth/videoMode.mWidth;
-    if (videoMode.mHeight * scale < viewHeight)
-        scale = viewHeight/videoMode.mHeight;
-    CGFloat scaledWidth = videoMode.mWidth * scale;
-    CGFloat scaledHeight = videoMode.mHeight * scale;
-    
-    CGPoint margin = {(scaledWidth - viewWidth)/2, (scaledHeight - viewHeight)/2};
-    
-    // now project the 4 corners of the target
-   /* delegate.s0 = [self projectCoord:CGPointMake(-w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
-    delegate.s1 = [self projectCoord:CGPointMake(-w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
-    delegate.s2 = [self projectCoord:CGPointMake(w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
-    delegate.s3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];*/
 }
 
 
@@ -402,10 +365,27 @@ namespace {
         const QCAR::MarkerResult* markerResult = static_cast<
         const QCAR::MarkerResult*>(trackableResult);
         const QCAR::Marker& marker = markerResult->getTrackable();
+
+        QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
+        const QCAR::CameraCalibration& cameraCalibration = cameraDevice.getCameraCalibration();
         
-        NSLog(@"[%s] tracked", marker.getName());
+        QCAR::Vec2F cameraPoint = QCAR::Tool::projectPoint(cameraCalibration, trackableResult->getPose(), QCAR::Vec3F(0,0,0));
+        QCAR::Vec2F xyPoint = cameraPointToScreenPoint(cameraPoint);
+        float coordX =xyPoint.data[0];
+        float coordY = xyPoint.data[1];
+        CGPoint objectCoord = CGPointMake(coordX, coordY);
+                if(!self.pictureTaken){
+                    [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
+                    NSLog(@"View X: %f, View Y: %f", coordX, coordY);
+        
+                    
+                }
         if (trackableResult->getStatus() == QCAR::TrackableResult::EXTENDED_TRACKED) {
             NSLog(@"[%s] tracked with target out of view!", marker.getName());
+        }
+        
+        NSString *markerName = [NSString stringWithFormat:@"[%s]",marker.getName()];
+        if([markerName isEqualToString:@"Marker A"]){
         }
 
         
@@ -442,27 +422,70 @@ namespace {
         glDrawElements(GL_TRIANGLES, obj3D.numIndices, GL_UNSIGNED_SHORT, obj3D.indices);
         
         SampleApplicationUtils::checkGlError("FrameMarkerss renderFrameQCAR");
-        const QCAR::CameraCalibration& cameraCalibration = QCAR::CameraDevice::getInstance().getCameraCalibration();
-        QCAR::Vec2F cameraPoint = QCAR::Tool::projectPoint(cameraCalibration, trackableResult->getPose(), QCAR::Vec3F(0, 0, 0));
-        QCAR::VideoMode videoMode = QCAR::CameraDevice::getInstance().getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
-        QCAR::VideoBackgroundConfig config = QCAR::Renderer::getInstance().getVideoBackgroundConfig();
+
         
-        int xOffset = ((int) [UIScreen mainScreen].bounds.size.width - config.mSize.data[0]) / 2.0f + config.mPosition.data[0];
-        int yOffset = ((int) [UIScreen mainScreen].bounds.size.height - config.mSize.data[1]) / 2.0f - config.mPosition.data[1];
+//        CGFloat w = 580/2;
+//        CGFloat h = 580/2;
+//        
+//        // need to account for the orientation on view size
+//        CGFloat viewWidth = self.frame.size.height; // Portrait
+//        CGFloat viewHeight = self.frame.size.width; // Portrait
+//        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+//        if (UIInterfaceOrientationIsLandscape(orientation))
+//        {
+//            viewWidth = self.frame.size.width;
+//            viewHeight = self.frame.size.height;
+//        }
+//        
+//        // calculate any mismatch of screen to video size
+//        QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
+//        const QCAR::CameraCalibration& cameraCalibration = cameraDevice.getCameraCalibration();
+//        QCAR::VideoMode videoMode = cameraDevice.getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+//        
+//        CGFloat scale = viewWidth/videoMode.mWidth;
+//        if (videoMode.mHeight * scale < viewHeight)
+//            scale = viewHeight/videoMode.mHeight;
+//        CGFloat scaledWidth = videoMode.mWidth * scale;
+//        CGFloat scaledHeight = videoMode.mHeight * scale;
+//        
+//        CGPoint margin = {(scaledWidth - viewWidth)/2, (scaledHeight - viewHeight)/2};
+//        
+//        CGPoint converted;
+//        
+//        QCAR::Vec3F vec(coord.x,coord.y,0);
+//        QCAR::Vec2F sc = QCAR::Tool::projectPoint(cameraCalibration, trackableResult->getPose(), vec);
+//        converted.x = sc.data[0]*scale - margin.x;
+//        converted.y = sc.data[1]*scale - margin.y;
         
-        float coordX = QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
-                         cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset).data[0];
-        float coordY = QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
-                                  cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset).data[1];
         
-        float cameraCoordX = cameraPoint.data[0];
-        float cameraCoordY = cameraPoint.data[1];
+//        const QCAR::CameraCalibration& cameraCalibration = QCAR::CameraDevice::getInstance().getCameraCalibration();
+//        QCAR::Vec2F cameraPoint = QCAR::Tool::projectPoint(cameraCalibration, trackableResult->getPose(), QCAR::Vec3F(0, 0, 0));
+//        QCAR::VideoMode videoMode = QCAR::CameraDevice::getInstance().getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+//        QCAR::VideoBackgroundConfig config = QCAR::Renderer::getInstance().getVideoBackgroundConfig();
+//        
+//        int xOffset = ((int) [UIScreen mainScreen].bounds.size.width - config.mSize.data[0]) / 2.0f + config.mPosition.data[0];
+//        int yOffset = ((int) [UIScreen mainScreen].bounds.size.height - config.mSize.data[1]) / 2.0f - config.mPosition.data[1];
+//        
+//        float coordX = QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
+//                         cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset).data[0];
+//        float coordY = QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
+//                                  cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset).data[1];
+//        
+//        float cameraCoordX = cameraPoint.data[0];
+//        float cameraCoordY = cameraPoint.data[1];
+//        
+//        CGPoint objectCoord = CGPointMake(coordX, coordY);
+//        if(!self.pictureTaken){
+//            [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
+//            NSLog(@"View X: %f, View Y: %f", coordX, coordY);
+//
+//            
+//        }else{
+//
+//        }
+//        
         
-        CGPoint objectCoord = CGPointMake(coordX, coordY);
-        NSLog(@"View X: %f, View Y: %f", cameraCoordX, cameraCoordY);
-        if(!self.pictureTaken){
-            [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
-        }
+        
         
     }
     
@@ -472,40 +495,6 @@ namespace {
     glDisableVertexAttribArray(normalHandle);
     glDisableVertexAttribArray(textureCoordHandle);
     
-    /*for(VuforiaObject3D *object in objects3D){
-    
-    QCAR::Matrix44F modelViewProjection;
-    QCAR::Matrix44F modelViewMatrix = object::modelViewMatrix;
-    
-    SampleApplicationUtils::translatePoseMatrix(0.f, 0.f, kLetterScale,
-                                     &modelViewMatrix.data[0]);
-    SampleApplicationUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
-                                 &modelViewMatrix.data[0]);
-    
-    
-    float screenDeltaX = 2.0f;// moving to the right 2 pixels every frame
-    float screenDeltaY = 0.0f;//
-    
-    QCAR::Vec3F targetLocalDisplacement;
-    computeTargetTranslationFromScreenVector(screenDeltaX, screenDeltaY,
-                                             modelViewMatrix, targetLocalDisplacement);
-    
-    
-    targetCumulatedDisplacement.data[0] += targetLocalDisplacement.data[0];
-    targetCumulatedDisplacement.data[1] += targetLocalDisplacement.data[1];
-    targetCumulatedDisplacement.data[2] += targetLocalDisplacement.data[2];
-    
-    
-    SampleApplicationUtils::translatePoseMatrix(targetCumulatedDisplacement.data[0],
-                                     targetCumulatedDisplacement.data[1],
-                                     targetCumulatedDisplacement.data[2],
-                                     &modelViewMatrix.data[0]);
-    
-    SampleApplicationUtils::multiplyMatrix(&projectionMatrix.data[0],
-                                &modelViewMatrix.data[0],
-                                &modelViewProjection.data[0]);
-    }*/
-    
     QCAR::Renderer::getInstance().end();
     [self presentFramebuffer];
 
@@ -513,6 +502,32 @@ namespace {
 
 //------------------------------------------------------------------------------
 #pragma mark - OpenGL ES management
+
+QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
+{
+    QCAR::VideoMode videoMode = QCAR::CameraDevice::getInstance().getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+    QCAR::VideoBackgroundConfig config = QCAR::Renderer::getInstance().getVideoBackgroundConfig();
+    
+    NSLog(@"%f, %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    int xOffset = ((int) [UIScreen mainScreen].bounds.size.width - config.mSize.data[0]) / 2.0f + config.mPosition.data[0];
+    int yOffset = ((int)  [UIScreen mainScreen].bounds.size.height - config.mSize.data[1]) / 2.0f - config.mPosition.data[1];
+    
+    if (UIInterfaceOrientationLandscapeLeft || UIInterfaceOrientationLandscapeRight)
+    {
+        // camera image is rotated 90 degrees
+        int rotatedX = videoMode.mHeight - cameraPoint.data[1];
+        int rotatedY = cameraPoint.data[0];
+        
+        return QCAR::Vec2F(rotatedX * config.mSize.data[0] / (float) videoMode.mHeight + xOffset,
+                           rotatedY * config.mSize.data[1] / (float) videoMode.mWidth + yOffset);
+    }
+    else
+    {
+        return QCAR::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float) videoMode.mWidth + xOffset,
+                           cameraPoint.data[1] * config.mSize.data[1] / (float) videoMode.mHeight + yOffset);
+    }
+}
+
 
 - (void)initShaders
 {
@@ -531,7 +546,67 @@ namespace {
     }
 }
 
+- (CGPoint) projectCoord:(CGPoint)coord inView:(const QCAR::CameraCalibration&)cameraCalibration andPose:(QCAR::Matrix34F)pose withOffset:(CGPoint)offset andScale:(CGFloat)scale
+{
+    CGPoint converted;
+    
+    QCAR::Vec3F vec(coord.x,coord.y,0);
+    QCAR::Vec2F sc = QCAR::Tool::projectPoint(cameraCalibration, pose, vec);
+    converted.x = sc.data[0]*scale - offset.x;
+    converted.y = sc.data[1]*scale - offset.y;
+    
+    return converted;
+}
 
+- (void) calcScreenCoordsOf:(CGSize)target inView:(CGFloat *)matrix inPose:(QCAR::Matrix34F)pose
+{
+    // 0,0 is at centre of target so extremities are at w/2,h/2
+    CGFloat w = target.width/2;
+    CGFloat h = target.height/2;
+    
+    // need to account for the orientation on view size
+    CGFloat viewWidth = self.frame.size.height; // Portrait
+    CGFloat viewHeight = self.frame.size.width; // Portrait
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsLandscape(orientation))
+    {
+        viewWidth = self.frame.size.width;
+        viewHeight = self.frame.size.height;
+    }
+    
+    // calculate any mismatch of screen to video size
+    QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
+    const QCAR::CameraCalibration& cameraCalibration = cameraDevice.getCameraCalibration();
+    QCAR::VideoMode videoMode = cameraDevice.getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+    
+    CGFloat scale = viewWidth/videoMode.mWidth;
+    if (videoMode.mHeight * scale < viewHeight)
+        scale = viewHeight/videoMode.mHeight;
+    CGFloat scaledWidth = videoMode.mWidth * scale;
+    CGFloat scaledHeight = videoMode.mHeight * scale;
+    
+    CGPoint margin = {(scaledWidth - viewWidth)/2, (scaledHeight - viewHeight)/2};
+    
+    CGPoint point0 = [self projectCoord:CGPointMake(-w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    CGPoint point1 = [self projectCoord:CGPointMake(-w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    CGPoint point2 = [self projectCoord:CGPointMake(w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    CGPoint point3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+    
+    NSLog(@"Point0x:%f, Point0Y:%f", point0.x, point0.y);
+
+    // now project the 4 corners of the target
+//    ImageTargetsAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+//    delegate.s0 = [self projectCoord:CGPointMake(-w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+//    delegate.s1 = [self projectCoord:CGPointMake(-w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+//    delegate.s2 = [self projectCoord:CGPointMake(w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+//    delegate.s3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint loc = [touch locationInView:self];
+    NSLog(@"Touch X:%f, Touch Y:%f", loc.x, loc.y);
+}
 - (void)createFramebuffer
 {
     if (context) {
