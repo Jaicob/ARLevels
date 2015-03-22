@@ -15,9 +15,9 @@
 @implementation GameScene
 
 //bit masks
-static const int playerHitCategory = 0x01;
-static const int groundHitCategory = 0x10;
-static const int winLevelCategory =  0x100;
+static const int playerHitCategory =  0x0001;
+static const int groundHitCategory =  0x0010;
+static const int winLevelCategory =   0x0100;
 static const int projectileCategory = 0x1000;
 
 
@@ -175,8 +175,8 @@ static const int projectileCategory = 0x1000;
             scoot.physicsBody.affectedByGravity = YES;
             scoot.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(48, 48)];
             scoot.physicsBody.categoryBitMask = playerHitCategory;
-            scoot.physicsBody.contactTestBitMask = groundHitCategory & projectileCategory; //& winLevelCategory;
-            scoot.physicsBody.collisionBitMask =  groundHitCategory & projectileCategory;
+            scoot.physicsBody.contactTestBitMask = groundHitCategory | projectileCategory; //& winLevelCategory;
+            scoot.physicsBody.collisionBitMask =  groundHitCategory | projectileCategory;
             [self addChild:scoot];
             NSLog(@"%@", NSStringFromCGRect(self.frame));
             //[self addChild:square];
@@ -336,8 +336,8 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     enemyShot.zPosition = 1.0f;
     enemyShot.physicsBody.usesPreciseCollisionDetection = YES;
     enemyShot.physicsBody.categoryBitMask = projectileCategory;
-    enemyShot.physicsBody.collisionBitMask = playerHitCategory & groundHitCategory;
-    enemyShot.physicsBody.contactTestBitMask = playerHitCategory & groundHitCategory;
+    enemyShot.physicsBody.collisionBitMask = playerHitCategory | groundHitCategory;
+    enemyShot.physicsBody.contactTestBitMask = playerHitCategory | groundHitCategory;
     SKAction *fireShot = [SKAction moveToY:2000 duration:5.0f];
     [self addChild:enemyShot];
     [enemyShot runAction:fireShot completion:^{
