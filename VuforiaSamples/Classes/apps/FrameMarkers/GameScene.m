@@ -300,7 +300,9 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     
     UIButton *newLevel = [UIButton buttonWithType:UIButtonTypeCustom];
     newLevel.tag = 322;
-    UIImage *levelImage = [UIImage imageNamed:@"leftArrow.png"];
+    UIImage *levelImage = [UIImage imageNamed:@"upArrow.png"];
+    
+
     [newLevel setImage:levelImage forState:UIControlStateNormal];
     [newLevel addTarget:self.frameVc action:@selector(newLevel:) forControlEvents:UIControlEventTouchUpInside];
     newLevel.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0 - 80, 64, 64);

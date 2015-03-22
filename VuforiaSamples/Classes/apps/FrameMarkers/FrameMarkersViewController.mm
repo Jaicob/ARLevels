@@ -253,6 +253,9 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 {
     [self.skView presentScene:nil];
     [self.skView.scene removeFromParent];
+    eaglView.pictureTaken = NO;
+    didTransition = NO;
+    [eaglView.objectInfoDictionary removeAllObjects];
     self.view = eaglView;
 }
 
