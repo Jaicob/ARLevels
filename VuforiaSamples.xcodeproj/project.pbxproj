@@ -144,6 +144,7 @@
 		D05FAB121ABE14DC00DDBFD7 /* greenDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */; };
 		D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */; };
 		D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */; };
+		D05FAB191ABE842200DDBFD7 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAB181ABE842200DDBFD7 /* customButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -344,6 +345,8 @@
 		D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenDotCubeTexture.png; sourceTree = "<group>"; };
 		D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTexture.png; sourceTree = "<group>"; };
 		D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTextureCopy.png; sourceTree = "<group>"; };
+		D05FAB171ABE842200DDBFD7 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
+		D05FAB181ABE842200DDBFD7 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -467,6 +470,8 @@
 				D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */,
 				D05FAAD21ABD4DED00DDBFD7 /* GameScene.h */,
 				D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */,
+				D05FAB171ABE842200DDBFD7 /* customButton.h */,
+				D05FAB181ABE842200DDBFD7 /* customButton.m */,
 				D05FAAF21ABDF11600DDBFD7 /* Player.h */,
 				D05FAAF31ABDF11600DDBFD7 /* Player.m */,
 				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
@@ -999,6 +1004,7 @@
 				18F1372017E0D83700F5846D /* SampleApplicationShaderUtils.m in Sources */,
 				18FBCF0817EA5D9300FDF286 /* CylinderTargetsEAGLView.mm in Sources */,
 				18FBCF0917EA5D9300FDF286 /* CylinderTargetsViewController.mm in Sources */,
+				D05FAB191ABE842200DDBFD7 /* customButton.m in Sources */,
 				D05FAB0A1ABDF1F100DDBFD7 /* SKNode+SKTExtras.m in Sources */,
 				18FBCF0C17EA5E3600FDF286 /* CylinderModel.cpp in Sources */,
 				1863226F17EB5F35007C8EC8 /* MultiTargetsEAGLView.mm in Sources */,

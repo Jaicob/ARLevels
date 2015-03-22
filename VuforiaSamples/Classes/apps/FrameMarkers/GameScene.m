@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "SKTUtils.h"
+#import "customButton.h"
 
 
 @implementation GameScene
@@ -21,9 +22,7 @@ static const int groundHitCategory = 2;
     self.view.multipleTouchEnabled = YES;
     self.physicsWorld.contactDelegate = self;
     self.physicsWorld.gravity=CGVectorMake(10, 0);
-    
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+
     
     self.backgroundColor = [UIColor whiteColor];
     
@@ -121,6 +120,7 @@ static const int groundHitCategory = 2;
     self.uiView = [[UIView alloc] init];
     [self.view addSubview:self.uiView];
     
+    self.brownButtonArray = [[NSMutableArray alloc] init];
     //tempGround.physicsBody.contactTestBitMask = groundHitCategory;
     //tempGround.physicsBody.collisionBitMask =  groundHitCategory;
 
@@ -128,20 +128,54 @@ static const int groundHitCategory = 2;
     NSLog(@"Dictionary: %@", self.objectInfoDictionary);
     for(NSString *key in self.objectInfoDictionary){
         CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
-        UIButton *brownButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        customButton *brownButton = [customButton buttonWithType:UIButtonTypeSystem];
         [brownButton setBackgroundImage:[UIImage imageNamed:@"leftArrow.png"] forState:UIControlStateNormal];
         [brownButton setFrame:CGRectMake(point.x, point.y, 50, 50)];
         [brownButton addTarget:nil action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchDown];
-        [self.view addSubview:brownButton];
+
+        
+        brownButton.markerName = key;
+        [self.brownButtonArray addObject:brownButton];
         //NSLog(@"x: %f, y: %f", (point.x/1334)*568, (point.y/750)*320);
         CGPoint pointFlipped = CGPointMake((point.x/1334)*568, (point.y/750)*320);
         CGPoint finalPoint = CGPointMake(pointFlipped.y, pointFlipped.x);
-
-        SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(100, 100)];
-        square.position = pointFlipped;
-        NSLog(@"position x: %f, position y: %f",square.position.x, square.position.y);
-        square.anchorPoint = CGPointMake(self.size.width/2, self.size.height/2);
-        [self addChild:square];
+        
+        if([key isEqualToString:@"MarkerGround0"] && [brownButton.markerName isEqualToString:@"MarkerGround0"])
+        {
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            square.anchorPoint = CGPointMake(1, 0);
+            [self addChild:square];
+            
+        }else if([key isEqualToString:@"MarkerGround1"] && [brownButton.markerName isEqualToString:@"MarkerGround1"])
+        {
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            square.anchorPoint = CGPointMake(1, 0);
+            [self addChild:square];
+            
+        }else if([key isEqualToString:@"MarkerGround2"] && [brownButton.markerName isEqualToString:@"MarkerGround2"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            square.anchorPoint = CGPointMake(1, 0);
+            [self addChild:square];
+        }else if([key isEqualToString:@"MarkerGround3"] && [brownButton.markerName isEqualToString:@"MarkerGround3"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            square.anchorPoint = CGPointMake(1, 0);
+            [self addChild:square];
+        }
+        else if([key isEqualToString:@"MarkerGold"] && [brownButton.markerName isEqualToString:@"MarkerGold"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:CGSizeMake(50, 50)];
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            [self addChild:square];
+        }else if([key isEqualToString:@"MarkerPlayerStart"] && [brownButton.markerName isEqualToString:@"MarkerPlayerStart"]){
+            SKSpriteNode *square = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
+            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+            [self addChild:square];
+        }
+        
+        
     }
 
     

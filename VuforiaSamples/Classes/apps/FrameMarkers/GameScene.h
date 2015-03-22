@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isTouchingGround;
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
+@property (strong, nonatomic) NSMutableArray *brownButtonArray;
 
 @property (nonatomic, assign) BOOL gameOver;
 @property (nonatomic, assign) NSTimeInterval previousUpdateTime;

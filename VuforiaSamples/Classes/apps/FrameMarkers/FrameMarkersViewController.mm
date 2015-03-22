@@ -234,7 +234,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     self.skView.backgroundColor = [UIColor clearColor];
     
     // Create and configure the scene.
-    GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.height, self.skView.bounds.size.width)];
+    GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
     scene.scaleMode = SKSceneScaleModeResizeFill;
     NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
 
@@ -452,12 +452,12 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     }
     
     // Create frame markers:
-    if (!markerTracker->createFrameMarker(0, "MarkerQ", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(1, "MarkerC", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(2, "MarkerA", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(3, "MarkerB", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(4, "MarkerZ", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(5, "MarkerD", QCAR::Vec2F(50,50)))
+    if (!markerTracker->createFrameMarker(0, "MarkerGround0", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(1, "MarkerGround1", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(2, "MarkerGround2", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(3, "MarkerGround3", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(4, "MarkerGold", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(5, "MarkerPlayerStart", QCAR::Vec2F(50,50)))
         
     {
         NSLog(@"Failed to create frame markers.");

@@ -251,7 +251,6 @@ namespace {
     self.backgroundImage = [self glToUIImage];
     for(NSString *key in self.objectInfoDictionary){
         
-        NSLog(@"NSValue: %@", [self.objectInfoDictionary objectForKey:key]);
         CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
            }
 //    self.button.enabled = NO;
@@ -376,7 +375,6 @@ namespace {
         CGPoint objectCoord = CGPointMake(coordX, coordY);
                 if(!self.pictureTaken){
                     [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
-                    NSLog(@"View X: %f, View Y: %f", coordX, coordY);
         
                     
                 }
@@ -508,7 +506,7 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
     QCAR::VideoMode videoMode = QCAR::CameraDevice::getInstance().getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
     QCAR::VideoBackgroundConfig config = QCAR::Renderer::getInstance().getVideoBackgroundConfig();
     
-    NSLog(@"%f, %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+
     int xOffset = ((int) [UIScreen mainScreen].bounds.size.width - config.mSize.data[0]) / 2.0f + config.mPosition.data[0];
     int yOffset = ((int)  [UIScreen mainScreen].bounds.size.height - config.mSize.data[1]) / 2.0f - config.mPosition.data[1];
     
@@ -592,7 +590,6 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
     CGPoint point2 = [self projectCoord:CGPointMake(w,-h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
     CGPoint point3 = [self projectCoord:CGPointMake(w,h) inView:cameraCalibration andPose:pose withOffset:margin andScale:scale];
     
-    NSLog(@"Point0x:%f, Point0Y:%f", point0.x, point0.y);
 
     // now project the 4 corners of the target
 //    ImageTargetsAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -605,7 +602,6 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint loc = [touch locationInView:self];
-    NSLog(@"Touch X:%f, Touch Y:%f", loc.x, loc.y);
 }
 - (void)createFramebuffer
 {
