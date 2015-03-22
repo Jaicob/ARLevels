@@ -24,6 +24,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     BOOL didTransition;
 }
 
+
 @property (strong, nonatomic) SKView *skView;
 
 @end

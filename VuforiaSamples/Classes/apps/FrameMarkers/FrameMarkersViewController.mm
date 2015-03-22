@@ -140,8 +140,9 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];
     
     UIButton *generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    generateLevelButton.frame = CGRectMake(100, 100, 50, 50);
-    generateLevelButton.backgroundColor = [UIColor blueColor];
+    generateLevelButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 100, 64, 64);
+    generateLevelButton.transform = CGAffineTransformMakeRotation(-3.14/2);
+    [generateLevelButton setBackgroundImage:[UIImage imageNamed:@"button_small_checkmark.png"] forState:UIControlStateNormal];
     [generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
     [eaglView addSubview:generateLevelButton];
     
@@ -465,7 +466,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
         !markerTracker->createFrameMarker(2, "MarkerGround2", QCAR::Vec2F(50,50)) ||
         !markerTracker->createFrameMarker(3, "MarkerGround3", QCAR::Vec2F(50,50)) ||
         !markerTracker->createFrameMarker(4, "MarkerGold", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(5, "MarkerPlayerStart", QCAR::Vec2F(50,50)))
+        !markerTracker->createFrameMarker(5, "MarkerPlayerStart", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(6, "MarkerPlatform", QCAR::Vec2F(50,50)))
         
     {
         NSLog(@"Failed to create frame markers.");

@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (strong, nonatomic) NSMutableArray *brownButtonArray;
 @property (nonatomic) UIViewController *frameVc;
+@property (strong, nonatomic) NSMutableArray *objectsArray;
 
 @property (nonatomic, assign) BOOL gameOver;
 @property (nonatomic, assign) NSTimeInterval previousUpdateTime;

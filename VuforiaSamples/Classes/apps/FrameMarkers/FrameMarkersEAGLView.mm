@@ -64,12 +64,13 @@ namespace {
     
     // Texture filenames
     const char* textureFilenames[] = {
-        "greenCubeTexture.png",
-        "greenCubeTexture.png",
-        "greenCubeTexture.png",
-        "greenCubeTexture.png",
-        "yellowCubeTexture.png",
-        "redCubeTexture.png"
+        "groundTexture.png",
+        "groundTexture.png",
+        "groundTexture.png",
+        "groundTexture.png",
+        "goldTexture.png",
+        "redCubeTexture.png",
+        "platformTexture.png"
     };
 }
 
@@ -252,7 +253,8 @@ namespace {
     for(NSString *key in self.objectInfoDictionary){
         
         CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
-           }
+    }
+    
 
 }
 
