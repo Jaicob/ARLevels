@@ -145,6 +145,10 @@
 		D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */; };
 		D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */; };
 		D05FAB191ABE842200DDBFD7 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAB181ABE842200DDBFD7 /* customButton.m */; };
+		D05FAB1B1ABE938C00DDBFD7 /* redCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */; };
+		D05FAB1D1ABE93EC00DDBFD7 /* gold.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1C1ABE93EC00DDBFD7 /* gold.png */; };
+		D05FAB1F1ABE93F000DDBFD7 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1E1ABE93F000DDBFD7 /* ground.png */; };
+		D05FAB211ABE941500DDBFD7 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB201ABE941500DDBFD7 /* frame.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -347,6 +351,10 @@
 		D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTextureCopy.png; sourceTree = "<group>"; };
 		D05FAB171ABE842200DDBFD7 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
 		D05FAB181ABE842200DDBFD7 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
+		D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCubeTexture.png; sourceTree = "<group>"; };
+		D05FAB1C1ABE93EC00DDBFD7 /* gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold.png; sourceTree = "<group>"; };
+		D05FAB1E1ABE93F000DDBFD7 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
+		D05FAB201ABE941500DDBFD7 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -472,6 +480,7 @@
 				D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */,
 				D05FAB171ABE842200DDBFD7 /* customButton.h */,
 				D05FAB181ABE842200DDBFD7 /* customButton.m */,
+				D05FAB1E1ABE93F000DDBFD7 /* ground.png */,
 				D05FAAF21ABDF11600DDBFD7 /* Player.h */,
 				D05FAAF31ABDF11600DDBFD7 /* Player.m */,
 				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
@@ -480,10 +489,13 @@
 				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
 				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
 				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
+				D05FAB201ABE941500DDBFD7 /* frame.png */,
 				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
 				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
+				D05FAB1C1ABE93EC00DDBFD7 /* gold.png */,
 				D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */,
 				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
+				D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */,
 			);
 			path = FrameMarkers;
 			sourceTree = "<group>";
@@ -893,6 +905,7 @@
 				1868D1CB17BD472000E47566 /* Default-568h@2x.png in Resources */,
 				188BB42C17BD98D60080509A /* TextureTeapotBlue.png in Resources */,
 				D05FAAE91ABD9AFD00DDBFD7 /* leftArrow.png in Resources */,
+				D05FAB1B1ABE938C00DDBFD7 /* redCubeTexture.png in Resources */,
 				188BB42D17BD98D60080509A /* TextureTeapotBrass.png in Resources */,
 				188BB42E17BD98D60080509A /* TextureTeapotGreen.png in Resources */,
 				188BB42F17BD98D60080509A /* TextureTeapotRed.png in Resources */,
@@ -928,10 +941,13 @@
 				18E9FF561A117AC0002CAA1F /* Localizable.strings in Resources */,
 				1863227717EB609E007C8EC8 /* FlakesBox.xml in Resources */,
 				1863227817EB609E007C8EC8 /* TextureBowlAndSpoon.png in Resources */,
+				D05FAB1F1ABE93F000DDBFD7 /* ground.png in Resources */,
 				18D1687318157802004D017D /* custom_toolbar_texture@2x.png in Resources */,
+				D05FAB1D1ABE93EC00DDBFD7 /* gold.png in Resources */,
 				D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */,
 				1863227917EB609E007C8EC8 /* TextureWireframe.png in Resources */,
 				1863228817EBCFA8007C8EC8 /* letter_A.png in Resources */,
+				D05FAB211ABE941500DDBFD7 /* frame.png in Resources */,
 				1863228917EBCFA8007C8EC8 /* letter_C.png in Resources */,
 				1863228A17EBCFA8007C8EC8 /* letter_Q.png in Resources */,
 				18D1686E18157802004D017D /* button_cancel.png in Resources */,

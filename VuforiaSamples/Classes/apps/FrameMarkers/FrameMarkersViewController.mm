@@ -235,10 +235,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     
     // Create and configure the scene.
     GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
-    scene.scaleMode = SKSceneScaleModeResizeFill;
+    //scene.scaleMode = SKSceneScaleModeAspectFit;
     NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
-    
-    
     scene.backgroundImage = eaglView.backgroundImage;
     scene.objectInfoDictionary = eaglView.objectInfoDictionary;
     
@@ -302,7 +300,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     
     CGImageRef outputRef = CGBitmapContextCreateImage(context);
     
-    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationLeftMirrored];
+    UIImage* outputImage = [[UIImage alloc] initWithCGImage:outputRef scale:(CGFloat)1.0 orientation:UIImageOrientationLeft];
     
     CGDataProviderRelease(ref);
     
