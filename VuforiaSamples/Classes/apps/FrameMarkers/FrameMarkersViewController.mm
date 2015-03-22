@@ -458,7 +458,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
         !markerTracker->createFrameMarker(3, "MarkerGround3", QCAR::Vec2F(50,50)) ||
         !markerTracker->createFrameMarker(4, "MarkerGold", QCAR::Vec2F(50,50)) ||
         !markerTracker->createFrameMarker(5, "MarkerPlayerStart", QCAR::Vec2F(50,50)) ||
-        !markerTracker->createFrameMarker(6, "MarkerPlatform", QCAR::Vec2F(50,50)))
+        !markerTracker->createFrameMarker(6, "MarkerPlatform", QCAR::Vec2F(50,50)) ||
+        !markerTracker->createFrameMarker(7, "MarkerPlatform2", QCAR::Vec2F(50,50)))
         
     {
         NSLog(@"Failed to create frame markers.");

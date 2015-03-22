@@ -155,6 +155,7 @@
 		D05FAB2D1ABEABD000DDBFD7 /* goldTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */; };
 		D05FAB2F1ABEACD300DDBFD7 /* button_small_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */; };
 		D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */; };
+		D05FAB351ABEB42E00DDBFD7 /* platformTexture2.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -367,6 +368,7 @@
 		D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldTexture.png; sourceTree = "<group>"; };
 		D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_small_checkmark.png; sourceTree = "<group>"; };
 		D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture.png; sourceTree = "<group>"; };
+		D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture2.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -498,6 +500,7 @@
 				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
 				D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */,
 				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
+				D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */,
 				D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */,
 				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
 				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
@@ -938,6 +941,7 @@
 				1837322617C55EF100756F62 /* SampleAppSelectorViewController.xib in Resources */,
 				188AD58F17DE3C82008BE2C8 /* Vuforia-English-word.vwl in Resources */,
 				1894FD251806FA0D009515BD /* VB_about.html in Resources */,
+				D05FAB351ABEB42E00DDBFD7 /* platformTexture2.png in Resources */,
 				D05FAAEF1ABDD7A500DDBFD7 /* upArrow.png in Resources */,
 				188AD59117DE3D54008BE2C8 /* TR_about.html in Resources */,
 				18D1686C18157802004D017D /* button_cancel_pressed.png in Resources */,

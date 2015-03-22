@@ -70,7 +70,8 @@ namespace {
         "groundTexture.png",
         "goldTexture.png",
         "redCubeTexture.png",
-        "platformTexture.png"
+        "platformTexture.png",
+        "platformTexture2.png"
     };
 }
 
