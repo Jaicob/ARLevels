@@ -250,14 +250,20 @@ namespace {
 
 -(void)saveBackgroundImage
 {
-    self.pictureTaken = YES;
-    self.generateLevelButton.enabled = YES;
+    if([self.objectInfoDictionary objectForKey:@"MarkerPlayerStart"]){
+        self.pictureTaken = YES;
+        self.generateLevelButton.enabled = YES;
+        [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greenCheckmark.png"] forState:UIControlStateNormal];
     //self.backgroundImage = [self glToUIImage];
-    for(NSString *key in self.objectInfoDictionary){
-        
-        CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
+//    for(NSString *key in self.objectInfoDictionary){
+//        
+//        CGPoint point = [[self.objectInfoDictionary objectForKey:key] CGPointValue];
+//    }
+//
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait" message:@"Make sure you get the character start square in you photo!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     }
-    
 
 }
 

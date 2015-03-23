@@ -16,7 +16,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import <OpenGLES/ES2/glext.h>
 #import <sys/time.h>
 
-@interface FrameMarkersViewController : UIViewController <SampleApplicationControl, SampleAppMenuCommandProtocol>{
+@interface FrameMarkersViewController : UIViewController <SampleApplicationControl, SampleAppMenuCommandProtocol, UIAlertViewDelegate>{
     CGRect viewFrame;
     FrameMarkersEAGLView* eaglView;
     UITapGestureRecognizer * tapGestureRecognizer;

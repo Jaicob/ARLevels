@@ -151,9 +151,10 @@
 		D05FAB251ABE9ABA00DDBFD7 /* BackgroundTrack.aif in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */; };
 		D05FAB271ABEA75900DDBFD7 /* groundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB261ABEA75900DDBFD7 /* groundTexture.png */; };
 		D05FAB2D1ABEABD000DDBFD7 /* goldTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */; };
-		D05FAB2F1ABEACD300DDBFD7 /* button_small_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */; };
+		D05FAB2F1ABEACD300DDBFD7 /* greenCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB2E1ABEACD300DDBFD7 /* greenCheckmark.png */; };
 		D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */; };
 		D05FAB351ABEB42E00DDBFD7 /* platformTexture2.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */; };
+		D0C383A01AC07F39001AE2E6 /* greyCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C3839F1AC07F39001AE2E6 /* greyCheckmark.png */; };
 		D0EBAB461ABECB6D0082D46B /* enemy1Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */; };
 		D0EBAB481ABED4260082D46B /* GEM.png in Resources */ = {isa = PBXBuildFile; fileRef = D0EBAB471ABED4260082D46B /* GEM.png */; };
 /* End PBXBuildFile section */
@@ -364,9 +365,10 @@
 		D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackgroundTrack.aif; sourceTree = "<group>"; };
 		D05FAB261ABEA75900DDBFD7 /* groundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = groundTexture.png; sourceTree = "<group>"; };
 		D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldTexture.png; sourceTree = "<group>"; };
-		D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_small_checkmark.png; sourceTree = "<group>"; };
+		D05FAB2E1ABEACD300DDBFD7 /* greenCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenCheckmark.png; sourceTree = "<group>"; };
 		D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture.png; sourceTree = "<group>"; };
 		D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformTexture2.png; sourceTree = "<group>"; };
+		D0C3839F1AC07F39001AE2E6 /* greyCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyCheckmark.png; sourceTree = "<group>"; };
 		D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1Texture.png; sourceTree = "<group>"; };
 		D0EBAB471ABED4260082D46B /* GEM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GEM.png; sourceTree = "<group>"; };
 		D27442981A15F17000182008 /* SampleGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleGLResourceHandler.h; sourceTree = "<group>"; };
@@ -875,12 +877,13 @@
 		D0C3839D1AC075EC001AE2E6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D0C3839F1AC07F39001AE2E6 /* greyCheckmark.png */,
 				D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */,
 				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
 				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
 				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
 				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
-				D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */,
+				D05FAB2E1ABEACD300DDBFD7 /* greenCheckmark.png */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				1868D1BF17BD472000E47566 /* InfoPlist.strings in Resources */,
 				D05FAAF11ABDDF1700DDBFD7 /* camera-96.png in Resources */,
 				1868D1C717BD472000E47566 /* Default.png in Resources */,
+				D0C383A01AC07F39001AE2E6 /* greyCheckmark.png in Resources */,
 				D05FAAEB1ABD9B1400DDBFD7 /* rightArrow.png in Resources */,
 				1868D1C917BD472000E47566 /* Default@2x.png in Resources */,
 				1868D1CB17BD472000E47566 /* Default-568h@2x.png in Resources */,
@@ -1015,7 +1019,7 @@
 				18E04A1C17ECA83F00A11459 /* app_icon_iPad@2x.png in Resources */,
 				D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */,
 				18D1687018157802004D017D /* button_main.png in Resources */,
-				D05FAB2F1ABEACD300DDBFD7 /* button_small_checkmark.png in Resources */,
+				D05FAB2F1ABEACD300DDBFD7 /* greenCheckmark.png in Resources */,
 				18E04A1D17ECA83F00A11459 /* app_icon_iPhone.png in Resources */,
 				18E04A1E17ECA83F00A11459 /* app_icon_iPhone@2x.png in Resources */,
 				D05FAB311ABEB10B00DDBFD7 /* platformTexture.png in Resources */,

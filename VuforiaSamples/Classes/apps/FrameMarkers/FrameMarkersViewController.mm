@@ -142,7 +142,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     self.generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.generateLevelButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 100, 64, 64);
     self.generateLevelButton.transform = CGAffineTransformMakeRotation(-3.14/2);
-    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"button_small_checkmark.png"] forState:UIControlStateNormal];
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
     [self.generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
     self.generateLevelButton.enabled = NO;
     [eaglView addSubview:self.generateLevelButton];
@@ -196,6 +196,9 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     // Present the scene.
     [eaglView addSubview:_skView];
     [self.skView presentScene:scene];*/
+    
+    self.generateLevelButton.enabled = NO;
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark"] forState:UIControlStateNormal];
 }
 
 - (UIImage *)drawGlToImage
@@ -225,30 +228,30 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 }
 
 -(void)transition{
+    
+        self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.skView = (SKView *)self.view;
 
-    
-    self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.skView = (SKView *)self.view;
+    //    self.skView.showsFPS = NO;
+    //    self.skView.showsNodeCount = NO;
+    //    self.skView.showsPhysics = NO;
+        
+        self.skView.allowsTransparency = YES;
+        self.skView.backgroundColor = [UIColor clearColor];
+        
+        // Create and configure the scene.
+        GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
+        //scene.scaleMode = SKSceneScaleModeAspectFit;
+        NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
+        scene.backgroundImage = eaglView.backgroundImage;
+        scene.objectInfoDictionary = eaglView.objectInfoDictionary;
+        scene.frameVc = self;
+        // Present the scene.
+        
+        [self.skView presentScene:scene];
+        
+        didTransition = YES;
 
-//    self.skView.showsFPS = NO;
-//    self.skView.showsNodeCount = NO;
-//    self.skView.showsPhysics = NO;
-    
-    self.skView.allowsTransparency = YES;
-    self.skView.backgroundColor = [UIColor clearColor];
-    
-    // Create and configure the scene.
-    GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
-    //scene.scaleMode = SKSceneScaleModeAspectFit;
-    NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
-    scene.backgroundImage = eaglView.backgroundImage;
-    scene.objectInfoDictionary = eaglView.objectInfoDictionary;
-    scene.frameVc = self;
-    // Present the scene.
-    
-    [self.skView presentScene:scene];
-    
-    didTransition = YES;
 
 }
 
@@ -257,6 +260,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     [self.skView presentScene:nil];
     [self.skView.scene removeFromParent];
     eaglView.pictureTaken = NO;
+    eaglView.generateLevelButton.enabled = NO;
+    [eaglView.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
     didTransition = NO;
     [eaglView.objectInfoDictionary removeAllObjects];
     self.view = eaglView;
