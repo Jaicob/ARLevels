@@ -251,6 +251,7 @@ namespace {
 -(void)saveBackgroundImage
 {
     self.pictureTaken = YES;
+    self.generateLevelButton.enabled = YES;
     //self.backgroundImage = [self glToUIImage];
     for(NSString *key in self.objectInfoDictionary){
         

@@ -123,7 +123,6 @@
 		D05FAAD11ABD4DBF00DDBFD7 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D05FAAD01ABD4DBF00DDBFD7 /* SpriteKit.framework */; };
 		D05FAAD41ABD4DED00DDBFD7 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */; };
 		D05FAAD61ABD512E00DDBFD7 /* scoot.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD51ABD512E00DDBFD7 /* scoot.png */; };
-		D05FAAD81ABD68F200DDBFD7 /* layer-5.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD71ABD68F100DDBFD7 /* layer-5.png */; };
 		D05FAADA1ABD6F2E00DDBFD7 /* greenCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */; };
 		D05FAADD1ABD772200DDBFD7 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */; };
 		D05FAAE91ABD9AFD00DDBFD7 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */; };
@@ -143,7 +142,6 @@
 		D05FAB101ABE0F7C00DDBFD7 /* replay.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */; };
 		D05FAB121ABE14DC00DDBFD7 /* greenDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */; };
 		D05FAB141ABE160800DDBFD7 /* weirdDotCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */; };
-		D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */; };
 		D05FAB191ABE842200DDBFD7 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D05FAB181ABE842200DDBFD7 /* customButton.m */; };
 		D05FAB1B1ABE938C00DDBFD7 /* redCubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */; };
 		D05FAB1D1ABE93EC00DDBFD7 /* gold.png in Resources */ = {isa = PBXBuildFile; fileRef = D05FAB1C1ABE93EC00DDBFD7 /* gold.png */; };
@@ -196,7 +194,7 @@
 		1863227417EB609E007C8EC8 /* TextureBowlAndSpoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextureBowlAndSpoon.png; sourceTree = "<group>"; };
 		1863227517EB609E007C8EC8 /* TextureWireframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextureWireframe.png; sourceTree = "<group>"; };
 		1863227A17EB63B8007C8EC8 /* BowlAndSpoonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowlAndSpoonModel.h; sourceTree = "<group>"; };
-		1863227B17EB63B8007C8EC8 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
+		1863227B17EB63B8007C8EC8 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cube.h; path = ../MultiTargets/Cube.h; sourceTree = "<group>"; };
 		1863227D17EBCDFB007C8EC8 /* FrameMarkersEAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameMarkersEAGLView.h; sourceTree = "<group>"; };
 		1863227E17EBCDFB007C8EC8 /* FrameMarkersEAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameMarkersEAGLView.mm; sourceTree = "<group>"; };
 		1863227F17EBCDFB007C8EC8 /* FrameMarkersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameMarkersViewController.h; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 		D05FAAD21ABD4DED00DDBFD7 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		D05FAAD51ABD512E00DDBFD7 /* scoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scoot.png; sourceTree = "<group>"; };
-		D05FAAD71ABD68F100DDBFD7 /* layer-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layer-5.png"; sourceTree = "<group>"; };
 		D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenCubeTexture.png; sourceTree = "<group>"; };
 		D05FAADB1ABD772200DDBFD7 /* GameSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneViewController.h; sourceTree = "<group>"; };
 		D05FAADC1ABD772200DDBFD7 /* GameSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSceneViewController.m; sourceTree = "<group>"; };
@@ -357,7 +354,6 @@
 		D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = replay.png; sourceTree = "<group>"; };
 		D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenDotCubeTexture.png; sourceTree = "<group>"; };
 		D05FAB131ABE160800DDBFD7 /* weirdDotCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTexture.png; sourceTree = "<group>"; };
-		D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weirdDotCubeTextureCopy.png; sourceTree = "<group>"; };
 		D05FAB171ABE842200DDBFD7 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
 		D05FAB181ABE842200DDBFD7 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
 		D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCubeTexture.png; sourceTree = "<group>"; };
@@ -456,7 +452,6 @@
 			isa = PBXGroup;
 			children = (
 				1863227A17EB63B8007C8EC8 /* BowlAndSpoonModel.h */,
-				1863227B17EB63B8007C8EC8 /* Cube.h */,
 				1863226B17EB5F35007C8EC8 /* MultiTargetsEAGLView.h */,
 				1863226C17EB5F35007C8EC8 /* MultiTargetsEAGLView.mm */,
 				1863226D17EB5F35007C8EC8 /* MultiTargetsViewController.h */,
@@ -489,7 +484,6 @@
 				1863229117EBD0CA007C8EC8 /* VuforiaObject3D.m */,
 				1863227D17EBCDFB007C8EC8 /* FrameMarkersEAGLView.h */,
 				1863227E17EBCDFB007C8EC8 /* FrameMarkersEAGLView.mm */,
-				D05FAB151ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png */,
 				1863227F17EBCDFB007C8EC8 /* FrameMarkersViewController.h */,
 				1863228017EBCDFB007C8EC8 /* FrameMarkersViewController.mm */,
 				D05FAADB1ABD772200DDBFD7 /* GameSceneViewController.h */,
@@ -498,31 +492,13 @@
 				D05FAAD31ABD4DED00DDBFD7 /* GameScene.m */,
 				D05FAB171ABE842200DDBFD7 /* customButton.h */,
 				D05FAB181ABE842200DDBFD7 /* customButton.m */,
-				D05FAB1E1ABE93F000DDBFD7 /* ground.png */,
 				D05FAAF21ABDF11600DDBFD7 /* Player.h */,
 				D05FAAF31ABDF11600DDBFD7 /* Player.m */,
-				D05FAAD71ABD68F100DDBFD7 /* layer-5.png */,
-				D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */,
-				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
-				D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */,
-				D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */,
-				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
-				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
-				D05FAB221ABE966700DDBFD7 /* Background.png */,
-				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
+				D0C3839E1AC07619001AE2E6 /* Models */,
+				D0C3839D1AC075EC001AE2E6 /* UI */,
+				D0C3839C1AC075A2001AE2E6 /* Audio */,
+				D0C3839B1AC07560001AE2E6 /* Textures */,
 				D05FAB201ABE941500DDBFD7 /* frame.png */,
-				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
-				D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */,
-				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
-				D0EBAB471ABED4260082D46B /* GEM.png */,
-				D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */,
-				D05FAB1C1ABE93EC00DDBFD7 /* gold.png */,
-				D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */,
-				D05FAB261ABEA75900DDBFD7 /* groundTexture.png */,
-				D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */,
-				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
-				D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */,
-				D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */,
 			);
 			path = FrameMarkers;
 			sourceTree = "<group>";
@@ -867,6 +843,56 @@
 			name = SKTUtils;
 			sourceTree = "<group>";
 		};
+		D0C3839B1AC07560001AE2E6 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				D05FAB341ABEB42E00DDBFD7 /* platformTexture2.png */,
+				D05FAB221ABE966700DDBFD7 /* Background.png */,
+				D05FAB1E1ABE93F000DDBFD7 /* ground.png */,
+				D05FAAEC1ABDBF2E00DDBFD7 /* yellowCubeTexture.png */,
+				D0EBAB451ABECB6D0082D46B /* enemy1Texture.png */,
+				D05FAB2C1ABEABD000DDBFD7 /* goldTexture.png */,
+				D05FAB261ABEA75900DDBFD7 /* groundTexture.png */,
+				D05FAB111ABE14DC00DDBFD7 /* greenDotCubeTexture.png */,
+				D05FAAD91ABD6F2E00DDBFD7 /* greenCubeTexture.png */,
+				D05FAB301ABEB10B00DDBFD7 /* platformTexture.png */,
+				D05FAB1A1ABE938C00DDBFD7 /* redCubeTexture.png */,
+				D05FAAD51ABD512E00DDBFD7 /* scoot.png */,
+				D0EBAB471ABED4260082D46B /* GEM.png */,
+				D05FAB1C1ABE93EC00DDBFD7 /* gold.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
+		D0C3839C1AC075A2001AE2E6 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D05FAB241ABE9ABA00DDBFD7 /* BackgroundTrack.aif */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		D0C3839D1AC075EC001AE2E6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D05FAAEE1ABDD7A500DDBFD7 /* upArrow.png */,
+				D05FAAEA1ABD9B1400DDBFD7 /* rightArrow.png */,
+				D05FAAE81ABD9AFD00DDBFD7 /* leftArrow.png */,
+				D05FAAF01ABDDF1700DDBFD7 /* camera-96.png */,
+				D05FAB0F1ABE0F7C00DDBFD7 /* replay.png */,
+				D05FAB2E1ABEACD300DDBFD7 /* button_small_checkmark.png */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		D0C3839E1AC07619001AE2E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1863227B17EB63B8007C8EC8 /* Cube.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -974,7 +1000,6 @@
 				D05FAB1F1ABE93F000DDBFD7 /* ground.png in Resources */,
 				18D1687318157802004D017D /* custom_toolbar_texture@2x.png in Resources */,
 				D05FAB1D1ABE93EC00DDBFD7 /* gold.png in Resources */,
-				D05FAB161ABE168F00DDBFD7 /* weirdDotCubeTextureCopy.png in Resources */,
 				1863227917EB609E007C8EC8 /* TextureWireframe.png in Resources */,
 				1863228817EBCFA8007C8EC8 /* letter_A.png in Resources */,
 				D05FAB211ABE941500DDBFD7 /* frame.png in Resources */,
@@ -1002,7 +1027,6 @@
 				D05FAB251ABE9ABA00DDBFD7 /* BackgroundTrack.aif in Resources */,
 				18E04A2617ECA85100A11459 /* Default-Portrait~ipad.png in Resources */,
 				1860C8F117F1DDEE00078D7A /* Wood.dat in Resources */,
-				D05FAAD81ABD68F200DDBFD7 /* layer-5.png in Resources */,
 				1860C8F217F1DDEE00078D7A /* Wood.xml in Resources */,
 				1860C8F517F1E0AE00078D7A /* VirtualButtonLineShader.fragsh in Resources */,
 				1860C8F617F1E0AE00078D7A /* VirtualButtonLineShader.vertsh in Resources */,

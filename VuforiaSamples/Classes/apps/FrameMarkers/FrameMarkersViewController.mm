@@ -139,12 +139,14 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     // initialize the AR session
     [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];
     
-    UIButton *generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    generateLevelButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 100, 64, 64);
-    generateLevelButton.transform = CGAffineTransformMakeRotation(-3.14/2);
-    [generateLevelButton setBackgroundImage:[UIImage imageNamed:@"button_small_checkmark.png"] forState:UIControlStateNormal];
-    [generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
-    [eaglView addSubview:generateLevelButton];
+    self.generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.generateLevelButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 100, 64, 64);
+    self.generateLevelButton.transform = CGAffineTransformMakeRotation(-3.14/2);
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"button_small_checkmark.png"] forState:UIControlStateNormal];
+    [self.generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
+    self.generateLevelButton.enabled = NO;
+    [eaglView addSubview:self.generateLevelButton];
+    eaglView.generateLevelButton = self.generateLevelButton;
     
     
 //    self.skView = [[SKView alloc] init];

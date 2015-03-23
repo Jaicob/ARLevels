@@ -26,5 +26,6 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 
 
 @property (strong, nonatomic) SKView *skView;
+@property (strong, nonatomic) UIButton *generateLevelButton;
 
 @end

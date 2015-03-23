@@ -51,6 +51,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 @property (strong, nonatomic) UIImage *backgroundImage;
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (nonatomic) BOOL pictureTaken;
+@property (strong, nonatomic) UIButton *generateLevelButton;
 
 
 - (id)initWithFrame:(CGRect)frame appSession:(SampleApplicationSession *) app;
