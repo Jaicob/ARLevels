@@ -450,9 +450,10 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     //&& obj.physicsBody.velocity.dx > -30 && obj.physicsBody.velocity.dx < 30
     if (_isTouchingGround && obj.physicsBody.velocity.dx < 200){
         _isTouchingGround = NO;
-        CGFloat impulseX = 250.0f;
-        CGFloat impulseY = 0.0f;
-        [obj.physicsBody applyImpulse:CGVectorMake(impulseX, impulseY)];
+//        CGFloat impulseX = 250.0f;
+//        CGFloat impulseY = 0.0f;
+//        [obj.physicsBody applyImpulse:CGVectorMake(impulseX, impulseY)];
+            obj.physicsBody.velocity = CGVectorMake(2000, obj.physicsBody.velocity.dy);
     }
 }
 
@@ -461,8 +462,8 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 -(void)update:(NSTimeInterval)delta{
     if(self.gameOver) return;
     
-    
-    
+    [self childNodeWithName:@"scoot"].physicsBody.allowsRotation = NO;
+    [self childNodeWithName:@"scoot"].physicsBody.angularVelocity = 0.0f;
     //    if([self isGroundPixel:self.backgroundImageView.image:[self childNodeWithName:@"scoot"].position.x :[self childNodeWithName:@"scoot"].position.y]){
     //        NSLog(@"%@", [self getRGBAsFromImage:self.backgroundImageView.image atX:[self childNodeWithName:@"scoot"].position.x andY:[self childNodeWithName:@"scoot"].position.y count:1]);
     //        NSLog(@"GROUND COLLISION");
