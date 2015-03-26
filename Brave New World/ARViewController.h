@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @interface ARViewController : UIViewController
+
+@property (nonatomic, copy) NSString * title;
+@property (nonatomic, copy) NSString * aboutPageName;
+@property (nonatomic, copy) NSString * viewControllerClassName;
+@property(nonatomic,retain) UIViewController *rootViewController;
+@property (nonatomic) BOOL newLevelTransition;
 
 - (id)initWithRootViewController:(UIViewController*)controller;
 

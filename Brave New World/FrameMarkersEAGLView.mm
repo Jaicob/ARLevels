@@ -104,6 +104,7 @@ namespace {
 
 - (id)initWithFrame:(CGRect)frame appSession:(SampleApplicationSession *) app
 {
+    NSLog(@"VIEW INITED WITH FRAME");
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -154,11 +155,15 @@ namespace {
 //        self.button.layer.cornerRadius = self.button.frame.size.height/2;
 //        self.button.layer.masksToBounds = YES;
 //        self.button.layer.borderWidth = 0;
+        self.pictureTaken = NO;
+        NSLog(@"We'll reset the picture taken %d", self.pictureTaken);
         [self.button addTarget:self action:@selector(saveBackgroundImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.button];
         tempButtonsArray = [[NSMutableArray alloc] init];
 
-        self.objectInfoDictionary = [[NSMutableDictionary alloc] init];
+        if(!self.objectInfoDictionary){
+            self.objectInfoDictionary = [[NSMutableDictionary alloc] init];
+        }
         
     }
     
@@ -252,8 +257,12 @@ namespace {
 
 -(void)saveBackgroundImage
 {
-    self.finalObjectInfoDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.objectInfoDictionary];
-    if([self.objectInfoDictionary objectForKey:@"MarkerPlayerStart"]){
+    NSLog(@"save background image");
+   self.finalObjectInfoDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.objectInfoDictionary];
+    NSLog(@"Info Dict:%@", self.objectInfoDictionary);
+    NSLog(@"Final Object Dict:%@", self.finalObjectInfoDictionary);
+
+    if([self.finalObjectInfoDictionary objectForKey:@"MarkerPlayerStart"]){
         for(UIButton *button in tempButtonsArray){
             button.alpha = 0.0f;
         }
@@ -396,7 +405,7 @@ namespace {
         QCAR::Vec2F xyPoint = cameraPointToScreenPoint(cameraPoint);
         float coordX =xyPoint.data[0];
         float coordY = xyPoint.data[1];
-        NSLog(@"(%f, %f)",coordX, coordY);
+        //NSLog(@"(%f, %f)",coordX, coordY);
 
         CGPoint objectCoord = CGPointMake(coordX, coordY);
         
@@ -406,7 +415,7 @@ namespace {
         QCAR::Matrix34F pose = result->getPose();
         CGSize targetSize = CGSizeMake(trackableSize.data[0], trackableSize.data[1]);
         CGPoint targetPoint = [self calcScreenCoordsOf:targetSize inPose:pose];
-        NSLog(@"(%f, %f)",targetPoint.x,targetPoint.y);
+       // NSLog(@"(%f, %f)",targetPoint.x,targetPoint.y);
         
         objectCoord = CGPointMake((coordX + targetPoint.y)/2, (coordY + targetPoint.x)/2);
         
@@ -416,11 +425,14 @@ namespace {
 //        coordX =screenPoint.data[0];
 //        coordY = screenPoint.data[1];
 //        objectCoord = CGPointMake(coordX, coordY);
-        
-        //if(!self.pictureTaken){
+        NSLog(@"%d", self.pictureTaken);
+        if(!self.pictureTaken){
             [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
-
-            
+            NSLog(@"ObjectInfo during Render:%@", self.objectInfoDictionary);
+        }
+//        NSLog(@"ObjectCoord:%@, Name:%s",[NSValue valueWithCGPoint:objectCoord], marker.getName());
+//        NSLog(@"ObjectInfoDictionary:%@", self.objectInfoDictionary);
+        
        // }
         if (trackableResult->getStatus() == QCAR::TrackableResult::EXTENDED_TRACKED) {
             NSLog(@"[%s] tracked with target out of view!", marker.getName());
@@ -556,7 +568,7 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
     if (!UIInterfaceOrientationIsLandscape(orientation))
     {
         // camera image is rotated 90 degrees
-        NSLog(@"This one thinks we're landscape too");
+        //NSLog(@"This one thinks we're landscape too");
         int rotatedX = videoMode.mHeight - cameraPoint.data[1];
         int rotatedY = cameraPoint.data[0];
         
@@ -666,7 +678,7 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (UIInterfaceOrientationIsLandscape(orientation))
     {
-        NSLog(@"thinks we're in landscape");
+        //NSLog(@"thinks we're in landscape");
         viewWidth = self.frame.size.width;
         viewHeight = self.frame.size.height;
     }

@@ -19,14 +19,13 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 
 @interface FrameMarkersViewController : UIViewController <SampleApplicationControl, SampleAppMenuCommandProtocol, UIAlertViewDelegate>{
     CGRect viewFrame;
-    FrameMarkersEAGLView* eaglView;
     UITapGestureRecognizer * tapGestureRecognizer;
     SampleApplicationSession * vapp;
     BOOL didTransition;
 }
 
-
 @property (strong, nonatomic) SKView *skView;
 @property (strong, nonatomic) UIButton *generateLevelButton;
+@property (strong, nonatomic) FrameMarkersEAGLView* eaglView;
 
 @end

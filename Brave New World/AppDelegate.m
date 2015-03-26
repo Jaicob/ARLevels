@@ -21,6 +21,7 @@
     
     self.window.rootViewController = nc;
     [self.window makeKeyAndVisible];
+    self.window.backgroundColor = [UIColor whiteColor];
     [nc release];
         
     return YES;

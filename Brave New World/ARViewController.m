@@ -7,15 +7,17 @@
 //
 
 #import "ARViewController.h"
+#import "ViewController.h"
 
 @interface ARViewController ()
-@property(nonatomic,retain) UIViewController *rootViewController;
 
 @end
 
 @implementation ARViewController
+
 - (id)initWithRootViewController:(UIViewController*) controller {
     if ((self = [super init])) {
+        
         self.rootViewController = controller;
         // the left view controller is the menu associated to the application
         
@@ -43,13 +45,55 @@
     [super viewDidLoad];
     NSLog(@"ARView Loaded Baby");
     // add the view associated to the root view controller
+//    UIView *view = self.rootViewController.view;
+//    view.frame = self.view.bounds;
+//    [self.view addSubview:view];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
     UIView *view = self.rootViewController.view;
     view.frame = self.view.bounds;
     [self.view addSubview:view];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    NSLog(@"current root view controller:%@, View:%@", self.rootViewController, self.rootViewController.view);
 
     
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+}
+
+//
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    
+//    if(self.rootViewController){
+//
+//        UIWindow *window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+//        // Override point for customization after application launch.
+//        UIViewController *vc = [[ViewController alloc] init];//initWithNibName:@"ViewController" bundle:nil] autorelease];
+//        
+//        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
+//        nc.navigationBar.barStyle = UIBarStyleDefault;
+//        
+//        window.rootViewController = nc;
+//        [window makeKeyAndVisible];
+//        window.backgroundColor = [UIColor whiteColor];
+//        UIView *view = (UIView *)self.rootViewController.view;
+//        view.frame = self.view.bounds;
+//        [self.view addSubview:view];
+//    }else{
+//        UIView *view = [[UIView alloc] initWithFrame:self.view.frame];
+//        view.frame = self.view.bounds;
+//        [self.view addSubview:view];
+//    }
+//    
+//
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//  //  [self showRootController:NO];
+//
+//}
+
 
 - (void)showRootController:(BOOL)animated {
     

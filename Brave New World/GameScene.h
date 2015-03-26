@@ -35,4 +35,6 @@
 
 //UI
 @property (strong, nonatomic) UIButton *replayButton;
+@property (strong, nonatomic) UIButton *gnuLevelButton;
+
 @end

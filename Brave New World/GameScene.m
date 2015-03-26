@@ -256,24 +256,26 @@ static const int projectileCategory = 0x100000;
             square.name = @"platform";
             square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
             CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
-            square.anchorPoint = CGPointMake(.5, .5);
+            //square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
-            square.physicsBody.restitution = 0.0f;
+            //square.physicsBody.restitution = 0.0f;
             square.physicsBody.categoryBitMask = solidHitCategory;
             [self addChild:square];
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 1)];
+            ground.size = CGSizeMake(20, square.size.height - 2);
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, square.size.height - 2)];
+            ground.position = CGPointMake(-square.size.height/2 + ground.size.width/2 , 0);
             ground.physicsBody.affectedByGravity = NO;
-            ground.physicsBody.restitution = 0.0f;
             ground.physicsBody.dynamic = NO;
+            ground.physicsBody.restitution = -1.0f;
+            ground.physicsBody.friction = 3.0f;
+            //ground.physicsBody.restitution = -1.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
-            [self.objectsArray addObject:square];
+                        [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:4];
             SKAction *moveLeft = [SKAction moveToX:originalPosition.x - 50 duration:3.0f];
             SKAction *moveRight = [SKAction moveToX:originalPosition.x + 50 duration:3.0f];
@@ -331,16 +333,15 @@ static const int projectileCategory = 0x100000;
             [self addChild:square];
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 1)];
+            ground.size = CGSizeMake(20, square.size.height - 2);
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, square.size.height - 2)];
+            ground.position = CGPointMake(-square.size.height/2 + ground.size.width/2 , 0);
             ground.physicsBody.affectedByGravity = NO;
             ground.physicsBody.dynamic = NO;
-            ground.physicsBody.restitution = 0.0f;
+            //ground.physicsBody.restitution = -1.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
 
-            
             [self.objectsArray addObject:square];
             [self checkOutOfBounds:square markerNumber:4];
             SKAction *moveLeft = [SKAction moveToY:originalPosition.y - 50 duration:3.0f];
@@ -373,7 +374,29 @@ static const int projectileCategory = 0x100000;
         
     }
 
-self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
+    self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
+    
+    //UI
+    //2
+    self.replayButton= [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *replayImage = [UIImage imageNamed:@"replay.png"];
+    [self.replayButton setImage:replayImage forState:UIControlStateNormal];
+    [self.replayButton addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
+    self.replayButton.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0, 64, 64);
+    [self.view addSubview:self.replayButton];
+    self.replayButton.alpha = 1.0f;
+    
+    self.gnuLevelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *levelImage = [UIImage imageNamed:@"upArrow.png"];
+    
+    
+    [self.gnuLevelButton setImage:levelImage forState:UIControlStateNormal];
+    [self.gnuLevelButton addTarget:self action:@selector(newLevel) forControlEvents:UIControlEventTouchUpInside];
+    self.gnuLevelButton.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0 - 80, 64, 64);
+    [self.view addSubview:self.gnuLevelButton];
+    
+    self.replayButton.alpha = 0.0f;
+    self.gnuLevelButton.alpha = 0.0f;
     
     SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
     scoot.physicsBody.allowsRotation = NO;
@@ -485,32 +508,20 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     endGameLabel.zRotation = M_PI/2;
     [self addChild:endGameLabel];
     
-    //2
-    self.replayButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    self.replayButton.tag = 321;
-    UIImage *replayImage = [UIImage imageNamed:@"replay.png"];
-    [self.replayButton setImage:replayImage forState:UIControlStateNormal];
-    [self.replayButton addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
-    self.replayButton.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0, 64, 64);
-    [self.view addSubview:self.replayButton];
     self.replayButton.alpha = 1.0f;
-    
-    UIButton *newLevel = [UIButton buttonWithType:UIButtonTypeCustom];
-    newLevel.tag = 322;
-    UIImage *levelImage = [UIImage imageNamed:@"upArrow.png"];
-    
+    self.gnuLevelButton.alpha = 1.0f;
 
-    [newLevel setImage:levelImage forState:UIControlStateNormal];
-    [newLevel addTarget:self.frameVc action:@selector(newLevel:) forControlEvents:UIControlEventTouchUpInside];
-    newLevel.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0 - 80, 64, 64);
-    [self.view addSubview:newLevel];
     
     NSLog(@"SKView final frame: %@", NSStringFromCGRect(self.frame));
     
 }
 
--(void)newLevel:(id)sender{
+-(void)newLevel{
     [self.gameSceneLoop stop];
+    self.replayButton.alpha = 0.0f;
+    self.gnuLevelButton.alpha = 0.0f;
+    [self.scene removeFromParent];
+    [self.delegate presentARViewController];
 }
 
 
@@ -518,7 +529,8 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 {
     [self.gameSceneLoop stop];
     self.replayButton.alpha = 0.0f;
-    [[self.view viewWithTag:322] removeFromSuperview];
+    self.gnuLevelButton.alpha = 0.0f;
+    [self.scene removeFromParent];
     GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.size.width, self.size.height)];
     scene.objectInfoDictionary = self.objectInfoDictionary;
     [self.view presentScene:scene];

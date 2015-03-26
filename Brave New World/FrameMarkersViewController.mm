@@ -31,7 +31,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
         
         // Custom initialization
         self.title = @"Frame Markers";
-        // Create the EAGLView with the screen dimensions
+        // Create the self.self.eaglView with the screen dimensions
         CGRect screenBounds = [[UIScreen mainScreen] bounds];
         viewFrame = screenBounds;
         
@@ -45,6 +45,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
         
         // a single tap will trigger a single autofocus operation
         tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(autofocus:)];
+        
+        //[self newLevel];
         
         // we use the iOS notification to pause/resume the AR when the application goes (or comeback from) background
         [[NSNotificationCenter defaultCenter]
@@ -76,7 +78,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     [tapGestureRecognizer release];
     
     [vapp release];
-    [eaglView release];
+    [self.eaglView release];
     
     [super dealloc];
 }
@@ -102,7 +104,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 
 - (void)loadView
 {
-    /*// Create the EAGLView
+    /*// Create the self.eaglView
     self.skView = [[SKView alloc] init];
     _skView.showsFPS = YES;
     _skView.showsNodeCount = YES;
@@ -116,46 +118,51 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     scene.scaleMode = SKSceneScaleModeResizeFill;
     
     
-    eaglView = [[FrameMarkersEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
+    self.eaglView = [[FrameMarkersself.eaglView alloc] initWithFrame:viewFrame appSession:vapp];
 
     // Present the scene.
    // [_skView presentScene:scene];
-    [self setView:eaglView];
+    [self setView:self.eaglView];
 
     
     
     
-       // [eaglView addSubview:_skView];
-    //[_skView addSubview:eaglView];
-   // [self setView:eaglView];
+       // [self.eaglView addSubview:_skView];
+    //[_skView addSubview:self.eaglView];
+   // [self setView:self.eaglView];
     SampleAppAppDelegate *appDelegate = (SampleAppAppDelegate*)[[UIApplication sharedApplication] delegate];
-    appDelegate.glResourceHandler = eaglView;
+    appDelegate.glResourceHandler = self.eaglView;
     
     // show loading animation while AR is being initialized
     [self showLoadingAnimation];
     
     // initialize the AR session
     [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];*/
+    NSLog(@"loading view");
+    didTransition = NO;
     
-    eaglView = [[FrameMarkersEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
-    [self setView:eaglView];
+    self.eaglView = [[FrameMarkersEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
+    [self setView:self.eaglView];
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    appDelegate.glResourceHandler = eaglView;
+    appDelegate.glResourceHandler = self.eaglView;
+
     
     // show loading animation while AR is being initialized
     [self showLoadingAnimation];
-    
+
     // initialize the AR session
     [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];
+
     
     self.generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.generateLevelButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 100, 64, 64);
     self.generateLevelButton.transform = CGAffineTransformMakeRotation(-3.14/2);
-    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"frame.png"] forState:UIControlStateNormal];
     [self.generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
     self.generateLevelButton.enabled = NO;
-    [eaglView addSubview:self.generateLevelButton];
-    eaglView.generateLevelButton = self.generateLevelButton;
+    self.eaglView.pictureTaken = NO;
+    [self.eaglView addSubview:self.generateLevelButton];
+    self.eaglView.generateLevelButton = self.generateLevelButton;
     
     
 //    self.skView = [[SKView alloc] init];
@@ -184,6 +191,9 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     
     NSLog(@"self.navigationController.navigationBarHidden: %s", self.navigationController.navigationBarHidden ? "Yes" : "No");
     
+    self.generateLevelButton.enabled = NO;
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"frame.png"] forState:UIControlStateNormal];
+    self.eaglView.pictureTaken = NO;
     
     
 }
@@ -203,11 +213,9 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     scene.scaleMode = SKSceneScaleModeResizeFill;
     
     // Present the scene.
-    [eaglView addSubview:_skView];
+    [self.eaglView addSubview:_skView];
     [self.skView presentScene:scene];*/
     
-    self.generateLevelButton.enabled = NO;
-    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark"] forState:UIControlStateNormal];
 }
 
 - (UIImage *)drawGlToImage
@@ -236,47 +244,80 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     return im;
 }
 
+#pragma mark -Navigation
+
 -(void)transition{
     
-        self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        self.skView = (SKView *)self.view;
-
-    //    self.skView.showsFPS = NO;
-    //    self.skView.showsNodeCount = NO;
-        self.skView.showsPhysics = YES;
-        
-        self.skView.allowsTransparency = YES;
-        self.skView.backgroundColor = [UIColor clearColor];
-        
-        // Create and configure the scene.
-        GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
-        //scene.scaleMode = SKSceneScaleModeAspectFit;
-        NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
-        scene.backgroundImage = eaglView.backgroundImage;
-        scene.objectInfoDictionary = eaglView.finalObjectInfoDictionary;
-        scene.frameVc = self;
-        // Present the scene.
-        
-        [self.skView presentScene:scene];
-        
-        didTransition = YES;
+//        self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        self.skView = (SKView *)self.view;
+//        self.skView.showsPhysics = YES;
+//        
+//        self.skView.allowsTransparency = YES;
+//        self.skView.backgroundColor = [UIColor clearColor];
+//        
+//        // Create and configure the scene.
+//        GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
+//        NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
+//        scene.objectInfoDictionary = self.eaglView.finalObjectInfoDictionary;
+//        scene.frameVc = self;
+//        // Present the scene.
+//        
+//        [self.skView presentScene:scene];
+//        
+    didTransition = YES;
+    
+    
+    GameSceneViewController *viewController = [[GameSceneViewController alloc] init];
+    viewController.frameView = self.view;
+    viewController.frameViewController = self;
+    viewController.objectInfoDictionary = self.eaglView.objectInfoDictionary;
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.view.window.rootViewController presentViewController:viewController animated:NO completion:^{
+        self.eaglView = nil;
+        [self.view release];
+        [self.eaglView removeFromSuperview];
+        [self.eaglView release];
+        [self release];
+    }];
+//    [self.navigationController presentViewController:viewController animated:NO completion:^{
+//            [self release];
+//    }];
 
 
 }
+
 
 - (void)newLevel:(id)sender
 {
-
+    
     [self.skView presentScene:nil];
     [self.skView.scene removeFromParent];
-    eaglView.pictureTaken = NO;
-    eaglView.generateLevelButton.enabled = NO;
-    [eaglView.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
+    self.eaglView.pictureTaken = NO;
+    self.eaglView.generateLevelButton.enabled = NO;
+    [self.eaglView.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
     didTransition = NO;
-    [eaglView.objectInfoDictionary removeAllObjects];
-    self.view = eaglView;
+    [self.eaglView.objectInfoDictionary removeAllObjects];
+    self.view = self.eaglView;
 }
 
+
+
+//- (void)newLevel
+//{
+//    NSLog(@"New Level Called");
+//
+////    [self.skView presentScene:nil];
+////    [self.skView.scene removeFromParent];
+//    self.eaglView.pictureTaken = NO;
+//    self.eaglView.generateLevelButton.enabled = NO;
+////    [self.eaglView.finalObjectInfoDictionary removeAllObjects];
+////    self.eaglView.objectInfoDictionary = [[NSMutableDictionary alloc] init];
+//    [self.eaglView.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
+//    didTransition = NO;
+////    [self.eaglView.objectInfoDictionary removeAllObjects];
+//    self.view = self.eaglView;
+//}
+//
 
 //-(BOOL)shouldAutorotate
 //{
@@ -406,8 +447,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     [vapp stopAR:nil];
     // Be a good OpenGL ES citizen: now that QCAR is paused and the render
     // thread is not executing, inform the root view controller that the
-    // EAGLView should finish any OpenGL ES commands
-    [eaglView finishOpenGLESCommands];
+    // self.eaglView should finish any OpenGL ES commands
+    [self.eaglView finishOpenGLESCommands];
 	
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.glResourceHandler = nil;
@@ -418,15 +459,15 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 
 - (void)finishOpenGLESCommands
 {
-    // Called in response to applicationWillResignActive.  Inform the EAGLView
-    [eaglView finishOpenGLESCommands];
+    // Called in response to applicationWillResignActive.  Inform the self.eaglView
+    [self.eaglView finishOpenGLESCommands];
 }
 
 
 - (void)freeOpenGLESResources
 {
-    // Called in response to applicationDidEnterBackground.  Inform the EAGLView
-    [eaglView freeOpenGLESResources];
+    // Called in response to applicationDidEnterBackground.  Inform the self.eaglView
+    [self.eaglView freeOpenGLESResources];
 }
 
 
@@ -448,14 +489,14 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     
     loadingIndicator.tag  = 1;
     loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    [eaglView addSubview:loadingIndicator];
+    [self.eaglView addSubview:loadingIndicator];
     [loadingIndicator startAnimating];
     
     
 }
 
 - (void) hideLoadingAnimation {
-    UIActivityIndicatorView *loadingIndicator = (UIActivityIndicatorView *)[eaglView viewWithTag:1];
+    UIActivityIndicatorView *loadingIndicator = (UIActivityIndicatorView *)[self.eaglView viewWithTag:1];
     [loadingIndicator removeFromSuperview];
     
 }
