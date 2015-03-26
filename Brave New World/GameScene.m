@@ -14,11 +14,12 @@
 @implementation GameScene
 
 //bit masks
-static const int playerHitCategory =  0x0001;
-static const int groundHitCategory =  0x0010;
-static const int solidHitCategory =   0x0100;
-static const int winLevelCategory =   0x01000;
-static const int projectileCategory = 0x10000;
+static const int playerHitCategory =  0x1;
+static const int playerFeetCategory = 0x10;
+static const int groundHitCategory =  0x100;
+static const int solidHitCategory =   0x1000;
+static const int winLevelCategory =   0x10000;
+static const int projectileCategory = 0x100000;
 
 
 -(void)didMoveToView:(SKView *)view{
@@ -50,7 +51,7 @@ static const int projectileCategory = 0x10000;
     SKSpriteNode *rightArrow = [SKSpriteNode spriteNodeWithImageNamed:@"rightArrow.png"];
     rightArrow.size = CGSizeMake(75, 75);
 
-    rightArrow.position = CGPointMake(CGRectGetMaxX(self.view.frame) - rightArrow.size.width/2 - 10, rightArrow.size.height/2 + 80);
+    rightArrow.position = CGPointMake(CGRectGetMaxX(self.view.frame) - rightArrow.size.width/2 - 10, rightArrow.size.height/2 + 100);
     rightArrow.name = @"rightArrow";
     rightArrow.zRotation = M_PI/2;
     rightArrow.zPosition = 5.0f;
@@ -101,14 +102,16 @@ static const int projectileCategory = 0x10000;
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
+           // square.physicsBody.restitution = -1.0f;
             square.physicsBody.categoryBitMask = solidHitCategory;
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+            ground.size = CGSizeMake(20, square.size.height);
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, square.size.height)];
+            ground.position = CGPointMake(-square.size.height/2 + ground.size.width/2 , 0);
             ground.physicsBody.affectedByGravity = NO;
             ground.physicsBody.dynamic = NO;
+            //ground.physicsBody.restitution = -1.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
 
@@ -123,17 +126,19 @@ static const int projectileCategory = 0x10000;
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
+           // square.physicsBody.restitution = -1.0f;
             square.physicsBody.categoryBitMask = solidHitCategory;
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+            ground.size = CGSizeMake(20, square.size.height);
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, square.size.height)];
+            ground.position = CGPointMake(-square.size.height/2 + ground.size.width/2 , 0);
             ground.physicsBody.affectedByGravity = NO;
             ground.physicsBody.dynamic = NO;
+            //ground.physicsBody.restitution = -1.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
-
+            
             [self addChild:square];
 
             [self.objectsArray addObject:square];
@@ -145,14 +150,16 @@ static const int projectileCategory = 0x10000;
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
+            //square.physicsBody.restitution = -1.0f;
             square.physicsBody.categoryBitMask = solidHitCategory;
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+            ground.size = CGSizeMake(20, square.size.height);
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, square.size.height)];
+            ground.position = CGPointMake(-square.size.height/2 + ground.size.width/2 , 0);
             ground.physicsBody.affectedByGravity = NO;
             ground.physicsBody.dynamic = NO;
+            //ground.physicsBody.restitution = -1.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
 
@@ -166,14 +173,16 @@ static const int projectileCategory = 0x10000;
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
+           // square.physicsBody.restitution = -1.0f;
             square.physicsBody.categoryBitMask = solidHitCategory;
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+            ground.size = CGSizeMake(20, square.size.height - 2);
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, square.size.height - 2)];
+            ground.position = CGPointMake(-square.size.height/2 + ground.size.width/2 , 0);
             ground.physicsBody.affectedByGravity = NO;
             ground.physicsBody.dynamic = NO;
+            //ground.physicsBody.restitution = -1.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
 
@@ -191,6 +200,7 @@ static const int projectileCategory = 0x10000;
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.mass = 10;
             square.physicsBody.dynamic = NO;
+            square.physicsBody.restitution = 0.0f;
             square.physicsBody.categoryBitMask = winLevelCategory;
             square.physicsBody.contactTestBitMask = playerHitCategory;
             
@@ -211,13 +221,32 @@ static const int projectileCategory = 0x10000;
             scoot.physicsBody.allowsRotation = NO;
             scoot.physicsBody.angularVelocity = 0.0f;
             scoot.name = @"scoot";
+            //scoot.physicsBody.restitution = -1.0f;
             scoot.physicsBody.affectedByGravity = YES;
             scoot.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(48, 48)];
-            scoot.anchorPoint = CGPointMake(0.5, 0.5);
+           // scoot.anchorPoint = CGPointMake(0.5, 0.5);
             scoot.physicsBody.categoryBitMask = playerHitCategory;
             scoot.physicsBody.dynamic = YES;
-            scoot.physicsBody.contactTestBitMask = groundHitCategory | projectileCategory | solidHitCategory;
-            scoot.physicsBody.collisionBitMask =  groundHitCategory | projectileCategory | solidHitCategory;
+            SKSpriteNode *feet = [[SKSpriteNode alloc] init];
+            [scoot addChild:feet];
+            feet.size = CGSizeMake(20, scoot.size.height - 10);
+            feet.position = CGPointMake(scoot.size.height/2  - feet.size.width/2, 0);
+            feet.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, scoot.size.height - 10)];
+            feet.physicsBody.usesPreciseCollisionDetection = YES;
+            feet.physicsBody.allowsRotation = NO;
+            feet.physicsBody.angularVelocity = 0.0f;
+            //feet.physicsBody.restitution = -1.0f;
+            feet.physicsBody.dynamic = YES;
+            feet.physicsBody.categoryBitMask = playerFeetCategory;
+            feet.physicsBody.collisionBitMask = groundHitCategory;
+            feet.physicsBody.contactTestBitMask =  groundHitCategory;
+            feet.physicsBody.pinned = YES;
+            scoot.physicsBody.contactTestBitMask = projectileCategory | solidHitCategory;
+            scoot.physicsBody.collisionBitMask =  projectileCategory | solidHitCategory;
+//            SKPhysicsJointFixed *joint = [SKPhysicsJointFixed jointWithBodyA:scoot.physicsBody
+//                                                                       bodyB:feet.physicsBody
+//                                                                      anchor:feet.position];
+//            [self.physicsWorld addJoint:joint];
             [self addChild:scoot];
             NSLog(@"%@", NSStringFromCGRect(self.frame));
             //[self addChild:square];
@@ -231,14 +260,16 @@ static const int projectileCategory = 0x10000;
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
             square.physicsBody.dynamic = NO;
+            square.physicsBody.restitution = 0.0f;
             square.physicsBody.categoryBitMask = solidHitCategory;
             [self addChild:square];
             SKSpriteNode *ground = [[SKSpriteNode alloc] init];
             [square addChild:ground];
             ground.position = CGPointMake(-square.size.height/2, 0);
             ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 1)];
             ground.physicsBody.affectedByGravity = NO;
+            ground.physicsBody.restitution = 0.0f;
             ground.physicsBody.dynamic = NO;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
@@ -249,37 +280,39 @@ static const int projectileCategory = 0x10000;
             SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
             SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
             [square runAction:platformMove];
-        }else if([key isEqualToString:@"MarkerPlatform"] && [brownButton.markerName isEqualToString:@"MarkerPlatform"]){
-            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"platformTexture.png"]] size:CGSizeMake(50, 50)];
-            //square.zRotation = M_PI/2;
-            square.name = @"platform";
-            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
-            CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
-            square.anchorPoint = CGPointMake(.5, .5);
-            square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
-            square.physicsBody.affectedByGravity = NO;
-            square.physicsBody.dynamic = NO;
-            square.physicsBody.categoryBitMask = solidHitCategory;
-            //square.physicsBody.contactTestBitMask = groundHitCategory;
-            square.physicsBody.usesPreciseCollisionDetection = YES;
-            [self addChild:square];
-            SKSpriteNode *ground = [[SKSpriteNode alloc] init];
-            [square addChild:ground];
-            ground.position = CGPointMake(-square.size.height/2, 0);
-            ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
-            ground.physicsBody.affectedByGravity = NO;
-            ground.physicsBody.dynamic = NO;
-            ground.physicsBody.categoryBitMask = groundHitCategory;
-            ground.physicsBody.collisionBitMask = groundHitCategory;
-
-            [self.objectsArray addObject:square];
-            [self checkOutOfBounds:square markerNumber:4];
-            SKAction *moveLeft = [SKAction moveToX:originalPosition.x - 50 duration:3.0f];
-            SKAction *moveRight = [SKAction moveToX:originalPosition.x + 50 duration:3.0f];
-            SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
-            SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
-            [square runAction:platformMove];
+//        }else if([key isEqualToString:@"MarkerPlatform"] && [brownButton.markerName isEqualToString:@"MarkerPlatform"]){
+//            SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"platformTexture.png"]] size:CGSizeMake(50, 50)];
+//            //square.zRotation = M_PI/2;
+//            square.name = @"platform";
+//            square.position = CGPointMake(brownButton.frame.origin.x, brownButton.frame.origin.y);
+//            CGPoint originalPosition = CGPointMake(square.position.x, square.position.y);
+//            square.anchorPoint = CGPointMake(.5, .5);
+//            square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
+//            square.physicsBody.affectedByGravity = NO;
+//            square.physicsBody.dynamic = NO;
+//            square.physicsBody.categoryBitMask = solidHitCategory;
+//            square.physicsBody.restitution = -1.0f;
+//            //square.physicsBody.contactTestBitMask = groundHitCategory;
+//            square.physicsBody.usesPreciseCollisionDetection = YES;
+//            [self addChild:square];
+//            SKSpriteNode *ground = [[SKSpriteNode alloc] init];
+//            [square addChild:ground];
+//            ground.position = CGPointMake(-square.size.height/2, 0);
+//            ground.size = CGSizeMake(square.size.width, 2);
+//            ground.physicsBody.restitution = -1.0f;
+//            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+//            ground.physicsBody.affectedByGravity = NO;
+//            ground.physicsBody.dynamic = NO;
+//            ground.physicsBody.categoryBitMask = groundHitCategory;
+//            ground.physicsBody.collisionBitMask = groundHitCategory;
+//
+//            [self.objectsArray addObject:square];
+//            [self checkOutOfBounds:square markerNumber:4];
+//            SKAction *moveLeft = [SKAction moveToX:originalPosition.x - 50 duration:3.0f];
+//            SKAction *moveRight = [SKAction moveToX:originalPosition.x + 50 duration:3.0f];
+//            SKAction *backAndForth = [SKAction sequence:@[moveLeft, moveRight]];
+//            SKAction *platformMove = [SKAction repeatActionForever:backAndForth];
+//            [square runAction:platformMove];
         }else if([key isEqualToString:@"MarkerPlatform2"] && [brownButton.markerName isEqualToString:@"MarkerPlatform2"]){
             SKSpriteNode *square = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:@"platformTexture2.png"]] size:CGSizeMake(50, 50)];
             //square.zRotation = M_PI/2;
@@ -289,6 +322,7 @@ static const int projectileCategory = 0x10000;
             square.anchorPoint = CGPointMake(.5, .5);
             square.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:square.size];
             square.physicsBody.affectedByGravity = NO;
+            square.physicsBody.restitution = 0.0f;
             square.physicsBody.dynamic = NO;
             square.physicsBody.categoryBitMask = solidHitCategory;
             square.physicsBody.collisionBitMask = solidHitCategory;
@@ -299,9 +333,10 @@ static const int projectileCategory = 0x10000;
             [square addChild:ground];
             ground.position = CGPointMake(-square.size.height/2, 0);
             ground.size = CGSizeMake(square.size.width, 2);
-            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 10)];
+            ground.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(2, square.size.height - 1)];
             ground.physicsBody.affectedByGravity = NO;
             ground.physicsBody.dynamic = NO;
+            ground.physicsBody.restitution = 0.0f;
             ground.physicsBody.categoryBitMask = groundHitCategory;
             ground.physicsBody.collisionBitMask = groundHitCategory;
 
@@ -339,6 +374,10 @@ static const int projectileCategory = 0x10000;
     }
 
 self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
+    
+    SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+    scoot.physicsBody.allowsRotation = NO;
+    [scoot childNodeWithName:@"feet"].physicsBody.allowsRotation = NO;
 }
 
 -(void)checkOutOfBounds:(SKSpriteNode *)square markerNumber:(int)markerNum{
@@ -492,25 +531,24 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     firstBody = contact.bodyA;
     secondBody = contact.bodyB;
     
-    if(firstBody.categoryBitMask == groundHitCategory || secondBody.categoryBitMask == groundHitCategory)
+    if((firstBody.categoryBitMask == groundHitCategory && secondBody.categoryBitMask == playerFeetCategory ) || (firstBody.categoryBitMask == playerFeetCategory && secondBody.categoryBitMask == groundHitCategory))
     {
-        if(firstBody.categoryBitMask == playerHitCategory || secondBody.categoryBitMask == playerHitCategory){
+        if([self childNodeWithName:@"scoot"].physicsBody.velocity.dx < 100 && [self childNodeWithName:@"scoot"].physicsBody.velocity.dx > -100){
             _isTouchingGround = YES;
-            NSLog(@"First");
+            SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+            [scoot.physicsBody setVelocity:CGVectorMake(0, scoot.physicsBody.velocity.dy)];
+            NSLog(@"Begin");
         }
-
-        CGFloat impulseX = 0.0f;
-        CGFloat impulseY = 0.0f;
-        [[self childNodeWithName:@"scoot"].physicsBody applyImpulse:CGVectorMake(impulseX, impulseY) atPoint:[self childNodeWithName:@"scoot"].position];
         //Player hit the ground
     }
+
     
     if(firstBody.categoryBitMask == solidHitCategory || secondBody.categoryBitMask == solidHitCategory)
     {
-        CGFloat impulseX = 0.0f;
-        CGFloat impulseY = 0.0f;
-        [firstBody applyImpulse:CGVectorMake(impulseX, impulseY)];
-        [secondBody applyImpulse:CGVectorMake(impulseX, impulseY)];
+//        CGFloat impulseX = 0.0f;
+//        CGFloat impulseY = 0.0f;
+//        [firstBody applyImpulse:CGVectorMake(impulseX, impulseY)];
+//        [secondBody applyImpulse:CGVectorMake(impulseX, impulseY)];
 
     }
     
@@ -519,6 +557,28 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
         [self gameOver:1];
     }
 }
+
+-(void)didEndContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    firstBody = contact.bodyA;
+    secondBody = contact.bodyB;
+    
+    if((firstBody.categoryBitMask == groundHitCategory && secondBody.categoryBitMask == playerFeetCategory )|| (firstBody.categoryBitMask == playerFeetCategory && secondBody.categoryBitMask == groundHitCategory))
+    {
+//        SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+//        if(scoot.physicsBody.velocity.dy
+            _isTouchingGround = NO;
+        NSLog(@"End");
+        
+//        CGFloat impulseX = 0.0f;
+//        CGFloat impulseY = 0.0f;
+//        [[self childNodeWithName:@"scoot"].physicsBody applyImpulse:CGVectorMake(impulseX, impulseY) atPoint:[self childNodeWithName:@"scoot"].position];
+        //Player hit the ground
+    }
+}
+
 
 - (void) jump:(SKSpriteNode*)obj
 {
@@ -537,9 +597,11 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 
 -(void)update:(NSTimeInterval)delta{
     if(self.gameOver) return;
-    
-    [self childNodeWithName:@"scoot"].physicsBody.allowsRotation = NO;
-    [self childNodeWithName:@"scoot"].physicsBody.angularVelocity = 0.0f;
+//    
+//    SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+//    scoot.physicsBody.allowsRotation = NO;
+//    [scoot childNodeWithName:@"feet"].physicsBody.allowsRotation = NO;
+//    [self childNodeWithName:@"scoot"].physicsBody.angularVelocity = 0.0f;
     //    if([self isGroundPixel:self.backgroundImageView.image:[self childNodeWithName:@"scoot"].position.x :[self childNodeWithName:@"scoot"].position.y]){
     //        NSLog(@"%@", [self getRGBAsFromImage:self.backgroundImageView.image atX:[self childNodeWithName:@"scoot"].position.x andY:[self childNodeWithName:@"scoot"].position.y count:1]);
     //        NSLog(@"GROUND COLLISION");
@@ -566,7 +628,7 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
             }
             SKAction *moveRight = [SKAction moveByX:0.0f y:10000.0f duration:50.0f];
             [[self childNodeWithName:@"scoot"] runAction:moveRight withKey:@"moveRight"];
-            [self childNodeWithName:@"scoot"].xScale = 1.0f;
+            [self childNodeWithName:@"scoot"].yScale = 1.0f;
 
         }
         else if([n.name isEqualToString:@"leftArrow"]){
@@ -575,8 +637,9 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
             }
             SKAction *moveLeft = [SKAction moveByX:0.0f y:-10000.0f duration:50.0f];
             [[self childNodeWithName:@"scoot"] runAction:moveLeft withKey:@"moveLeft"];
-            [self childNodeWithName:@"scoot"].xScale = -1.0f;
+            [self childNodeWithName:@"scoot"].yScale = -1.0f;
         } else if([n.name isEqualToString:@"upArrow"]){
+            NSLog(@"Jump!");
             [self jump:(SKSpriteNode *)[self childNodeWithName:@"scoot"]];
         }
         
