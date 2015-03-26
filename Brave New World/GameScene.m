@@ -589,7 +589,14 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
 //        CGFloat impulseX = 250.0f;
 //        CGFloat impulseY = 0.0f;
 //        [obj.physicsBody applyImpulse:CGVectorMake(impulseX, impulseY)];
-            obj.physicsBody.velocity = CGVectorMake(-400, obj.physicsBody.velocity.dy);
+        int velY;
+        if(obj.physicsBody.velocity.dy == 0){
+            velY = obj.physicsBody.velocity.dy+1;
+        }else{
+            velY = obj.physicsBody.velocity.dy;
+
+        }
+            obj.physicsBody.velocity = CGVectorMake(-400, velY/2);
     }
 }
 
@@ -607,6 +614,14 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
     //        NSLog(@"GROUND COLLISION");
     //    }
     //
+    
+    if(self.movingRight){
+        SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+        scoot.physicsBody.velocity = CGVectorMake(scoot.physicsBody.velocity.dx, 150);
+    }else if(self.movingLeft) {
+        SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+        scoot.physicsBody.velocity = CGVectorMake(scoot.physicsBody.velocity.dx, -150);
+    }
     
     [self checkForWin];
     
@@ -626,18 +641,23 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
             if([[self childNodeWithName:@"scoot"] actionForKey:@"moveLeft"]){
                 [[self childNodeWithName:@"scoot"] removeActionForKey:@"moveLeft"];
             }
-            SKAction *moveRight = [SKAction moveByX:0.0f y:10000.0f duration:50.0f];
-            [[self childNodeWithName:@"scoot"] runAction:moveRight withKey:@"moveRight"];
+//            SKAction *moveRight = [SKAction moveByX:0.0f y:10000.0f duration:50.0f];
+//            [[self childNodeWithName:@"scoot"] runAction:moveRight withKey:@"moveRight"];
             [self childNodeWithName:@"scoot"].yScale = 1.0f;
+            self.movingLeft = NO;
+            self.movingRight = YES;
 
         }
         else if([n.name isEqualToString:@"leftArrow"]){
-            if([[self childNodeWithName:@"scoot"] actionForKey:@"moveRight"]){
-                [[self childNodeWithName:@"scoot"] removeActionForKey:@"moveRight"];
-            }
-            SKAction *moveLeft = [SKAction moveByX:0.0f y:-10000.0f duration:50.0f];
-            [[self childNodeWithName:@"scoot"] runAction:moveLeft withKey:@"moveLeft"];
+//            if([[self childNodeWithName:@"scoot"] actionForKey:@"moveRight"]){
+//                [[self childNodeWithName:@"scoot"] removeActionForKey:@"moveRight"];
+//            }
+//            
+//            SKAction *moveLeft = [SKAction moveByX:0.0f y:-10000.0f duration:50.0f];
+//            [[self childNodeWithName:@"scoot"] runAction:moveLeft withKey:@"moveLeft"];
             [self childNodeWithName:@"scoot"].yScale = -1.0f;
+            self.movingRight = NO;
+            self.movingLeft = YES;
         } else if([n.name isEqualToString:@"upArrow"]){
             NSLog(@"Jump!");
             [self jump:(SKSpriteNode *)[self childNodeWithName:@"scoot"]];
@@ -655,9 +675,14 @@ self.view.transform = CGAffineTransformMakeScale(1.0, -1.0);
         SKNode *n = [self nodeAtPoint:[touch locationInNode:self]];
         if([n.name isEqualToString:@"rightArrow"]){
             [[self childNodeWithName:@"scoot"] removeActionForKey:@"moveRight"];
+            self.movingRight = NO;
+            SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+            scoot.physicsBody.velocity = CGVectorMake(scoot.physicsBody.velocity.dx, 0);
         }else if([n.name isEqualToString:@"leftArrow"]){
             [[self childNodeWithName:@"scoot"] removeActionForKey:@"moveLeft"];
-            
+            self.movingLeft = NO;
+            SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
+            scoot.physicsBody.velocity = CGVectorMake(scoot.physicsBody.velocity.dx, 0);
         }
         
     }

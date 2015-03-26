@@ -30,6 +30,9 @@
 @property (strong, nonatomic) UIView *uiView;
 @property (strong, nonatomic) AVAudioPlayer *gameSceneLoop;
 
+@property (nonatomic) BOOL movingLeft;
+@property (nonatomic) BOOL movingRight;
+
 //UI
 @property (strong, nonatomic) UIButton *replayButton;
 @end
