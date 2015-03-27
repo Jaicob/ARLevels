@@ -157,7 +157,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     self.generateLevelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.generateLevelButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2 + 64,[[UIScreen mainScreen] bounds].size.height/2- 100, 64, 64);
     self.generateLevelButton.transform = CGAffineTransformMakeRotation(-3.14/2);
-    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"frame.png"] forState:UIControlStateNormal];
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
     [self.generateLevelButton addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
     self.generateLevelButton.enabled = NO;
     self.eaglView.pictureTaken = NO;
@@ -192,7 +192,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     NSLog(@"self.navigationController.navigationBarHidden: %s", self.navigationController.navigationBarHidden ? "Yes" : "No");
     
     self.generateLevelButton.enabled = NO;
-    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"frame.png"] forState:UIControlStateNormal];
+    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
     self.eaglView.pictureTaken = NO;
     
     

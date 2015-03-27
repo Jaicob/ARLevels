@@ -66,23 +66,27 @@
     [self.multiplayerButton addTarget:self action:@selector(multiplayerPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.multiplayerButton];
     
-    NSLog(@"View controller did appear Baby");
-    ViewController * app = [[[ViewController alloc]init] autorelease];
-    app.title = @"Frame Markers";
-    app.viewControllerClassName = @"FrameMarkersViewController";
-    app.aboutPageName = @"FM_about";
-    
-    Class vcClass = NSClassFromString(@"FrameMarkersViewController");
-    id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
-    
-    ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
-    
     if(self.newLevelTransition == YES){
+        NSLog(@"View controller did appear Baby");
+        ViewController * app = [[[ViewController alloc]init] autorelease];
+        app.title = @"Frame Markers";
+        app.viewControllerClassName = @"FrameMarkersViewController";
+        app.aboutPageName = @"FM_about";
+        
+        Class vcClass = NSClassFromString(@"FrameMarkersViewController");
+        id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
+        
+        ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
+        
+        if(self.newLevelTransition == YES){
+            arViewController.newLevelTransition = YES;
+        }
+        [self.navigationController pushViewController:arViewController animated:NO];
+        [arViewController release];
+        [vc release]; // don't leak memory
+
         arViewController.newLevelTransition = YES;
     }
-    [self.navigationController pushViewController:arViewController animated:NO];
-    [arViewController release];
-    [vc release]; // don't leak memory
 
     
 }

@@ -530,7 +530,7 @@ static const int projectileCategory = 0x100000;
     [self.gameSceneLoop stop];
     self.replayButton.alpha = 0.0f;
     self.gnuLevelButton.alpha = 0.0f;
-    [self.scene removeFromParent];
+    //[self.scene removeFromParent];
     GameScene * scene = [GameScene sceneWithSize:CGSizeMake(self.size.width, self.size.height)];
     scene.objectInfoDictionary = self.objectInfoDictionary;
     [self.view presentScene:scene];

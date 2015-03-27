@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D02ECFDB1AC4A91F005BA461 /* MarkerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = D02ECFDA1AC4A91F005BA461 /* MarkerSprite.m */; };
 		D0C383B01AC1C5C6001AE2E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383AF1AC1C5C6001AE2E6 /* main.m */; };
 		D0C383B31AC1C5C6001AE2E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383B21AC1C5C6001AE2E6 /* AppDelegate.m */; };
 		D0C383B61AC1C5C6001AE2E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383B51AC1C5C6001AE2E6 /* ViewController.m */; };
@@ -80,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D02ECFD91AC4A91F005BA461 /* MarkerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerSprite.h; sourceTree = "<group>"; };
+		D02ECFDA1AC4A91F005BA461 /* MarkerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerSprite.m; sourceTree = "<group>"; };
 		D0C383AA1AC1C5C6001AE2E6 /* Brave New World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brave New World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C383AE1AC1C5C6001AE2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0C383AF1AC1C5C6001AE2E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				D0C383FD1AC1D54C001AE2E6 /* GameSceneViewController.m */,
 				D0C383FE1AC1D54C001AE2E6 /* GameScene.h */,
 				D0C383FF1AC1D54C001AE2E6 /* GameScene.m */,
+				D02ECFD91AC4A91F005BA461 /* MarkerSprite.h */,
+				D02ECFDA1AC4A91F005BA461 /* MarkerSprite.m */,
 				D0C384001AC1D54C001AE2E6 /* customButton.h */,
 				D0C384011AC1D54C001AE2E6 /* customButton.m */,
 				D0C388811AC1E9FE001AE2E6 /* SampleAppMenu.h */,
@@ -835,6 +840,7 @@
 				D0C3840B1AC1D54C001AE2E6 /* Player.m in Sources */,
 				D0C3840A1AC1D54C001AE2E6 /* customButton.m in Sources */,
 				D0C383B01AC1C5C6001AE2E6 /* main.m in Sources */,
+				D02ECFDB1AC4A91F005BA461 /* MarkerSprite.m in Sources */,
 				D0C385091AC1DACD001AE2E6 /* SampleApplicationUtils.cpp in Sources */,
 				D0C383F01AC1D35B001AE2E6 /* ARViewController.m in Sources */,
 				D0C384061AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm in Sources */,

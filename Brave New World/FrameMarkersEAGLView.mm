@@ -425,10 +425,11 @@ namespace {
 //        coordX =screenPoint.data[0];
 //        coordY = screenPoint.data[1];
 //        objectCoord = CGPointMake(coordX, coordY);
-        NSLog(@"%d", self.pictureTaken);
+        NSLog(@"ObjectInfo during Render:%@", self.objectInfoDictionary);
+        //NSLog(@"%d", self.pictureTaken);
         if(!self.pictureTaken){
             [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];
-            NSLog(@"ObjectInfo during Render:%@", self.objectInfoDictionary);
+
         }
 //        NSLog(@"ObjectCoord:%@, Name:%s",[NSValue valueWithCGPoint:objectCoord], marker.getName());
 //        NSLog(@"ObjectInfoDictionary:%@", self.objectInfoDictionary);
