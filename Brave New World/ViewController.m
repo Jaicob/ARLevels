@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"View Controller Loaded Baby");
+    NSLog(@"ViewController viewDidLoad");
     int numOfButtons = 4;
     int buttonHeight = 50;
     int buttonWidth = 200;
@@ -65,29 +65,6 @@
     self.multiplayerButton.titleLabel.textColor = [UIColor whiteColor];
     [self.multiplayerButton addTarget:self action:@selector(multiplayerPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.multiplayerButton];
-    
-    if(self.newLevelTransition == YES){
-        NSLog(@"View controller did appear Baby");
-        ViewController * app = [[[ViewController alloc]init] autorelease];
-        app.title = @"Frame Markers";
-        app.viewControllerClassName = @"FrameMarkersViewController";
-        app.aboutPageName = @"FM_about";
-        
-        Class vcClass = NSClassFromString(@"FrameMarkersViewController");
-        id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
-        
-        ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
-        
-        if(self.newLevelTransition == YES){
-            arViewController.newLevelTransition = YES;
-        }
-        [self.navigationController pushViewController:arViewController animated:NO];
-        [arViewController release];
-        [vc release]; // don't leak memory
-
-        arViewController.newLevelTransition = YES;
-    }
-
     
 }
 
@@ -143,11 +120,59 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    NSLog(@"ViewController viewDidAppear");
 
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    NSLog(@"ViewController viewWillAppear");
+
+
+    if(self.newLevelTransition == YES){
+        NSLog(@"ViewController viewWillAppear New Transition");
+
+        
+        ViewController * app = [[[ViewController alloc]init] autorelease];
+        app.title = @"Frame Markers";
+        app.viewControllerClassName = @"FrameMarkersViewController";
+        app.aboutPageName = @"FM_about";
+        
+        Class vcClass = NSClassFromString(@"FrameMarkersViewController");
+        id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
+        
+        ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
+
+        [self presentViewController:arViewController animated:NO completion:nil];
+//        [arViewController release];
+//        [vc release]; // don't leak memory
+
+        
+//        NSLog(@"OH it's a new level alright");
+//        ViewController * app = [[[ViewController alloc]init] autorelease];
+//        app.title = @"Frame Markers";
+//        app.viewControllerClassName = @"FrameMarkersViewController";
+//        app.aboutPageName = @"FM_about";
+//        
+//        Class vcClass = NSClassFromString(@"FrameMarkersViewController");
+//        id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
+//        
+//        UIWindow *window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+//        window.rootViewController = self;
+//        [window makeKeyAndVisible];
+//        window.backgroundColor = [UIColor whiteColor];
+//        
+//        ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
+//        
+//        [self presentViewController:arViewController animated:NO completion:nil];
+//        //        [arViewController release];
+//        //        [vc release]; // don't leak memory
+//        
+//        //        arViewController.newLevelTransition = YES;
+    }
+
+
 
 }
 

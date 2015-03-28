@@ -10,6 +10,8 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Player.h"
 #import <AVFoundation/AVFoundation.h>
+#import "GameSceneViewController.h"
+@class GameSceneViewController;
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 
@@ -19,9 +21,10 @@
 @property (strong, nonatomic) SKSpriteNode *playerSpriteNode;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isTouchingGround;
+@property (nonatomic, retain) GameSceneViewController *delegate;
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (strong, nonatomic) NSMutableArray *brownButtonArray;
-@property (nonatomic) UIViewController *frameVc;
+@property (weak, nonatomic) UIViewController *frameVc;
 @property (strong, nonatomic) NSMutableArray *objectsArray;
 
 @property (nonatomic, assign) BOOL gameOver;

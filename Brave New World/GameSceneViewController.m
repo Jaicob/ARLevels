@@ -7,7 +7,6 @@
 //
 
 #import "GameSceneViewController.h"
-#import "GameScene.h"
 
 @interface GameSceneViewController () <SKSceneDelegate>
 @property (nonatomic, copy) NSString * title;
@@ -63,25 +62,47 @@
 
 -(void)presentARViewController{
     NSLog(@"IT's happening!");
-    [self dismissViewControllerAnimated:NO completion:^{
-        self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-        // Override point for customization after application launch.
-        ViewController *vc = [[ViewController alloc] init];//initWithNibName:@"ViewController" bundle:nil] autorelease];
-        vc.newLevelTransition = YES;
-        
-        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-        nc.navigationBar.barStyle = UIBarStyleDefault;
-        
-        self.window.rootViewController = nc;
-        [self.window makeKeyAndVisible];
-        self.window.backgroundColor = [UIColor clearColor];
-        [nc release];
-        //[self presentViewController:vc animated:NO completion:nil];
-        self.scene = nil;
-        [self.scene removeFromParent];
-        [self.skView presentScene:nil];
-        [self.skView.scene removeFromParent];
+//    Class vcClass = NSClassFromString(@"FrameMarkersViewController");
+//    id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
+    
+//    [self.navigationController presentViewController:vc animated:NO completion:^{
+//        dispatch_after(0, dispatch_get_main_queue(), ^{
+//            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+//        });
+//    }];
+//    
+//    [self presentViewController:vc animated:NO completion:^{
+//        dispatch_after(0, dispatch_get_main_queue(), ^{
+//        [self dismissViewControllerAnimated:NO completion:nil];
+//        });
+//    }];
+    
+    
+    ViewController *vc = [[ViewController alloc] init];//itWithNibName:@"ViewController" bundle:nil] autorelease];
+    vc.newLevelTransition = YES;
+    [self presentViewController:vc animated:NO completion:^{
+//        dispatch_after(0, dispatch_get_main_queue(), ^{
+//        [self dismissViewControllerAnimated:NO completion:nil];
+//        });
     }];
+    
+//    [self dismissViewControllerAnimated:NO completion:^{
+////        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        // Override point for customization after application launch.
+//
+//        
+////        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
+////        nc.navigationBar.barStyle = UIBarStyleDefault;
+//        
+////        self.window.rootViewController = nc;
+////        [self.window makeKeyAndVisible];
+////        self.window.backgroundColor = [UIColor clearColor];
+//        [self presentViewController:vc animated:NO completion:nil];
+////        self.scene = nil;
+////        [self.scene removeFromParent];
+////        [self.skView presentScene:nil];
+//        [self.skView.scene removeFromParent];
+//    }];
 
     
 //    ViewController* app = [[[ViewController alloc]init] autorelease];

@@ -8,19 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
-#import "GameScene.h"
 #import "ARViewController.h"
 #import "ViewController.h"
+#import "GameScene.h"
+@class GameScene;
 
-@interface GameSceneViewController : UIViewController
+@interface GameSceneViewController : UIViewController <SKSceneDelegate>
 
-@property (strong, nonatomic) SKView *skView;
+@property (weak, nonatomic) SKView *skView;
 @property (strong, nonatomic) GameScene *scene;
-@property (strong, nonatomic) UIView *frameView;
-@property (strong, nonatomic) UIViewController *frameViewController;
+@property (weak, nonatomic) UIView *frameView;
+@property (weak, nonatomic) UIViewController *frameViewController;
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
+@property (weak, nonatomic) NSMutableDictionary *objectInfoDictionary;
 
 -(void)presentARViewController;
 

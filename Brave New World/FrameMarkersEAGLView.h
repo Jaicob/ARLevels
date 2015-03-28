@@ -46,6 +46,7 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     SampleApplicationSession * vapp;
     
     NSMutableArray *tempButtonsArray;
+    
 }
 
 @property (strong, nonatomic) SKView *skView;

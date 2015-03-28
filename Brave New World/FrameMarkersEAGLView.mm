@@ -425,7 +425,7 @@ namespace {
 //        coordX =screenPoint.data[0];
 //        coordY = screenPoint.data[1];
 //        objectCoord = CGPointMake(coordX, coordY);
-        NSLog(@"ObjectInfo during Render:%@", self.objectInfoDictionary);
+       // NSLog(@"ObjectInfo during Render:%@", self.objectInfoDictionary);
         //NSLog(@"%d", self.pictureTaken);
         if(!self.pictureTaken){
             [self.objectInfoDictionary setObject:[NSValue valueWithCGPoint:objectCoord] forKey:[NSString stringWithFormat:@"%s", marker.getName()]];

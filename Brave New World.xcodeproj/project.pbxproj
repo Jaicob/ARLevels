@@ -30,8 +30,8 @@
 		D0C383F01AC1D35B001AE2E6 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383EF1AC1D35B001AE2E6 /* ARViewController.m */; };
 		D0C384051AC1D54C001AE2E6 /* VuforiaObject3D.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383F71AC1D54C001AE2E6 /* VuforiaObject3D.m */; };
 		D0C384061AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0C383F91AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm */; };
-		D0C384081AC1D54C001AE2E6 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383FD1AC1D54C001AE2E6 /* GameSceneViewController.m */; };
-		D0C384091AC1D54C001AE2E6 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383FF1AC1D54C001AE2E6 /* GameScene.m */; };
+		D0C384081AC1D54C001AE2E6 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383FD1AC1D54C001AE2E6 /* GameSceneViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D0C384091AC1D54C001AE2E6 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383FF1AC1D54C001AE2E6 /* GameScene.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D0C3840A1AC1D54C001AE2E6 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C384011AC1D54C001AE2E6 /* customButton.m */; };
 		D0C3840B1AC1D54C001AE2E6 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C384031AC1D54C001AE2E6 /* Player.m */; };
 		D0C3840C1AC1D54C001AE2E6 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C384041AC1D54C001AE2E6 /* frame.png */; };

@@ -49,17 +49,22 @@
 //    view.frame = self.view.bounds;
 //    [self.view addSubview:view];
 //    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    UIView *view = self.rootViewController.view;
-    view.frame = self.view.bounds;
-    [self.view addSubview:view];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    NSLog(@"current root view controller:%@, View:%@", self.rootViewController, self.rootViewController.view);
+//                UIView *view = self.rootViewController.view;
+//                view.frame = self.view.bounds;
+//                [self.view addSubview:view];
+//                [self.navigationController setNavigationBarHidden:YES animated:NO];
+//                NSLog(@"current root view controller:%@, View:%@", self.rootViewController, self.rootViewController.view);
 
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    UIView *view = self.rootViewController.view;
+    view.frame = self.view.bounds;
+    [self.view addSubview:view];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    NSLog(@"current root view controller:%@, View:%@", self.rootViewController, self.rootViewController.view);
 
 }
 
