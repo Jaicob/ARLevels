@@ -4,25 +4,24 @@
 
 @implementation AppDelegate
 
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
-}
+//- (void)dealloc
+//{
+//    [_window release];
+//    [super dealloc];
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *vc = [[ViewController alloc] init];//initWithNibName:@"ViewController" bundle:nil] autorelease];
     
-    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-    nc.navigationBar.barStyle = UIBarStyleDefault;
+    self.nc = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.nc.navigationBar.barStyle = UIBarStyleDefault;
     
-    self.window.rootViewController = nc;
+    self.window.rootViewController = self.nc;
     [self.window makeKeyAndVisible];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [nc release];
+    self.window.backgroundColor = [UIColor redColor];
         
     return YES;
 }

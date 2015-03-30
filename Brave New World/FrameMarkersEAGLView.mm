@@ -257,6 +257,8 @@ namespace {
 
 -(void)saveBackgroundImage
 {
+
+
     NSLog(@"save background image");
    self.finalObjectInfoDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.objectInfoDictionary];
     NSLog(@"Info Dict:%@", self.objectInfoDictionary);

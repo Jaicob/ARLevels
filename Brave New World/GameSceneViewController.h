@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import "AppDelegate.h"
 #import "ARViewController.h"
 #import "ViewController.h"
 #import "GameScene.h"
 @class GameScene;
 
-@interface GameSceneViewController : UIViewController <SKSceneDelegate>
+@interface GameSceneViewController : UIViewController <SKSceneDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) SKView *skView;
 @property (strong, nonatomic) GameScene *scene;
@@ -24,5 +25,6 @@
 @property (weak, nonatomic) NSMutableDictionary *objectInfoDictionary;
 
 -(void)presentARViewController;
+-(void)goBack;
 
 @end

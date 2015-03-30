@@ -42,6 +42,11 @@
     self.scene.frameVc = self.frameViewController;
     self.scene.delegate = self;
     [self.skView presentScene:self.scene];
+    
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:NO];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,70 +67,43 @@
 
 -(void)presentARViewController{
     NSLog(@"IT's happening!");
-//    Class vcClass = NSClassFromString(@"FrameMarkersViewController");
-//    id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
-    
-//    [self.navigationController presentViewController:vc animated:NO completion:^{
-//        dispatch_after(0, dispatch_get_main_queue(), ^{
-//            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
-//        });
-//    }];
-//    
-//    [self presentViewController:vc animated:NO completion:^{
-//        dispatch_after(0, dispatch_get_main_queue(), ^{
-//        [self dismissViewControllerAnimated:NO completion:nil];
-//        });
-//    }];
-    
-    
-    ViewController *vc = [[ViewController alloc] init];//itWithNibName:@"ViewController" bundle:nil] autorelease];
-    vc.newLevelTransition = YES;
-    [self presentViewController:vc animated:NO completion:^{
-//        dispatch_after(0, dispatch_get_main_queue(), ^{
-//        [self dismissViewControllerAnimated:NO completion:nil];
-//        });
-    }];
-    
-//    [self dismissViewControllerAnimated:NO completion:^{
-////        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//        // Override point for customization after application launch.
-//
-//        
-////        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-////        nc.navigationBar.barStyle = UIBarStyleDefault;
-//        
-////        self.window.rootViewController = nc;
-////        [self.window makeKeyAndVisible];
-////        self.window.backgroundColor = [UIColor clearColor];
-//        [self presentViewController:vc animated:NO completion:nil];
-////        self.scene = nil;
-////        [self.scene removeFromParent];
-////        [self.skView presentScene:nil];
-//        [self.skView.scene removeFromParent];
-//    }];
+    [self.skView presentScene:nil];
+    [self.scene removeFromParent];
+    [self.skView.scene removeFromParent];
 
+    AppDelegate *delegate = [[AppDelegate alloc] init];
+
+//    ViewController *viewController = [[ViewController alloc] init];
+//    delegate.nc.view.window.rootViewController = viewController;
+//    delegate.window.rootViewController = viewController;
+//
+//    [self presentViewController:viewController animated:NO completion:nil];
+//    delegate.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    ViewController *vc = [[ViewController alloc] initWithNibName:nil bundle:nil];
+    vc.newLevelTransition = YES;
     
-//    ViewController* app = [[[ViewController alloc]init] autorelease];
-//    app.title = @"Frame Markers";
-//    app.viewControllerClassName = @"FrameMarkersViewController";
-//    app.aboutPageName = @"FM_about";
+
+//    delegate.window.rootViewController = vc;
+    delegate.nc = [[UINavigationController alloc]initWithRootViewController:vc];
+//    delegate.nc.navigationBar.barStyle = UIBarStyleDefault;
 //    
-//    Class vcClass = NSClassFromString(@"FrameMarkersViewController");
-//    id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
-//    
-//    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-//    nc.navigationBar.barStyle = UIBarStyleDefault;
-//    UIWindow *window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-//    window.rootViewController = nc;
-//    [window makeKeyAndVisible];
-//    window.backgroundColor = [UIColor whiteColor];
-//    UIView *view = self.frameView;
-//    view.frame = self.view.bounds;
-//    [self.view addSubview:view];
+//    delegate.window.rootViewController = delegate.nc;
+//    [delegate.window makeKeyAndVisible];
+//    delegate.window.backgroundColor = [UIColor blueColor];
+    NSLog(@"View Controllers:%@", delegate.nc.viewControllers);
+    NSLog(@"Delegate RVC:%@", delegate.window.rootViewController);
+
+    [self presentViewController:delegate.nc animated:NO completion:^{
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
+
+//
 //    self.scene = nil;
 //    [self.scene removeFromParent];
 //    [self.skView presentScene:nil];
 //    [self.skView.scene removeFromParent];
+    
 //    [self presentViewController:self.frameViewController animated:NO completion:nil];
 //
 //    
@@ -151,9 +129,7 @@
 //
     
 //    self.scene = nil;
-//    [self.scene removeFromParent];
-//    [self.skView presentScene:nil];
-//    [self.skView.scene removeFromParent];
+
 //    [self.navigationController presentViewController:arViewController animated:NO completion:^{
 //      //  [arViewController initWithRootViewController:vc];
 //        [self dismissViewControllerAnimated:NO completion:nil];
@@ -163,4 +139,18 @@
 
 }
 
+-(void)goBack{
+    [self.skView presentScene:nil];
+    [self.scene removeFromParent];
+    [self.skView.scene removeFromParent];
+    ViewController *vc = [[ViewController alloc] initWithNibName:nil bundle:nil];
+    vc.newLevelTransition = YES;
+    [self presentViewController:vc animated:NO completion:nil];
+
+}
+
+-(BOOL) textFieldShouldReturn: (UITextField *) textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 @end

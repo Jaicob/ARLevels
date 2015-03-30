@@ -30,9 +30,9 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_rootViewController release];
+   // [_rootViewController release];
     _rootViewController = nil;
-    [super dealloc];
+   // [super dealloc];
 }
 
 
@@ -60,12 +60,18 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:animated];
+        NSLog(@"current root view controller:%@, View:%@", self.rootViewController, self.rootViewController.view);
     UIView *view = self.rootViewController.view;
     view.frame = self.view.bounds;
     [self.view addSubview:view];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    NSLog(@"current root view controller:%@, View:%@", self.rootViewController, self.rootViewController.view);
-
 }
 
 //

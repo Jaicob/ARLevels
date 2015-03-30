@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D02ECFDB1AC4A91F005BA461 /* MarkerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = D02ECFDA1AC4A91F005BA461 /* MarkerSprite.m */; };
+		D01743D71AC8892100F72800 /* QCARutils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D01743D61AC8892100F72800 /* QCARutils.mm */; };
+		D01743DA1AC90DE400F72800 /* SpriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D01743D91AC90DE400F72800 /* SpriteManager.m */; };
+		D01743DE1AC9167500F72800 /* SavedLevelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D01743DD1AC9167500F72800 /* SavedLevelsViewController.m */; };
+		D01743E01AC91A7600F72800 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D01743DF1AC91A7600F72800 /* saveIcon.png */; };
 		D0C383B01AC1C5C6001AE2E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383AF1AC1C5C6001AE2E6 /* main.m */; };
-		D0C383B31AC1C5C6001AE2E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383B21AC1C5C6001AE2E6 /* AppDelegate.m */; };
-		D0C383B61AC1C5C6001AE2E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383B51AC1C5C6001AE2E6 /* ViewController.m */; };
+		D0C383B31AC1C5C6001AE2E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383B21AC1C5C6001AE2E6 /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D0C383B61AC1C5C6001AE2E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383B51AC1C5C6001AE2E6 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D0C383B91AC1C5C6001AE2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0C383B71AC1C5C6001AE2E6 /* Main.storyboard */; };
 		D0C383BB1AC1C5C6001AE2E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0C383BA1AC1C5C6001AE2E6 /* Images.xcassets */; };
 		D0C383BE1AC1C5C6001AE2E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C383BC1AC1C5C6001AE2E6 /* LaunchScreen.xib */; };
@@ -27,7 +30,7 @@
 		D0C383E61AC1C77D001AE2E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C383E51AC1C77D001AE2E6 /* UIKit.framework */; };
 		D0C383E81AC1C784001AE2E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C383E71AC1C784001AE2E6 /* Foundation.framework */; };
 		D0C383EA1AC1C78B001AE2E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C383E91AC1C78B001AE2E6 /* CoreGraphics.framework */; };
-		D0C383F01AC1D35B001AE2E6 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383EF1AC1D35B001AE2E6 /* ARViewController.m */; };
+		D0C383F01AC1D35B001AE2E6 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383EF1AC1D35B001AE2E6 /* ARViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D0C384051AC1D54C001AE2E6 /* VuforiaObject3D.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383F71AC1D54C001AE2E6 /* VuforiaObject3D.m */; };
 		D0C384061AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0C383F91AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm */; };
 		D0C384081AC1D54C001AE2E6 /* GameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C383FD1AC1D54C001AE2E6 /* GameSceneViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -81,8 +84,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D02ECFD91AC4A91F005BA461 /* MarkerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerSprite.h; sourceTree = "<group>"; };
-		D02ECFDA1AC4A91F005BA461 /* MarkerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerSprite.m; sourceTree = "<group>"; };
+		D01743D51AC8892100F72800 /* QCARutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QCARutils.h; path = "../../../Brave New World/QCARutils.h"; sourceTree = "<group>"; };
+		D01743D61AC8892100F72800 /* QCARutils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QCARutils.mm; path = "../../../Brave New World/QCARutils.mm"; sourceTree = "<group>"; };
+		D01743D81AC90DE400F72800 /* SpriteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManager.h; sourceTree = "<group>"; };
+		D01743D91AC90DE400F72800 /* SpriteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteManager.m; sourceTree = "<group>"; };
+		D01743DC1AC9167500F72800 /* SavedLevelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedLevelsViewController.h; sourceTree = "<group>"; };
+		D01743DD1AC9167500F72800 /* SavedLevelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedLevelsViewController.m; sourceTree = "<group>"; };
+		D01743DF1AC91A7600F72800 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
 		D0C383AA1AC1C5C6001AE2E6 /* Brave New World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brave New World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C383AE1AC1C5C6001AE2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0C383AF1AC1C5C6001AE2E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -324,6 +332,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D01743DB1AC9164400F72800 /* SavedLevels */ = {
+			isa = PBXGroup;
+			children = (
+				D01743DC1AC9167500F72800 /* SavedLevelsViewController.h */,
+				D01743DD1AC9167500F72800 /* SavedLevelsViewController.m */,
+			);
+			name = SavedLevels;
+			sourceTree = "<group>";
+		};
+		D01743E11AC9305900F72800 /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				D0C383FC1AC1D54C001AE2E6 /* GameSceneViewController.h */,
+				D0C383FD1AC1D54C001AE2E6 /* GameSceneViewController.m */,
+				D0C383FE1AC1D54C001AE2E6 /* GameScene.h */,
+				D0C383FF1AC1D54C001AE2E6 /* GameScene.m */,
+				D01743D81AC90DE400F72800 /* SpriteManager.h */,
+				D01743D91AC90DE400F72800 /* SpriteManager.m */,
+				D0C384001AC1D54C001AE2E6 /* customButton.h */,
+				D0C384011AC1D54C001AE2E6 /* customButton.m */,
+				D0C384021AC1D54C001AE2E6 /* Player.h */,
+				D0C384031AC1D54C001AE2E6 /* Player.m */,
+			);
+			name = GameScene;
+			sourceTree = "<group>";
+		};
 		D0C383A11AC1C5C6001AE2E6 = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +400,12 @@
 				D0C383EF1AC1D35B001AE2E6 /* ARViewController.m */,
 				D0C3844C1AC1D672001AE2E6 /* SampleApplicationSession.h */,
 				D0C3844D1AC1D672001AE2E6 /* SampleApplicationSession.mm */,
+				D01743DB1AC9164400F72800 /* SavedLevels */,
+				D01743E11AC9305900F72800 /* GameScene */,
+				D0C384D21AC1D997001AE2E6 /* UI */,
+				D0C384E21AC1D9B3001AE2E6 /* Audio */,
+				D0C384D11AC1D990001AE2E6 /* Textures */,
+				D0C384D01AC1D989001AE2E6 /* Models */,
 				D0C383F11AC1D532001AE2E6 /* Frame Markers */,
 				D0C383B71AC1C5C6001AE2E6 /* Main.storyboard */,
 				D0C383BA1AC1C5C6001AE2E6 /* Images.xcassets */,
@@ -412,10 +452,6 @@
 		D0C383F11AC1D532001AE2E6 /* Frame Markers */ = {
 			isa = PBXGroup;
 			children = (
-				D0C384E21AC1D9B3001AE2E6 /* Audio */,
-				D0C384D21AC1D997001AE2E6 /* UI */,
-				D0C384D11AC1D990001AE2E6 /* Textures */,
-				D0C384D01AC1D989001AE2E6 /* Models */,
 				D0C383F21AC1D54C001AE2E6 /* A_object.h */,
 				D0C383F31AC1D54C001AE2E6 /* C_object.h */,
 				D0C383F41AC1D54C001AE2E6 /* Q_object.h */,
@@ -426,18 +462,8 @@
 				D0C3888E1AC1ED03001AE2E6 /* FrameMarkersViewController.mm */,
 				D0C383F81AC1D54C001AE2E6 /* FrameMarkersEAGLView.h */,
 				D0C383F91AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm */,
-				D0C383FC1AC1D54C001AE2E6 /* GameSceneViewController.h */,
-				D0C383FD1AC1D54C001AE2E6 /* GameSceneViewController.m */,
-				D0C383FE1AC1D54C001AE2E6 /* GameScene.h */,
-				D0C383FF1AC1D54C001AE2E6 /* GameScene.m */,
-				D02ECFD91AC4A91F005BA461 /* MarkerSprite.h */,
-				D02ECFDA1AC4A91F005BA461 /* MarkerSprite.m */,
-				D0C384001AC1D54C001AE2E6 /* customButton.h */,
-				D0C384011AC1D54C001AE2E6 /* customButton.m */,
 				D0C388811AC1E9FE001AE2E6 /* SampleAppMenu.h */,
 				D0C388821AC1E9FE001AE2E6 /* SampleAppMenu.m */,
-				D0C384021AC1D54C001AE2E6 /* Player.h */,
-				D0C384031AC1D54C001AE2E6 /* Player.m */,
 				D0C384041AC1D54C001AE2E6 /* frame.png */,
 			);
 			name = "Frame Markers";
@@ -580,6 +606,7 @@
 		D0C384D21AC1D997001AE2E6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D01743DF1AC91A7600F72800 /* saveIcon.png */,
 				D0C384D41AC1D9A9001AE2E6 /* greyCheckmark.png */,
 				D0C384D51AC1D9A9001AE2E6 /* upArrow.png */,
 				D0C384D61AC1D9A9001AE2E6 /* rightArrow.png */,
@@ -619,6 +646,8 @@
 		D0C388391AC1E44E001AE2E6 /* QCAR */ = {
 			isa = PBXGroup;
 			children = (
+				D01743D51AC8892100F72800 /* QCARutils.h */,
+				D01743D61AC8892100F72800 /* QCARutils.mm */,
 				D0C3883A1AC1E44E001AE2E6 /* Area.h */,
 				D0C3883B1AC1E44E001AE2E6 /* Box3D.h */,
 				D0C3883C1AC1E44E001AE2E6 /* CameraCalibration.h */,
@@ -790,6 +819,7 @@
 				D0C384FB1AC1D9CE001AE2E6 /* greenCubeTexture.png in Resources */,
 				D0C384F71AC1D9CE001AE2E6 /* enemy1Texture.png in Resources */,
 				D0C384FF1AC1D9CE001AE2E6 /* GEM.png in Resources */,
+				D01743E01AC91A7600F72800 /* saveIcon.png in Resources */,
 				D0C384F81AC1D9CE001AE2E6 /* goldTexture.png in Resources */,
 				D0C384F61AC1D9CE001AE2E6 /* yellowCubeTexture.png in Resources */,
 				D0C384FC1AC1D9CE001AE2E6 /* platformTexture.png in Resources */,
@@ -828,6 +858,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0C383B61AC1C5C6001AE2E6 /* ViewController.m in Sources */,
+				D01743DE1AC9167500F72800 /* SavedLevelsViewController.m in Sources */,
 				D0C3844E1AC1D672001AE2E6 /* SampleApplicationSession.mm in Sources */,
 				D0C388831AC1E9FE001AE2E6 /* SampleAppMenu.m in Sources */,
 				D0C384091AC1D54C001AE2E6 /* GameScene.m in Sources */,
@@ -837,12 +868,13 @@
 				D0C384051AC1D54C001AE2E6 /* VuforiaObject3D.m in Sources */,
 				D0C384081AC1D54C001AE2E6 /* GameSceneViewController.m in Sources */,
 				D0C383B31AC1C5C6001AE2E6 /* AppDelegate.m in Sources */,
+				D01743DA1AC90DE400F72800 /* SpriteManager.m in Sources */,
 				D0C3840B1AC1D54C001AE2E6 /* Player.m in Sources */,
 				D0C3840A1AC1D54C001AE2E6 /* customButton.m in Sources */,
 				D0C383B01AC1C5C6001AE2E6 /* main.m in Sources */,
-				D02ECFDB1AC4A91F005BA461 /* MarkerSprite.m in Sources */,
 				D0C385091AC1DACD001AE2E6 /* SampleApplicationUtils.cpp in Sources */,
 				D0C383F01AC1D35B001AE2E6 /* ARViewController.m in Sources */,
+				D01743D71AC8892100F72800 /* QCARutils.mm in Sources */,
 				D0C384061AC1D54C001AE2E6 /* FrameMarkersEAGLView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

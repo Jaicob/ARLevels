@@ -16,6 +16,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #import <QCAR/CameraDevice.h>
 #import "GameScene.h"
 #import "GameSceneViewController.h"
+#import "SampleApplicationUtils.h"
+
 
 
 @interface FrameMarkersViewController ()
@@ -143,8 +145,12 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     // initialize the AR session
     [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];*/
     NSLog(@"loading view");
+   // ARViewController *arVC = (ARViewController *)self.parentViewController;
     didTransition = NO;
-    
+//    if(!eaglView && arVC.newLevelTransition == NO){
+        NSLog(@"Heyy");
+        
+        
     eaglView = [[FrameMarkersEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
     [self setView:eaglView];
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -167,6 +173,21 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     eaglView.pictureTaken = NO;
     [eaglView addSubview:self.generateLevelButton];
     eaglView.generateLevelButton = self.generateLevelButton;
+//    }else{
+//        
+//        eaglView = [[FrameMarkersEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
+//        [self setView:eaglView];
+//        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        appDelegate.glResourceHandler = eaglView;
+//        
+//        
+//        // show loading animation while AR is being initialized
+//        [self showLoadingAnimation];
+//        
+//        [vapp initAR:QCAR::GL_20 ARViewBoundsSize:viewFrame.size orientation:UIInterfaceOrientationPortrait];
+//
+//        [vapp resumeAR:nil];
+//    }
     
     
 //    self.skView = [[SKView alloc] init];
@@ -220,17 +241,35 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     [eaglViewView addSubview:_skView];
     [self.skView presentScene:scene];*/
     
-    [self prepareMenu];
+//    [self prepareMenu];
+//    
+//    // Do any additional setup after loading the view.
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.view addGestureRecognizer:tapGestureRecognizer];
+//    
+//    NSLog(@"self.navigationController.navigationBarHidden: %s", self.navigationController.navigationBarHidden ? "Yes" : "No");
+//    
+//    self.generateLevelButton.enabled = NO;
+//    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
+//    eaglView.pictureTaken = NO;
     
-    // Do any additional setup after loading the view.
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-    
-    NSLog(@"self.navigationController.navigationBarHidden: %s", self.navigationController.navigationBarHidden ? "Yes" : "No");
-    
-    self.generateLevelButton.enabled = NO;
-    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
-    eaglView.pictureTaken = NO;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+   // [vapp resumeAR:nil];
+//    [self prepareMenu];
+//    
+//    // Do any additional setup after loading the view.
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.view addGestureRecognizer:tapGestureRecognizer];
+//    
+//    NSLog(@"self.navigationController.navigationBarHidden: %s", self.navigationController.navigationBarHidden ? "Yes" : "No");
+//    
+//    self.generateLevelButton.enabled = NO;
+//    [self.generateLevelButton setBackgroundImage:[UIImage imageNamed:@"greyCheckmark.png"] forState:UIControlStateNormal];
+//    eaglView.pictureTaken = NO;
+
     
 }
 
@@ -263,6 +302,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 #pragma mark -Navigation
 
 -(void)transition{
+//    [[QCARutils getInstance]setAppStatus: APPSTATUS_CAMERA_STOPPED];
+//    [[QCARutils getInstance] destroyAR];
     
 //        self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //        self.skView = (SKView *)self.view;
@@ -281,23 +322,24 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 //        [self.skView presentScene:scene];
 //        
     didTransition = YES;
+
     
     GameSceneViewController *viewController = [[GameSceneViewController alloc] init];
-    viewController.frameView = self.view;
-    viewController.frameViewController = self;
+    //viewController.frameView = self.view;
+    //viewController.frameViewController = self;
     viewController.objectInfoDictionary = eaglView.objectInfoDictionary;
     
-    [[SampleAppMenu instance]clear];
-    
-    [vapp stopAR:nil];
+//    [[SampleAppMenu instance]clear];
+//    
+//    [vapp stopAR:nil];
     // Be a good OpenGL ES citizen: now that QCAR is paused and the render
     // thread is not executing, inform the root view controller that the
     // EAGLView should finish any OpenGL ES commands
-    [eaglView finishOpenGLESCommands];
-    
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    appDelegate.glResourceHandler = nil;
-    
+//    [eaglView finishOpenGLESCommands];
+//    
+//    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    appDelegate.glResourceHandler = nil;
+//    
 //    eaglViewView.pictureTaken = NO;
 //    [eaglViewView.objectInfoDictionary removeAllObjects];
 //    [eaglViewView.finalObjectInfoDictionary removeAllObjects];
@@ -308,20 +350,21 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
 //    }];
 //    NSLog(@"The current view.window.rootvc is:%@", self.view.window.rootViewController);
     
-
-    [self.view.window.rootViewController presentViewController:viewController animated:NO completion:^{
+    eaglView.pictureTaken = NO;
+    [eaglView.objectInfoDictionary removeAllObjects];
+    [self presentViewController:viewController animated:NO completion:nil];
 //        eaglViewView = nil;
 //        [self.view release];
 //        [eaglViewView removeFromSuperview];
 //        [eaglViewView release];
 //        [self release];
-        eaglView.pictureTaken = NO;
-        [eaglView.objectInfoDictionary removeAllObjects];
-        [eaglView release];
-        eaglView = nil;
-        self.view = nil;
-        [self release];
-    }];
+
+//        [eaglView release];
+//        eaglView = nil;
+//        self.view = nil;
+//        [self release];
+        
+  //  }];
 //    [self.navigationController presentViewController:viewController animated:NO completion:^{
 //            [self release];
 //    }];
@@ -486,7 +529,8 @@ and other countries. Trademarks of QUALCOMM Incorporated are used with permissio
     // cleanup menu
     [[SampleAppMenu instance]clear];
 
-    [vapp stopAR:nil];
+ //   [vapp stopAR:nil];
+    [vapp pauseAR:nil];
     // Be a good OpenGL ES citizen: now that QCAR is paused and the render
     // thread is not executing, inform the root view controller that the
     // eaglView should finish any OpenGL ES commands

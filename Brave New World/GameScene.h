@@ -13,7 +13,7 @@
 #import "GameSceneViewController.h"
 @class GameSceneViewController;
 
-@interface GameScene : SKScene <SKPhysicsContactDelegate>
+@interface GameScene : SKScene <SKPhysicsContactDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) SKSpriteNode *background;
 @property (strong, nonatomic) UIImage *backgroundImage;
@@ -22,7 +22,6 @@
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isTouchingGround;
 @property (nonatomic, retain) GameSceneViewController *delegate;
-@property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (strong, nonatomic) NSMutableArray *brownButtonArray;
 @property (weak, nonatomic) UIViewController *frameVc;
 @property (strong, nonatomic) NSMutableArray *objectsArray;
@@ -36,8 +35,17 @@
 @property (nonatomic) BOOL movingLeft;
 @property (nonatomic) BOOL movingRight;
 
-//UI
+//Dictionaries
+@property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
+@property (strong, nonatomic) NSMutableDictionary *spriteDictionary;
+
+//UI/EndGameButtons
 @property (strong, nonatomic) UIButton *replayButton;
 @property (strong, nonatomic) UIButton *gnuLevelButton;
+@property (strong, nonatomic) UIButton *saveLevelButton;
+@property (strong, nonatomic) UITextField *levelTitleTextField;
+
+//Enemy Methods
+-(void)enemy1Attack;
 
 @end

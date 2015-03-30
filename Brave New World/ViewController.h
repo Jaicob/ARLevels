@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SavedLevelsViewController.h"
 
 @interface ViewController : UIViewController
 

@@ -71,7 +71,7 @@
 -(void)gnuLevelPressed{
     
     
-    ViewController * app = [[[ViewController alloc]init] autorelease];
+    ViewController * app = [[ViewController alloc]init];
     app.title = @"Frame Markers";
     app.viewControllerClassName = @"FrameMarkersViewController";
     app.aboutPageName = @"FM_about";
@@ -80,17 +80,17 @@
     id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
     
     ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
-    
+    arViewController.newLevelTransition = NO;
     [self.navigationController pushViewController:arViewController animated:NO];
-    [arViewController release];
-    [vc release]; // don't leak memory
+//    [arViewController release];
+//    [vc release]; // don't leak memory
 
     
 }
 
 -(void)newLevel{
     
-    ViewController * app = [[[ViewController alloc]init] autorelease];
+    ViewController * app = [[ViewController alloc]init];
     app.title = @"Frame Markers";
     app.viewControllerClassName = @"FrameMarkersViewController";
     app.aboutPageName = @"FM_about";
@@ -100,17 +100,25 @@
     
     ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
     [self.navigationController pushViewController:arViewController animated:NO];
-    [arViewController release];
-    [vc release]; // don't leak memory
+//    [arViewController release];
+//    [vc release]; // don't leak memory
 
     
 }
 
 -(void)savedLevelsPressed{
+    SavedLevelsViewController *savedLevelsController = [[SavedLevelsViewController alloc] init];
+    [self presentViewController:savedLevelsController animated:NO completion:nil];
     
 }
 
 -(void)topLevelsPressed{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary* dictUserDefaults = [userDefaults dictionaryRepresentation];
+    for (id akey in dictUserDefaults) {
+        [userDefaults removeObjectForKey:akey];
+    }
+    [userDefaults synchronize];
     
 }
 
@@ -121,6 +129,27 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     NSLog(@"ViewController viewDidAppear");
+    
+//    if(self.newLevelTransition == YES){
+//        NSLog(@"ViewController viewWillAppear New Transition");
+//        
+//        
+//        ViewController * app = [[ViewController alloc]init];
+//        app.title = @"Frame Markers";
+//        app.viewControllerClassName = @"FrameMarkersViewController";
+//        app.aboutPageName = @"FM_about";
+//        
+//        Class vcClass = NSClassFromString(@"FrameMarkersViewController");
+//        id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
+//        
+//        ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
+//        if(self.newLevelTransition == YES){
+//            arViewController.newLevelTransition = YES;
+//        }
+//        
+//        [self.navigationController pushViewController:arViewController animated:NO];
+//        
+//    }
 
     
 }
@@ -130,21 +159,7 @@
     NSLog(@"ViewController viewWillAppear");
 
 
-    if(self.newLevelTransition == YES){
-        NSLog(@"ViewController viewWillAppear New Transition");
-
-        
-        ViewController * app = [[[ViewController alloc]init] autorelease];
-        app.title = @"Frame Markers";
-        app.viewControllerClassName = @"FrameMarkersViewController";
-        app.aboutPageName = @"FM_about";
-        
-        Class vcClass = NSClassFromString(@"FrameMarkersViewController");
-        id vc = [[vcClass alloc]  initWithNibName:nil bundle:nil];
-        
-        ARViewController *arViewController = [[ARViewController alloc] initWithRootViewController:vc];
-
-        [self presentViewController:arViewController animated:NO completion:nil];
+   
 //        [arViewController release];
 //        [vc release]; // don't leak memory
 
@@ -170,7 +185,6 @@
 //        //        [vc release]; // don't leak memory
 //        
 //        //        arViewController.newLevelTransition = YES;
-    }
 
 
 

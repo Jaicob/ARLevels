@@ -58,8 +58,11 @@ namespace {
 
 - (id)initWithDelegate:(id<SampleApplicationControl>) delegate
 {
+    NSLog(@"SampleApp InitWithDelegate");
+
     self = [super init];
     if (self) {
+        NSLog(@"SampleApp InitWithDelegate ifSelf");
         self.delegate = delegate;
         
         // we keep a reference of the instance in order to implemet the QCAR callback
@@ -70,6 +73,7 @@ namespace {
 
 - (void)dealloc
 {
+    NSLog(@"SampleApp Dealloc");
     instance = nil;
     [self setDelegate:nil];
     [super dealloc];
@@ -106,6 +110,7 @@ namespace {
 
 // Initialize the Vuforia SDK
 - (void) initAR:(int) QCARInitFlags ARViewBoundsSize:(CGSize) ARViewBoundsSize orientation:(UIInterfaceOrientation) ARViewOrientation {
+    NSLog(@"SampleApp Init Vuforia SDK");
     self.cameraIsActive = NO;
     self.cameraIsStarted = NO;
     mQCARInitFlags = QCARInitFlags;
@@ -127,6 +132,8 @@ namespace {
 // (Performed on a background thread)
 - (void)initQCARInBackground
 {
+    NSLog(@"SampleApp Init QCAR in Background");
+
     // Background thread must have its own autorelease pool
     @autoreleasepool {
         QCAR::setInitParameters(mQCARInitFlags, "5512710a6d904edfa056d7c38e4b2d34");
@@ -141,10 +148,13 @@ namespace {
         if (100 == initSuccess) {
             // We can now continue the initialization of Vuforia
             // (on the main thread)
+            NSLog(@"SampleApp Init Success");
+
             [self performSelectorOnMainThread:@selector(prepareAR) withObject:nil waitUntilDone:NO];
         }
         else {
             // Failed to initialise QCAR:
+            NSLog(@"SampleApp Failed Init");
             if (QCAR::INIT_NO_CAMERA_ACCESS == initSuccess) {
                 // On devices running iOS 8+, the user is required to explicitly grant
                 // camera access to an App.
@@ -185,6 +195,7 @@ namespace {
                         
                 }
                 // QCAR initialization error
+                NSLog(@"Sample App QCAR Init Error");
                 [self.delegate onInitARDone:error];
             }
         }
@@ -196,6 +207,7 @@ namespace {
 // to provide instructions on how to restore it.
 -(void) showCameraAccessWarning
 {
+    NSLog(@"Show camera access warning");
     NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
     NSString *message = [NSString stringWithFormat:@"User denied camera access to this App. To restore camera access, go to: \nSettings > Privacy > Camera > %@ and turn it ON.", appName];
     
@@ -216,7 +228,7 @@ namespace {
 // Resume QCAR
 - (bool) resumeAR:(NSError **)error {
     QCAR::onResume();
-    
+    NSLog(@"Resuming AR");
     // if the camera was previously started, but not currently active, then
     // we restart it
     if ((self.cameraIsStarted) && (! self.cameraIsActive)) {
@@ -247,6 +259,7 @@ namespace {
 
 // Pause QCAR
 - (bool)pauseAR:(NSError **)error {
+    NSLog(@"Pausing AR");
     if (self.cameraIsActive) {
         // Stop and deinit the camera
         if(! QCAR::CameraDevice::getInstance().stop()) {
@@ -276,6 +289,7 @@ namespace {
 }
 
 - (void) prepareAR  {
+    NSLog(@"Prepping AR");
     // we register for the callback
     QCAR::registerCallback(&qcarUpdate);
 
@@ -289,6 +303,7 @@ namespace {
     // by the proper angle in order to match the EAGLView orientation
     if (self.mARViewOrientation == UIInterfaceOrientationPortrait)
     {
+        NSLog(@"QCAR Portrait");
         QCAR::onSurfaceChanged(self.mARViewBoundsSize.width, self.mARViewBoundsSize.height);
         QCAR::setRotation(QCAR::ROTATE_IOS_90);
         
@@ -303,6 +318,8 @@ namespace {
     }
     else if (self.mARViewOrientation == UIInterfaceOrientationLandscapeLeft)
     {
+        NSLog(@"QCAR Landscape");
+
         QCAR::onSurfaceChanged(self.mARViewBoundsSize.height, self.mARViewBoundsSize.width);
         QCAR::setRotation(QCAR::ROTATE_IOS_180);
         
@@ -310,6 +327,7 @@ namespace {
     }
     else if (self.mARViewOrientation == UIInterfaceOrientationLandscapeRight)
     {
+        NSLog(@"QCAR Landscape");
         QCAR::onSurfaceChanged(self.mARViewBoundsSize.height, self.mARViewBoundsSize.width);
         QCAR::setRotation(1);
         
@@ -321,6 +339,8 @@ namespace {
 }
 
 - (void) initTracker {
+    NSLog(@"QCAR init tracker");
+
     // ask the application to initialize its trackers
     if (! [self.delegate doInitTrackers]) {
         [self.delegate onInitARDone:[self NSErrorWithCode:E_INIT_TRACKERS]];
@@ -331,6 +351,8 @@ namespace {
 
 
 - (void) loadTrackerData {
+    NSLog(@"QCAR load tracker");
+
     // Loading tracker data is a potentially lengthy operation, so perform it on
     // a background thread
     [self performSelectorInBackground:@selector(loadTrackerDataInBackground) withObject:nil];
@@ -355,6 +377,8 @@ namespace {
 // Configure QCAR with the video background size
 - (void)configureVideoBackgroundWithViewWidth:(float)viewWidth andHeight:(float)viewHeight
 {
+    NSLog(@"QCAR Configure Video Background");
+
     // Get the default video mode
     QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
     QCAR::VideoMode videoMode = cameraDevice.getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
@@ -487,6 +511,7 @@ namespace {
 // Start QCAR camera with the specified view size
 - (bool)startCamera:(QCAR::CameraDevice::CAMERA)camera viewWidth:(float)viewWidth andHeight:(float)viewHeight error:(NSError **)error
 {
+    NSLog(@"QCAR Starting Camera");
     // initialize the camera
     if (! QCAR::CameraDevice::getInstance().init(camera)) {
         [self NSErrorWithCode:-1 error:error];
@@ -526,6 +551,7 @@ namespace {
 
 
 - (bool) startAR:(QCAR::CameraDevice::CAMERA)camera error:(NSError **)error {
+    NSLog(@"Start AR");
     // Start the camera.  This causes QCAR to locate our EAGLView in the view
     // hierarchy, start a render thread, and then call renderFrameQCAR on the
     // view periodically
@@ -540,6 +566,8 @@ namespace {
 
 // Stop QCAR camera
 - (bool)stopAR:(NSError **)error {
+    NSLog(@"Stop AR");
+
     // Stop the camera
     if (self.cameraIsActive) {
         // Stop and deinit the camera
@@ -576,6 +604,8 @@ namespace {
 
 // stop the camera
 - (bool) stopCamera:(NSError **)error {
+    NSLog(@"QCAR stop camera");
+
     if (self.cameraIsActive) {
         // Stop and deinit the camera
         QCAR::CameraDevice::getInstance().stop();
@@ -610,6 +640,7 @@ namespace {
 // Callback function called by the tracker when each tracking cycle has finished
 void VuforiaApplication_UpdateCallback::QCAR_onUpdate(QCAR::State& state)
 {
+
     if (instance != nil) {
         [instance QCAR_onUpdate:&state];
     }
