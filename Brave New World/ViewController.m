@@ -122,10 +122,6 @@
     
 }
 
--(void)multiplayerPressed{
-    
-}
-
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     NSLog(@"ViewController viewDidAppear");
@@ -203,5 +199,69 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark- Multiplayer Matchmaking
+
+
+-(void)multiplayerPressed{
+    //Game Kit/Matchmaking
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(showAuthenticationViewController)
+     name:PresentAuthenticationViewController
+     object:nil];
+    
+    [[GameKitHelper sharedGameKitHelper]
+     authenticateLocalPlayer];
+
+    
+}
+
+
+
+- (void)showAuthenticationViewController
+{
+    GameKitHelper *gameKitHelper =
+    [GameKitHelper sharedGameKitHelper];
+    
+    [self presentViewController:
+     gameKitHelper.authenticationViewController animated:YES completion:nil];
+
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+     
+-(void)startMatchmaking{
+     GKMatchRequest *request = [[GKMatchRequest alloc] init];
+     request.minPlayers = 2;
+     request.maxPlayers = 2;
+     
+     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
+     mmvc.matchmakerDelegate = self;
+     
+     [self presentViewController:mmvc animated:YES completion:nil];
+}
+
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // Implement any specific code in your game here.
+}
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // Implement any specific code in your game here.
+}
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+
 
 @end

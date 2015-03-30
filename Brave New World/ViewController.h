@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SavedLevelsViewController.h"
+#import <GameKit/GameKit.h>
+#import <GameController/GameController.h>
+#import <GameKit/GKLocalPlayer.h>
+#import "GameKitHelper.h"
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController <GKMatchDelegate, GKMatchmakerViewControllerDelegate, GKLocalPlayerListener>
 
 @property (strong, nonatomic) UIButton *gnuLevelButton;
 @property (strong, nonatomic) UIButton *savedLevelsButton;
