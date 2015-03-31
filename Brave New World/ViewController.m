@@ -12,7 +12,10 @@
 @interface ViewController ()
 @end
 
-@implementation ViewController
+@implementation ViewController{
+    NSMutableArray *_players;
+    NSUInteger _currentPlayerIndex;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -108,7 +111,7 @@
 
 -(void)savedLevelsPressed{
     SavedLevelsViewController *savedLevelsController = [[SavedLevelsViewController alloc] init];
-    [self presentViewController:savedLevelsController animated:NO completion:nil];
+    [self.navigationController presentViewController:savedLevelsController animated:NO completion:nil];
     
 }
 
@@ -200,24 +203,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark- Multiplayer Matchmaking
+#pragma mark- Game Center
 
 
 -(void)multiplayerPressed{
     //Game Kit/Matchmaking
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(showAuthenticationViewController)
-     name:PresentAuthenticationViewController
-     object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showAuthenticationViewController) name:PresentAuthenticationViewController object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerAuthenticated)
+                                                 name:LocalPlayerIsAuthenticated object:nil];
     [[GameKitHelper sharedGameKitHelper]
      authenticateLocalPlayer];
 
     
 }
 
-
+- (void)playerAuthenticated {
+//    
+//    SKView *skView = (SKView*)self.view;
+//    GameScene *scene = (GameScene*)skView.scene;
+    
+    _networkingEngine = [[MultiplayerNetworking alloc] init];
+    _networkingEngine.delegate = self;
+//    scene.networkingEngine = _networkingEngine;
+    [[GameKitHelper sharedGameKitHelper] findMatchWithMinPlayers:2 maxPlayers:4 viewController:self delegate:_networkingEngine];
+}
 
 - (void)showAuthenticationViewController
 {
@@ -229,15 +239,31 @@
 
 }
 
+
+#pragma mark GameKitHelperDelegate
+
+- (void)matchStarted {
+    NSLog(@"Match started");
+}
+
+- (void)matchEnded {
+    NSLog(@"Match ended");
+}
+
+- (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {
+    NSLog(@"Received data");
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-     
+
+#pragma mark- Matchmaking
 -(void)startMatchmaking{
      GKMatchRequest *request = [[GKMatchRequest alloc] init];
      request.minPlayers = 2;
-     request.maxPlayers = 2;
+     request.maxPlayers = 4;
      
      GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
      mmvc.matchmakerDelegate = self;
@@ -261,6 +287,81 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 
+}
+
+
+
+#pragma mark MultiplayerNetworkingProtocol
+
+- (void)setCurrentPlayerIndex:(NSUInteger)index {
+    _currentPlayerIndex = index;
+    NSLog(@"Current Player Index: %lu", index);
+    if(index == 0){
+        
+        SavedLevelsViewController *levelsVC = [[SavedLevelsViewController alloc] init];
+        levelsVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        levelsVC.matchmaking = YES;
+        [self.navigationController presentViewController:levelsVC animated:NO completion:nil];
+    }
+}
+
+-(void)startLevelWithDict:(NSDictionary *)levelDictionary{
+    if(_currentPlayerIndex != 0){
+        GameSceneViewController *gameViewController = [[GameSceneViewController alloc] initWithNibName:nil bundle:nil];
+        NSMutableDictionary *objDict = [[NSMutableDictionary alloc] initWithDictionary:levelDictionary];
+        NSLog(@"Start Level With Object Dict: %@", objDict);
+        gameViewController.objectInfoDictionary = objDict;
+        gameViewController.playerNumber = _currentPlayerIndex;
+        [self.navigationController presentViewController:gameViewController animated:NO completion:^{
+//            gameViewController.objectInfoDictionary = objDict;
+//            NSLog(@"Gamecontrollerendod %@", gameViewController.objectInfoDictionary);
+
+        }];
+    }
+    
+}
+
+- (void)movePlayerAtIndex:(NSUInteger)index {
+   // [_players[index] moveForward];
+}
+
+- (void)gameOver:(BOOL)player1Won {
+    BOOL didLocalPlayerWin = YES;
+    if (player1Won) {
+        didLocalPlayerWin = NO;
+    }
+    if (self.gameOverBlock) {
+        self.gameOverBlock(didLocalPlayerWin);
+    }
+}
+
+-(void)startGame{
+    NSLog(@"Start Game Dict:%@", self.multiplayerObjectDictionary);
+    NSLog(@"Self:%@", self);
+    NSLog(@"VC:%@", self.navigationController.viewControllers);
+    [self.navigationController performSelector:@selector(presentLevel) withObject:nil afterDelay:0.0];
+}
+
+-(void)presentLevel{
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    GameSceneViewController *gameSceneController = [[GameSceneViewController alloc] initWithNibName:nil bundle:nil];
+    gameSceneController.objectInfoDictionary = self.multiplayerObjectDictionary;
+    window.rootViewController = gameSceneController;
+    [window makeKeyAndVisible];
+    [self.navigationController presentViewController:gameSceneController animated:NO completion:nil];
+    
+}
+
+- (void)setPlayerAliases:(NSArray*)playerAliases {
+    [playerAliases enumerateObjectsUsingBlock:^(NSString *playerAlias, NSUInteger idx, BOOL *stop) {
+       // [_players[idx] setPlayerAliasText:playerAlias];
+    }];
+}
+
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 

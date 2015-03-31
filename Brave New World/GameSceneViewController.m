@@ -24,12 +24,15 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     // Present the scene.
+    
+    GameKitHelper *gameKitHelper =
+    [GameKitHelper sharedGameKitHelper];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    NSLog(@"GameSceneController Dict:%@", self.objectInfoDictionary);
     self.view = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.skView = (SKView *)self.view;
     self.skView.showsPhysics = YES;
@@ -41,11 +44,12 @@
     self.scene.objectInfoDictionary = self.objectInfoDictionary;
     self.scene.frameVc = self.frameViewController;
     self.scene.delegate = self;
+    self.scene.playerNumber = self.playerNumber;
     [self.skView presentScene:self.scene];
     
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:NO];
+//    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+//    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:NO];
     
 }
 
@@ -137,6 +141,11 @@
 //
 //    }];
 
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 -(void)goBack{

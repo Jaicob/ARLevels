@@ -137,6 +137,11 @@
     
 }
 
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 
 /*
 #pragma mark - Navigation

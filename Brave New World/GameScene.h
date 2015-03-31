@@ -11,9 +11,12 @@
 #import "Player.h"
 #import <AVFoundation/AVFoundation.h>
 #import "GameSceneViewController.h"
+#import "GameKitHelper.h"
+#import "MultiplayerNetworking.h"
+
 @class GameSceneViewController;
 
-@interface GameScene : SKScene <SKPhysicsContactDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface GameScene : SKScene <SKPhysicsContactDelegate, UITextFieldDelegate, UIAlertViewDelegate, GameKitHelperDelegate, MultiplayerNetworkingProtocol>
 
 @property (strong, nonatomic) SKSpriteNode *background;
 @property (strong, nonatomic) UIImage *backgroundImage;
@@ -21,11 +24,12 @@
 @property (strong, nonatomic) SKSpriteNode *playerSpriteNode;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) BOOL isTouchingGround;
+@property (nonatomic, strong) MultiplayerNetworking *networkingEngine;
 @property (nonatomic, retain) GameSceneViewController *delegate;
 @property (strong, nonatomic) NSMutableArray *brownButtonArray;
 @property (weak, nonatomic) UIViewController *frameVc;
 @property (strong, nonatomic) NSMutableArray *objectsArray;
-
+@property (nonatomic) int playerNumber;
 @property (nonatomic, assign) BOOL gameOver;
 @property (nonatomic, assign) NSTimeInterval previousUpdateTime;
 @property (strong, nonatomic) UIColor *pickedColor;
@@ -47,5 +51,6 @@
 
 //Enemy Methods
 -(void)enemy1Attack;
+@property (strong, nonatomic) NSTimer *enemy1Timer;
 
 @end

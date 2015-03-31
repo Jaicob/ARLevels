@@ -782,5 +782,11 @@ typedef enum {
     return result;
 }
 
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+
 @end
 

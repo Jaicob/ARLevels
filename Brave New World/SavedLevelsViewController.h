@@ -14,5 +14,7 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *savedLevelsArray;
+@property (nonatomic) BOOL matchmaking;
+@property (strong, nonatomic) UIButton *doneButton;
 
 @end

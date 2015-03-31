@@ -64,7 +64,7 @@ static const int projectileCategory = 0x100000;
     [spriteManager addSpritesToScene:self.scene FromDictionary:self.objectInfoDictionary];
     self.spriteDictionary = spriteManager.spriteDictionary;
     if([self.spriteDictionary objectForKey:@"MarkerEnemy1"]){
-        NSTimer *attack = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(enemy1Attack) userInfo:nil repeats:YES];
+        self.enemy1Timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(enemy1Attack) userInfo:nil repeats:YES];
         
     }
     NSLog(@"SpriteDict:%@",self.spriteDictionary);
@@ -81,7 +81,7 @@ static const int projectileCategory = 0x100000;
     rightArrow.zRotation = M_PI/2;
     rightArrow.zPosition = 5.0f;
     
-    [self addChild:rightArrow];
+    [self.scene addChild:rightArrow];
     
     SKSpriteNode *leftArrow = [SKSpriteNode spriteNodeWithImageNamed:@"leftArrow.png"];
     leftArrow.size = CGSizeMake(75, 75);
@@ -89,7 +89,7 @@ static const int projectileCategory = 0x100000;
     leftArrow.zRotation = M_PI/2;
     leftArrow.name = @"leftArrow";
     leftArrow.zPosition = 5.0f;
-    [self addChild:leftArrow];
+    [self.scene addChild:leftArrow];
     
     SKSpriteNode *upArrow = [SKSpriteNode spriteNodeWithImageNamed:@"upArrow.png"];
     upArrow.size = CGSizeMake(75, 75);
@@ -97,7 +97,7 @@ static const int projectileCategory = 0x100000;
     upArrow.zRotation = M_PI/2;
     upArrow.name = @"upArrow";
     upArrow.zPosition = 5.0f;
-    [self addChild:upArrow];
+    [self.scene addChild:upArrow];
     
     self.replayButton= [UIButton buttonWithType:UIButtonTypeCustom];
     [self.replayButton setImage:[UIImage imageNamed:@"replay.png"] forState:UIControlStateNormal];
@@ -118,24 +118,24 @@ static const int projectileCategory = 0x100000;
     self.saveLevelButton.frame = CGRectMake(self.size.width / 2.0, self.size.height/2.0 - 160, 64, 64);
     [self.view addSubview:self.saveLevelButton];
     
-    self.levelTitleTextField = [[UITextField alloc] init];
-    self.levelTitleTextField.frame = CGRectMake(self.size.width / 2.0 + 20, self.size.height/2.0, 200, 40);
-   // self.levelTitleTextField.center = self.view.center;
-    self.levelTitleTextField.borderStyle = UITextBorderStyleRoundedRect;
-    self.levelTitleTextField.textColor = [UIColor blackColor];
-    self.levelTitleTextField.font = [UIFont systemFontOfSize:17.0];
-    self.levelTitleTextField.placeholder = @"Enter level name here";
-    self.levelTitleTextField.backgroundColor = [UIColor whiteColor];
-    self.levelTitleTextField.autocorrectionType = UITextAutocorrectionTypeYes;
-    self.levelTitleTextField.keyboardType = UIKeyboardTypeDefault;
-    self.levelTitleTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.levelTitleTextField.delegate = self.delegate;
-    self.levelTitleTextField.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin;
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);
-    CGAffineTransform rotate = CGAffineTransformMakeRotation(3.14/2);
-    CGAffineTransform finalTransform = CGAffineTransformConcat(transform, rotate);
-    self.levelTitleTextField.transform = finalTransform;
-    [self.view addSubview:self.levelTitleTextField];
+//    self.levelTitleTextField = [[UITextField alloc] init];
+//    self.levelTitleTextField.frame = CGRectMake(self.size.width / 2.0 + 20, self.size.height/2.0, 100, 20);
+//   // self.levelTitleTextField.center = self.view.center;
+//    self.levelTitleTextField.borderStyle = UITextBorderStyleRoundedRect;
+//    self.levelTitleTextField.textColor = [UIColor blackColor];
+//    self.levelTitleTextField.font = [UIFont systemFontOfSize:17.0];
+//    self.levelTitleTextField.placeholder = @"Enter level name here";
+//    self.levelTitleTextField.backgroundColor = [UIColor whiteColor];
+//    self.levelTitleTextField.autocorrectionType = UITextAutocorrectionTypeYes;
+//    self.levelTitleTextField.keyboardType = UIKeyboardTypeDefault;
+//    self.levelTitleTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+//    self.levelTitleTextField.delegate = self.delegate;
+//    self.levelTitleTextField.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin;
+//    CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);
+//    CGAffineTransform rotate = CGAffineTransformMakeRotation(3.14/2);
+//    CGAffineTransform finalTransform = CGAffineTransformConcat(transform, rotate);
+//    self.levelTitleTextField.transform = finalTransform;
+//    [self.view addSubview:self.levelTitleTextField];
     
     self.levelTitleTextField.alpha = 0.0f;
     self.saveLevelButton.alpha = 0.0f;
@@ -145,6 +145,16 @@ static const int projectileCategory = 0x100000;
     SKSpriteNode *scoot = (SKSpriteNode *)[self childNodeWithName:@"scoot"];
     scoot.physicsBody.allowsRotation = NO;
     [scoot childNodeWithName:@"feet"].physicsBody.allowsRotation = NO;
+    self.isTouchingGround = NO;
+    
+    
+    NSData *objectDictionaryData = [NSKeyedArchiver archivedDataWithRootObject:self.spriteDictionary];
+    self.networkingEngine = [[MultiplayerNetworking alloc] init];
+    self.networkingEngine.delegate = self;
+    if(self.playerNumber == 0){
+        [self.networkingEngine sendData:objectDictionaryData];
+    }
+
 }
 
 -(void)enemy1Attack{
@@ -219,12 +229,13 @@ static const int projectileCategory = 0x100000;
 }
 
 -(void)newLevel{
+    
     [self.gameSceneLoop stop];
     self.replayButton.alpha = 0.0f;
     self.gnuLevelButton.alpha = 0.0f;
     self.saveLevelButton.alpha = 0.0f;
     self.levelTitleTextField.alpha = 0.0f;
-    
+    self.enemy1Timer = nil;
     if(self.levelTitleTextField.isFirstResponder){
         [self.levelTitleTextField resignFirstResponder];
     }
@@ -261,7 +272,10 @@ static const int projectileCategory = 0x100000;
     self.gnuLevelButton.alpha = 0.0f;
     self.saveLevelButton.alpha = 0.0f;
     self.levelTitleTextField.alpha = 0.0f;
-    
+    [_enemy1Timer invalidate];
+    [self.enemy1Timer invalidate];
+    self.enemy1Timer = nil;
+    [self removeAllChildren];
     if(self.levelTitleTextField.isFirstResponder){
         [self.levelTitleTextField resignFirstResponder];
     }
@@ -379,12 +393,12 @@ static const int projectileCategory = 0x100000;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [[event allTouches] anyObject];
+    UITouch *touch = [touches anyObject];
     CGPoint loc = [touch locationInNode:self];
-   // NSLog(@"Touch X: %f, Touch Y: %f", loc.x, loc.y);
+   NSLog(@"Touch X: %f, Touch Y: %f", loc.x, loc.y);
     for (UITouch *touch in touches) {
         SKNode *n = [self nodeAtPoint:[touch locationInNode:self]];
-        
+        NSLog(@"Name:%@", n.name);
         if([n.name isEqualToString:@"rightArrow"]){
             if([[self childNodeWithName:@"scoot"] actionForKey:@"moveLeft"]){
                 [[self childNodeWithName:@"scoot"] removeActionForKey:@"moveLeft"];
@@ -413,10 +427,10 @@ static const int projectileCategory = 0x100000;
         
     }
     
-    if(self.gameOver && self.levelTitleTextField.isFirstResponder){
-        [self.levelTitleTextField resignFirstResponder];
-
-    }
+//    if(self.gameOver && self.levelTitleTextField.isFirstResponder){
+//        [self.levelTitleTextField resignFirstResponder];
+//
+//    }
     
 }
 
@@ -440,6 +454,10 @@ static const int projectileCategory = 0x100000;
         
     }
     
+}
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 

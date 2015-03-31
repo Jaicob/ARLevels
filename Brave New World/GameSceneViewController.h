@@ -12,17 +12,23 @@
 #import "ARViewController.h"
 #import "ViewController.h"
 #import "GameScene.h"
+#import "GameKitHelper.h"
+#import "MultiplayerNetworking.h"
 @class GameScene;
 
-@interface GameSceneViewController : UIViewController <SKSceneDelegate, UITextFieldDelegate>
+@interface GameSceneViewController : UIViewController <SKSceneDelegate, UITextFieldDelegate, GameKitHelperDelegate, MultiplayerNetworkingProtocol>
 
 @property (weak, nonatomic) SKView *skView;
 @property (strong, nonatomic) GameScene *scene;
+@property (nonatomic) int playerNumber;
 @property (weak, nonatomic) UIView *frameView;
 @property (weak, nonatomic) UIViewController *frameViewController;
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) MultiplayerNetworking *networkingEngine;
 
-@property (weak, nonatomic) NSMutableDictionary *objectInfoDictionary;
+@property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
+@property (strong, nonatomic) NSMutableDictionary *playerDictionary;
+@property (strong, nonatomic) NSArray *orderPlayerArray;
 
 -(void)presentARViewController;
 -(void)goBack;

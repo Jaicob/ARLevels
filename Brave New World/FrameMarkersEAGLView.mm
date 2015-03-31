@@ -798,6 +798,10 @@ QCAR::Vec2F cameraPointToScreenPoint(QCAR::Vec2F cameraPoint)
     return [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
 
 
 
