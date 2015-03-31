@@ -39,6 +39,8 @@
 @property (nonatomic) BOOL movingLeft;
 @property (nonatomic) BOOL movingRight;
 
+@property (nonatomic) BOOL isMultiplayer;
+
 //Dictionaries
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (strong, nonatomic) NSMutableDictionary *spriteDictionary;

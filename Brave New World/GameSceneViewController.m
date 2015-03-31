@@ -40,6 +40,9 @@
     //
     // Create and configure the scene.
     self.scene = [GameScene sceneWithSize:CGSizeMake(self.skView.bounds.size.width, self.skView.bounds.size.height)];
+    if(self.isMultiplayer){
+        self.scene.isMultiplayer = YES;
+    }
     NSLog(@"SKView resize frame: %@", NSStringFromCGRect(self.skView.frame));
     self.scene.objectInfoDictionary = self.objectInfoDictionary;
     self.scene.frameVc = self.frameViewController;

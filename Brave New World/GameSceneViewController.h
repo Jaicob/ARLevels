@@ -29,7 +29,7 @@
 @property (strong, nonatomic) NSMutableDictionary *objectInfoDictionary;
 @property (strong, nonatomic) NSMutableDictionary *playerDictionary;
 @property (strong, nonatomic) NSArray *orderPlayerArray;
-
+@property (nonatomic) BOOL isMultiplayer;
 -(void)presentARViewController;
 -(void)goBack;
 

@@ -147,12 +147,13 @@ static const int projectileCategory = 0x100000;
     [scoot childNodeWithName:@"feet"].physicsBody.allowsRotation = NO;
     self.isTouchingGround = NO;
     
-    
-    NSData *objectDictionaryData = [NSKeyedArchiver archivedDataWithRootObject:self.spriteDictionary];
-    self.networkingEngine = [[MultiplayerNetworking alloc] init];
-    self.networkingEngine.delegate = self;
-    if(self.playerNumber == 0){
-        [self.networkingEngine sendData:objectDictionaryData];
+    if(self.isMultiplayer){
+        NSData *objectDictionaryData = [NSKeyedArchiver archivedDataWithRootObject:self.spriteDictionary];
+        self.networkingEngine = [[MultiplayerNetworking alloc] init];
+        self.networkingEngine.delegate = self;
+        if(self.playerNumber == 0){
+            [self.networkingEngine sendData:objectDictionaryData];
+        }
     }
 
 }

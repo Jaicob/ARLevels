@@ -312,6 +312,7 @@
         NSLog(@"Start Level With Object Dict: %@", objDict);
         gameViewController.objectInfoDictionary = objDict;
         gameViewController.playerNumber = _currentPlayerIndex;
+        gameViewController.isMultiplayer = YES;
         [self.navigationController presentViewController:gameViewController animated:NO completion:^{
 //            gameViewController.objectInfoDictionary = objDict;
 //            NSLog(@"Gamecontrollerendod %@", gameViewController.objectInfoDictionary);
@@ -346,6 +347,7 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     GameSceneViewController *gameSceneController = [[GameSceneViewController alloc] initWithNibName:nil bundle:nil];
     gameSceneController.objectInfoDictionary = self.multiplayerObjectDictionary;
+    gameSceneController.isMultiplayer = YES;
     window.rootViewController = gameSceneController;
     [window makeKeyAndVisible];
     [self.navigationController presentViewController:gameSceneController animated:NO completion:nil];
